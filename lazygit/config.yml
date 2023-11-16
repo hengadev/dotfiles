@@ -1,0 +1,15 @@
+os: 
+  editPreset: 'nvim'
+gui: 
+  theme: 
+    selectedLineBgColor:
+      - underline
+    selectedRangeBgColor:
+      - underline
+
+git: 
+  paging: 
+    colorArg: never
+    pager: delta --dark --paging=never --true-color=never
+    # useConfig: false
+      

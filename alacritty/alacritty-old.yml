@@ -1,0 +1,45 @@
+window:
+  padding:
+    x: 10
+    y: 10
+  class:
+    instance: Alacritty
+    general: Alacritty
+  opacity: 1
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  # A la base il a change le font mais je n'aime pas le resultat.
+  normal:
+    family: FiraCode Nerd Font
+    style:  Regular
+  bold:
+    family: FiraCode Nerd Font
+    style:  Bold
+  italic:
+    family: FiraCode Nerd Font
+    style:  Italic
+  bold_italic:
+    family: FiraCode Nerd Font
+    style: Bold Italic
+  size: 24
+draw_bold_text_with_bright_colors: true
+
+import:
+  # Pour mes themes dans le terminal
+  # - ~/.config/alacritty/catppuccin-mocha.yml
+  - ~/.config/alacritty/rose-pine/rose-pine.yml
+
+selection:
+  save_to_clipboard: false
+
+shell:
+  program: /usr/bin/zsh
+
+key_bindings:
+  - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
+
+
