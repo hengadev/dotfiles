@@ -56,6 +56,7 @@ alias gb="git branch"
 alias gba="git branch --all"
 alias gbd="git branch -d"
 alias gch="git checkout"
+alias gdog="git log --all --decorate --oneline --graph"
 
 alias lg="lazygit" # Launch lazygit
 

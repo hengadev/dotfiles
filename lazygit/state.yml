@@ -1,49 +1,52 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/henga/.config
-- /home/henga/dotfiles
-- /home/henga/Documents/projets/papa/desktop_app/test1
+- /home/henga/Documents/projets/playground/git_test
 - /home/henga/Documents/perso
+- /home/henga/Documents/projets/githubProfile
+- /home/henga/Documents/projets/siteTontonFrantz/website
+- /home/henga/Documents/projets/papa/desktop_app/test1
+- /home/henga/Documents/projets/papa/desktop_app/backend
+- /home/henga/dotfiles
 - /home/henga/Documents/projets/github/prosemirror
 - /home/henga/Documents/projets/github/git_test
-- /home/henga/Documents/projets/playground/git
 - /home/henga/Documents/projets/github/harpoon.nvim
 - /home/henga/Documents/projets/github/pagedjs
-- /home/henga/Documents/projets/siteTontonFrantz/website
 startuppopupversion: 5
 customcommandshistory:
-- git push origin --delete dev
-- git remote origin --delete dev
-- git restore Sidebar.svelte
-- git remove -v
-- git log --oneline --decorate
-- git push origin feature_1
-- git remote remove origin feature_1
-- git remote --delete origin feature_1
-- git remote
-- git push --all
-- git push origin feature_3
-- git pull origin
-- git pull origin --all
-- git push origin main
-- git remote -b
-- git reset
-- w
-- git reset HEAD~
-- ""
-- git tag -d test-tag
-- git remote -v
-- git push -u origin main
-- 'git pull origin '
-- git push origin HEAD~2:feature_3
-- git push -all
-- git pull origin feature_3
-- git remote origin --delete feature_1
-- git push --delete origin feature_1
-- git push --delete origin feature_2 feature_3
-- git restore .
-- git branch -vv
-- git remote --delete origin dev
+- git fetch orgin
 - git push -u origin dev
+- git remote --delete origin dev
+- git branch -vv
+- git restore .
+- git push --delete origin feature_2 feature_3
+- git push --delete origin feature_1
+- git remote origin --delete feature_1
+- git pull origin feature_3
+- git push -all
+- git push origin HEAD~2:feature_3
+- 'git pull origin '
+- git push -u origin main
+- git remote -v
+- git tag -d test-tag
+- ""
+- git reset HEAD~
+- w
+- git reset
+- git remote -b
+- git push origin main
+- git pull origin --all
+- git pull origin
+- git push origin feature_3
+- git push --all
+- git remote
+- git remote --delete origin feature_1
+- git remote remove origin feature_1
+- git push origin feature_1
+- git log --oneline --decorate
+- git remove -v
+- git restore Sidebar.svelte
+- git remote origin --delete dev
+- git push origin --delete dev
 hidecommandlog: false
 ignorewhitespaceindiffview: false
