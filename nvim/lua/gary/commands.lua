@@ -78,9 +78,3 @@ vim.api.nvim_create_user_command("Config",
 vim.api.nvim_create_user_command("Cn", function()
     vim.cmd [[CocCommand rust-analyzer.reload]]
 end, {})
-
-
--- NOTE: On teste un truc avec lazygit pour creer une nouvelle commande.
--- vim.api.nvim_create_user_command("LazyGit", function()
---     vim.cmd [[LazyGit]]
--- end, {})

@@ -1,4 +1,5 @@
--- Je vais utiliser cette configuration pour C, C++ et rust bien qu'elle soit initialement prevu pour c++ et rust
+-- Je vais utiliser cette configuration pour C, C++ et rust bien qu'elle soit initialement prevu pour c++ et rust:w
+--
 local M = {}
 
 function M.setup()
@@ -10,13 +11,15 @@ function M.setup()
             request = "launch",
             program = function()
                 -- NOTE: Precdente config que je ne prefere pas parce qu'il y a un input.
-                -- return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
 
-                -- NOTE: Je pars du principe que la fonction est toujours dans le main.
-                return vim.fn.getcwd() .. '/' .. 'main.o'
+                -- NOTE: Je pars du principe que la fonction est toujours dans le main. Mais surtout que je n'
+                -- ai pas d'etape de linking a faire et donc que g++ -c et g++ donne le meme resultat.
+                -- return vim.fn.getcwd() .. '/' .. 'main.o'
             end,
             cwd = '${workspaceFolder}',
             stopOnEntry = false,
+            -- stopOnEntry = true,
         },
     }
 
