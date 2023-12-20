@@ -92,6 +92,7 @@ return {
                     -- Update this to ensure that you have the debuggers for the langs you want
                     'delve',
                     'codelldb',
+                    -- 'debugpy',
                 },
             }
         }
@@ -152,12 +153,11 @@ return {
                 },
                 {
                     elements = {
-                        -- Je n'ai pas specialement besoin d'une console, donc je la bouge et le repl prend toute la largeur
-                        -- { id = "repl", size = 0.45 },
-                        -- { id = "console", size = 0.55 },
-                        { id = "repl", size = 1 },
+                        { id = "repl",    size = 0.45 },
+                        { id = "console", size = 0.55 },
+                        -- J'avais enleve la console sauf qu'il s'en trouve que j'en ai besoin en realite.
+                        -- { id = "repl", size = 1 },
                     },
-                    -- Bizarrement je m'attendrai a devoir mettre 0.25, mais en tweakant la bonne valeur est 0.30
                     size = 0.30,
                     position = "bottom",
                 },

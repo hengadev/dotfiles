@@ -41,7 +41,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
--- Je ne vois pas ce que cela fait
+-- Keep the last deleted selection into the _ register
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Ne fonctionne pas
@@ -81,7 +81,6 @@ local tnoremap = Remap.tnoremap
 
 local silent = { silent = true }
 -- Remap pour utiliser les commandes de run, build etc...pour les fichier en  c, cpp, rust ou go, je ferai de meme pour typescript je n'ai pas encore eu le temps
--- TODO: changer la synthaxe pour du vim.keymap ? Pour le moment cela fonctionne.
 nnoremap("<leader>cb", "<Cmd>Build<CR>", silent)
 nnoremap("<leader>cd", "<Cmd>DebugBuild<CR>", silent)
 nnoremap("<leader>cl", "<Cmd>Run<CR>", silent)
@@ -89,3 +88,6 @@ nnoremap("<leader>cr", "<Cmd>Ha<CR>", silent)
 
 -- Lazygit
 nnoremap("<leader>gg", "<Cmd>LazyGit<CR>", silent)
+
+-- The remap for the dbuitoggle to use the vim-dadbod
+nnoremap("<leader>bd", "<Cmd>DBUIToggle<CR>", silent)
