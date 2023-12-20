@@ -6,17 +6,18 @@ local M = {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-path",
-        -- {
-        --     "zbirenbaum/copilot-cmp",
-        --     config = function()
-        --         require("copilot_cmp").setup()
-        --     end,
-        -- },
+        {
+            "zbirenbaum/copilot-cmp",
+            config = function()
+                require("copilot_cmp").setup()
+            end,
+        },
+        'kristijanhusak/vim-dadbod-completion',
     },
     opts = function()
         local cmp = require("cmp")
         -- Une fonction que je mets en commentaire pour le moment, je tenter autre chose
-        -- Pour le momnt je le remets mais cela ne saurait tarde que je le recommente parce que la y en a clairement assesz  
+        -- Pour le momnt je le remets mais cela ne saurait tarde que je le recommente parce que la y en a clairement assesz
         local lsp_kinds = require("utils").lsp_kinds
 
         local has_words_before = function()
@@ -53,7 +54,7 @@ local M = {
             mapping = cmp.mapping.preset.insert({
                 ["<C-p>"] = cmp.mapping.select_prev_item(),
                 ["<C-n>"] = cmp.mapping.select_next_item(),
-                ["<C-d>"] = cmp.mapping.scroll_docs( -4),
+                ["<C-d>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.close(),
@@ -74,8 +75,8 @@ local M = {
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
-                    elseif luasnip.jumpable( -1) then
-                        luasnip.jump( -1)
+                    elseif luasnip.jumpable(-1) then
+                        luasnip.jump(-1)
                     else
                         fallback()
                     end
@@ -86,14 +87,17 @@ local M = {
                 { name = "copilot" },
                 { name = "path" },
                 { name = "buffer" },
+                { name = "vim-dadbod-completion", priority = 700 }, -- add new source
             },
             window = {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered(),
             },
-            experimental = { ghost_text = {
-                hl_group = "LspCodeLens",
-            } },
+            experimental = {
+                ghost_text = {
+                    hl_group = "LspCodeLens",
+                }
+            },
         }
     end,
     config = function(_, opts)
