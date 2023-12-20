@@ -2,7 +2,7 @@
 -- Cette config vient de vim salesman.
 
 local build_commands = {
-    -- TODO: use clang to compile ?
+    -- TODO: use clang to compile ? Change g++ to gcc for the C commands ?
     c = "g++ -std=c++17 -o %:p:r.o %",
     cpp = "g++ -std=c++17 -Wall -O2 -o %:p:r.o %",
     rust = "cargo build --release",

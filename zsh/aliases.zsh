@@ -30,6 +30,7 @@ alias ni="npm install"
 alias nrb="npm run build"
 alias nrs="npm run start"
 alias nrd="npm run dev"
+alias nrt="npm run test"
 
 # Je rajoute des alias pour pouvoir utilise curl pour le dev 
 alias cll="curl 'http://localhost:5000"
