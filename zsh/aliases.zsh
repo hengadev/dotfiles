@@ -60,6 +60,8 @@ alias gch="git checkout"
 alias gdog="git log --all --decorate --oneline --graph"
 
 alias lg="lazygit" # Launch lazygit
+# alias ld="~/go/bin/lazydocker" # Launch lazydocker
+alias ld="lazydocker" # Launch lazydocker
 
 # TODO: D'autres commandes a venir
 

@@ -17,3 +17,13 @@ return {
     },
 
 }
+
+-- Example de toutes les todos
+-- NOTE:
+-- TODO:
+-- FIX:
+-- WARNING:
+-- HACK:
+-- PERF:
+-- BUG:
+-- TEST:

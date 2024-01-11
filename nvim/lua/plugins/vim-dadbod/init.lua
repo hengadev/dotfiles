@@ -2,7 +2,7 @@ return {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
         { "tpope/vim-dadbod",                     lazy = true },
-        { "kristijanhusak/vim-dadbod-completion", ft = { 'sql', 'mysql', 'plsql', 'sqlite' }, lazy = true },
+        { "kristijanhusak/vim-dadbod-completion", ft = { 'sql', 'mysql', 'plsql', 'sqlite', 'mongo' }, lazy = true },
     },
     cmd = {
         'DBUI',
@@ -11,7 +11,7 @@ return {
         'DBUIFindBuffer',
     },
     init = function()
-        -- the conf for the db_ui
+        -- the configuration for the db_ui
         vim.g.db_ui_use_nerd_font = 1
     end,
 }

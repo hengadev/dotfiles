@@ -86,8 +86,9 @@ nnoremap("<leader>cd", "<Cmd>DebugBuild<CR>", silent)
 nnoremap("<leader>cl", "<Cmd>Run<CR>", silent)
 nnoremap("<leader>cr", "<Cmd>Ha<CR>", silent)
 
--- Lazygit
+-- Lazygit & Lazydocker
 nnoremap("<leader>gg", "<Cmd>LazyGit<CR>", silent)
+nnoremap("<leader>ld", "<Cmd>LazyDocker<CR>", silent)
 
 -- The remap for the dbuitoggle to use the vim-dadbod
 nnoremap("<leader>bd", "<Cmd>DBUIToggle<CR>", silent)
