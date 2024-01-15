@@ -24,7 +24,11 @@ local options = {
     smartcase = true,
     -- sync clipboard between os and nvim
     clipboard = 'unnamedplus',
+    conceallevel = 1,
 }
+
+-- NOTE: for obsidian
+vim.o.conceallevel = 2
 
 vim.opt.isfname:append("@-@")
 
