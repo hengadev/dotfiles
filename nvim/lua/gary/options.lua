@@ -18,7 +18,7 @@ local options = {
     scrolloff = 8,
     signcolumn = "yes",
     updatetime = 50,
-    colorcolumn = "80",
+    colorcolumn = "100",
     -- case independant searching
     ignorecase = true,
     smartcase = true,

@@ -1,5 +1,4 @@
--- Je recupere ici tout l'ui de lazy nvim dont je m'inspire on va pas se mentir
-
+-- Je recupere ici tout l'ui de lazyvim dont je m'inspire on va pas se mentir
 
 return {
     -- Better `vim.notify()`

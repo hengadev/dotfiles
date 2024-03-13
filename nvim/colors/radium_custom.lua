@@ -1,25 +1,12 @@
---Lien qui permet l'installation du bordel : https://www.reddit.com/r/vimporn/comments/128zkpk/radioactive_harpoon/
----@module "radium_dark" A radioactive colorscheme.
----@author dharmx | https://github.com/dharmx
----@license GPL-3.0
+-- Here I am going to put my custom color scheme so that I can try to replicate the one in here :
+-- I am using the method describe by devaslife in this video :
+-- TODO:
 
--- GNU GENERAL PUBLIC LICENSE
--- Version 3, 29 June 2007
---
--- Permissions of this strong copyleft license are conditioned on
--- making available complete source code of licensed works and
--- modifications, which include larger works using a licensed work,
--- under the same license. Copyright and license notices must be
--- preserved. Contributors provide an express grant of patent rights.
---
--- Read the complete license here: https://www.gnu.org/licenses/gpl-3.0.en.html
-
--- THIS FILE IS AUTO-GENERATED!
-
-vim.g.colors_name = "radium_dark"
+vim.g.colors_name = "custom_radium_dark"
 vim.o.background = "dark"
 local function HL(name, val) vim.api.nvim_set_hl(0, name, val) end
 
+-- TODO: Change that
 HL("@boolean", { bold = true, foreground = "#F87070" })
 HL("@character", { foreground = "#E1C58D" })
 HL("@comment", { foreground = "#515C68" })

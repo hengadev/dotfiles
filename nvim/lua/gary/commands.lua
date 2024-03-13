@@ -2,8 +2,9 @@
 -- Cette config vient de vim salesman.
 
 local build_commands = {
-    -- TODO: use clang to compile ? Change g++ to gcc for the C commands ?
-    c = "g++ -std=c++17 -o %:p:r.o %",
+    -- NOTE: Old c commands, while it was working it was not optimal
+    -- c = "g++ -std=c++17 -o %:p:r.o %",
+    c = "gcc -o %:p:r.o %",
     cpp = "g++ -std=c++17 -Wall -O2 -o %:p:r.o %",
     rust = "cargo build --release",
     go = "go build -o %:p:r.o %",
@@ -11,9 +12,10 @@ local build_commands = {
 }
 
 local debug_build_commands = {
-    c = "g++ -std=c++17 -g -o %:p:r.o %",
+    c = "gcc -g -o %:p:r.o %",
     cpp = "g++ -std=c++17 -g -o %:p:r.o %",
     rust = "cargo build",
+    -- TODO: find the debug command to use
     go = "go build -o %:p:r.o %",
     typescript = "tsc %:p:r.ts"
 }

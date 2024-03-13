@@ -65,11 +65,17 @@ alias ld="lazydocker" # Launch lazydocker
 
 # TODO: D'autres commandes a venir
 
+#makefile command (since I use them a lot)
+alias mt="make test"
+alias mr="make run"
+alias mb="make build"
+
 #Mon journal de bord
-alias idea="cd ~/Documents/perso/ && nv idea.md"
+alias todo="cd ~/Documents/perso/ && nv Todo.md"
+alias note="cd ~/Documents/perso/ && nv Note.md"
+alias idea="cd ~/Documents/perso/Projets/Idees/ && nv idea.md"
+
 alias jdb="cd ~/Documents/perso/ && nv jdb.md"
-alias note="cd ~/Documents/perso/ && nv note.md"
-alias obj="cd ~/Documents/perso/ && nv obj.md"
 
 # lampp (pour gerer mon php)
 alias lampps="sudo /opt/lampp/lampp start"
