@@ -192,11 +192,11 @@ exec --no-startup-id obsidian
 # exec --no-startup-id telegram-desktop
 
 # When opening one of the following app, go directly to the workspace.
-assign [class="firefox"] $ws1
-for_window [class="firefox"] focus
-
-assign [class="alacritty"] $ws2
+assign [class="alacritty"] $ws1
 for_window [class="alacritty"] focus
+
+assign [class="firefox"] $ws2
+for_window [class="firefox"] focus
 
 assign [class="obsidian"] $ws3
 for_window [class="obsidian"] focus
@@ -231,7 +231,7 @@ bar {
     # Prend grave du temps a launch en fait, je ne sais pas si je garde la config par default
     swaybar_command waybar
 
-    # Old configuration
+    #NOTE: Old configuration
     # position bottom
 
     # When the status_command prints a new line to stdout, swaybar updates.
