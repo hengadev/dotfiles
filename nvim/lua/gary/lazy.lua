@@ -13,9 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- load lazy
 require("lazy").setup("plugins", {
-    -- Je n'ai pas besoin de ce color scheme j'en ai un custom
-    -- install = { colorscheme = { "tokyonight" } },
-
     defaults = { lazy = true },
     ui = {
         border = "rounded",

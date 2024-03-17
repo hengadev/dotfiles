@@ -1,4 +1,4 @@
-local M = {
+return {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPre",
     opts = {
@@ -20,5 +20,3 @@ local M = {
         },
     },
 }
-
-return M

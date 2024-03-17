@@ -2,7 +2,7 @@
 -- Si j'ouvre un fichier c++ je veux que le int main soit deja preremplie par exemple ou que je puisse avoir une commande qui puisse le faire a ma place,
 -- un peu comme le doctype prerempli avec emmet
 
-local M = {
+return {
     "L3MON4D3/LuaSnip",
     dependencies = {
         "rafamadriz/friendly-snippets",
@@ -12,5 +12,3 @@ local M = {
     },
     config = true,
 }
-
-return M

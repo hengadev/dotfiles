@@ -11,13 +11,13 @@ return {
         -- Ceux la n'ont pas l'air de fonctionner
         {
             "<leader>?",
-            "<cmd>lua require('telescope.builtin').oldfiles<cr>",
+            "<cmd>lua require('telescope.builtin').oldfiles()<cr>",
             desc =
             '[?] Find recently opened files',
         },
         {
             "<leader><space>",
-            "<cmd>lua require('telescope.builtin').buffers<cr>",
+            "<cmd>lua require('telescope.builtin').buffers()<cr>",
             desc =
             '[ ] Find existing buffers',
         },
