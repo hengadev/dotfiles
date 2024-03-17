@@ -85,8 +85,9 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Firefox"
-set $ws2 "2: Alacritty"
+# set $ws1 "1: Firefox"
+set $ws1 "1: Alacritty"
+set $ws2 "2: Brave"
 set $ws3 "3: Obsidian"
 set $ws4 "4: Discord"
 set $ws5 "5"
@@ -136,7 +137,6 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-# bindsym $mod+Shift+e exec "sway-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'sway-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -181,8 +181,9 @@ bindsym $mod+d exec wofi --show run
 
 
 # At startup, launch apps.
-exec --no-startup-id firefox
+# exec --no-startup-id firefox
 exec --no-startup-id alacritty
+exec --no-startup-id brave
 exec --no-startup-id obsidian
 # exec --no-startup-id discord
 # exec --no-startup-id notion-app-enhanced
@@ -195,8 +196,12 @@ exec --no-startup-id obsidian
 assign [class="alacritty"] $ws1
 for_window [class="alacritty"] focus
 
-assign [class="firefox"] $ws2
-for_window [class="firefox"] focus
+# NOTE: Changed until fix for firefox with wayland and sway
+# assign [class="firefox"] $ws2
+# for_window [class="firefox"] focus
+
+assign [class="brave"] $ws2
+for_window [class="brave"] focus
 
 assign [class="obsidian"] $ws3
 for_window [class="obsidian"] focus
