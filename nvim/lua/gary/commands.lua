@@ -15,7 +15,7 @@ local debug_build_commands = {
     c = "gcc -g -o %:p:r.o %",
     cpp = "g++ -std=c++17 -g -o %:p:r.o %",
     rust = "cargo build",
-    -- TODO: find the debug command to use
+    -- TODO: find the debug command to use for the rest of these languages
     go = "go build -o %:p:r.o %",
     typescript = "tsc %:p:r.ts"
 }
