@@ -1,7 +1,7 @@
 #!/bin/sh
 #General shell aliases 
 alias nv="nvim"
-alias lsla="ls -la"
+alias ll="ls -la"
 alias c="clear"
 alias conf="cd ~/.config"
 alias pj="cd ~/Documents/mesProjetsDev"

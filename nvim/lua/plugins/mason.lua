@@ -15,6 +15,7 @@ return {
             "typescript-language-server",
             "gopls",
             "rust-analyzer",
+            "astro-language-server",
         },
     },
 }

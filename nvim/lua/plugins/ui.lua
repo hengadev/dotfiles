@@ -12,6 +12,13 @@ return {
                 end,
                 desc = "Delete all Notifications",
             },
+            {
+                "<leader>sn",
+                function()
+                    require("telescope").extensions.notify.notify({})
+                end,
+                desc = "[S]earch all [N]otifications",
+            },
         },
         opts = {
             timeout = 3000,
@@ -19,8 +26,11 @@ return {
                 return math.floor(vim.o.lines * 0.75)
             end,
             max_width = function()
-                return math.floor(vim.o.columns * 0.75)
+                return math.floor(vim.o.columns * 0.65)
             end,
+            -- render = "compact",
+            stages = "fade",
+            top_down = "false",
         },
         init = function()
             -- when noice is not enabled, install notify on VeryLazy
@@ -34,7 +44,6 @@ return {
     },
 
     -- better vim.ui
-
     {
         "stevearc/dressing.nvim",
         lazy = true,

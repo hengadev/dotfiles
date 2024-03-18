@@ -21,6 +21,12 @@ return {
             desc =
             '[ ] Find existing buffers',
         },
+        {
+            "<leader>sk",
+            "<cmd>lua require('telescope.builtin').keymaps()<cr>",
+            desc =
+            '[S]earch existing [K]eymaps',
+        },
         -- La fonction que j'utiilise est assez moche, j'ai prefere la mettre dans le fichier utils que j'utilisais deja
         {
             "<leader>/",
