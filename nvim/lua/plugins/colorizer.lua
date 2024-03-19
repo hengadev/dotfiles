@@ -2,6 +2,7 @@ return {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPre",
     opts = {
+        -- TODO: Change that to only css, and associated files ?
         filetypes = { "*" },
         user_default_options = {
             RGB = true,          -- #RGB hex codes

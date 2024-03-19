@@ -1,4 +1,4 @@
---Lien qui permet l'installation du bordel : https://www.reddit.com/r/vimporn/comments/128zkpk/radioactive_harpoon/
+---Lien qui permet l'installation du bordel : https://www.reddit.com/r/vimporn/comments/128zkpk/radioactive_harpoon/
 ---@module "radium_dark" A radioactive colorscheme.
 ---@author dharmx | https://github.com/dharmx
 ---@license GPL-3.0

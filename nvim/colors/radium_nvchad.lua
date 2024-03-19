@@ -1,6 +1,8 @@
 -- credits to original radium theme from https://github.com/dharmx
 -- this is a modified version of it
 
+-- TODO: I just need to use that thing correctly and set it up for all the files
+
 local M = {}
 
 M.base_30 = {
