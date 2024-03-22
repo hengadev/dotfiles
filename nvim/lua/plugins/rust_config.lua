@@ -9,7 +9,7 @@ return {
                 on_attach = function(_, bufnr)
                     vim.keymap.set("n", "<Leader>k", rt.hover_actions.hover_actions, { buffer = bufnr })
                     -- TODO: Faire en sorte de trouver une keymap pour cette action
-                    vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+                    vim.keymap.set("n", "<Leader>cag", rt.code_action_group.code_action_group, { buffer = bufnr })
                 end,
             },
             tools = {

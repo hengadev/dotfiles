@@ -1,5 +1,4 @@
 -- NOTE: The basic file for the NVChad theme config
-
 local M = {}
 
 M.ui = {
@@ -8,14 +7,15 @@ M.ui = {
     hl_add = {},
     hl_override = {},
     changed_themes = {},
-    theme_toggle = { "decay", "tundra", "monochrome", "rosepine" },
+    theme_toggle = { "decay", "tundra", "monochrome", "rosepine", "mountain" },
     -- theme = "onedark", -- default theme
     theme = "tundra", -- default theme
     -- rank :
-    -- 1. monochrome un theme tres pur et peu de contraste, du coup dur de voir si ecran a du soleil
-    -- 2. tundra : pas ouf sur les rendus de html -> mais le theme de teej il y a deux ans
+    -- 1. tundra : pas ouf sur les rendus de html -> mais le theme de teej il y a deux ans
+    -- 2. mountain : what looks like teej current theme
     -- 3. decay : une sorte de radium avec moins de rouge et moins aggro
     -- 4: rosepine
+    -- 5. monochrome un theme tres pur et peu de contraste, du coup dur de voir si ecran a du soleil
     transparency = false,
 
     cmp = {
@@ -45,30 +45,29 @@ M.ui = {
         modules = nil,
     },
 
-    nvdash = {
-        load_on_startup = false,
-
-        header = {
-            "           ▄ ▄                   ",
-            "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
-            "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
-            "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
-            "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ",
-            "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄",
-            "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █",
-            "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █",
-            "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
-        },
-
-        buttons = {
-            { "  Find File", "Spc f f", "Telescope find_files" },
-            { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
-            { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
-            { "  Bookmarks", "Spc m a", "Telescope marks" },
-            { "  Themes", "Spc t h", "Telescope themes" },
-            { "  Mappings", "Spc c h", "NvCheatsheet" },
-        },
-    },
+    -- NOTE: I do not use that one
+    -- nvdash = {
+    -- load_on_startup = false,
+    -- header = {
+    --     "           ▄ ▄                   ",
+    --     "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
+    --     "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
+    --     "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
+    --     "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ",
+    --     "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄",
+    --     "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █",
+    --     "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █",
+    --     "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
+    -- },
+    --     buttons = {
+    --         { "  Find File", "Spc f f", "Telescope find_files" },
+    --         { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
+    --         { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
+    --         { "  Bookmarks", "Spc m a", "Telescope marks" },
+    --         { "  Themes", "Spc t h", "Telescope themes" },
+    --         { "  Mappings", "Spc c h", "NvCheatsheet" },
+    --     },
+    -- },
 
     cheatsheet = { theme = "grid" }, -- simple/grid
 

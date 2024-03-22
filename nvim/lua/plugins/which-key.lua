@@ -1,4 +1,4 @@
--- Il me manque les elements du fichier utils pour finir la configuration
+-- TODO: A quoi tout cela me sert
 return {
     {
         "mrjones2014/legendary.nvim",

@@ -72,5 +72,12 @@ return {
             '[S]earch [D]iagnostics',
         },
 
+        {
+            "<leader>sm",
+            "<cmd>lua require('telescope.builtin').marks()<cr>",
+            desc =
+            '[S]earch [M]arks',
+        },
+
     }
 }
