@@ -1,6 +1,6 @@
 return { -- LSP Configuration & Plugins
 	"neovim/nvim-lspconfig",
-	lazy = false,
+	event = "BufReadPre",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
 		"williamboman/mason.nvim",
@@ -15,6 +15,8 @@ return { -- LSP Configuration & Plugins
 		{ "folke/neodev.nvim", opts = {}, lazy = "false" },
 	},
 	config = function()
+		-- setup for the vim diagnostics
+
 		--  This function gets run when an LSP attaches to a particular buffer.
 		--    That is to say, every time a new file is opened that is associated with
 		--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
