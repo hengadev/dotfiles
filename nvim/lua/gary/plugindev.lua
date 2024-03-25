@@ -1,4 +1,5 @@
--- Some functions for plugin development :
+-- [[ Useful Functions ]]
+-- Some functions for plugin development in lua :
 P = function(v)
     vim.print("\n")
     vim.print(v) -- to use instead of the pretty_print see on the internet - see document :h pretty_print

@@ -17,11 +17,27 @@ local options = {
     termguicolors = true,
     scrolloff = 8,
     signcolumn = "yes",
-    updatetime = 50,
+    updatetime = 250,
     colorcolumn = "100",
+    -- Decrease mapped sequence wait time
+    -- Displays which-key popup sooner
+    timeoutlen = 300,
+    -- Configure how new splits should be opened
+    splitright = true,
+    splitbelow = true,
     -- case independant searching
     ignorecase = true,
     smartcase = true,
+    -- Sets how neovim will display certain whitespace characters in the editor.
+    --  See `:help 'list'`
+    --  and `:help 'listchars'`
+    list = true,
+    listchars = { tab = '» ', trail = '·', nbsp = '␣' },
+    -- Preview substitutions live, as you type!
+    inccommand = 'split',
+
+    -- Show which line your cursor is on
+    cursorline = true,
     -- sync clipboard between os and nvim
     clipboard = 'unnamedplus',
     conceallevel = 1,

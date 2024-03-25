@@ -1,9 +1,7 @@
--- TODO : add commands for my front and back end experience and other languages
--- Cette config vient de vim salesman.
+-- TODO: Can I use the LSP to find the correct way to run commands and try to use that to make the different command automatically ? Can I make this a plugin ?
+-- That plugin could actually make makefiles if the user wanted to ?
 
 local build_commands = {
-    -- NOTE: Old c commands, while it was working it was not optimal
-    -- c = "g++ -std=c++17 -o %:p:r.o %",
     c = "gcc -o %:p:r.o %",
     cpp = "g++ -std=c++17 -Wall -O2 -o %:p:r.o %",
     rust = "cargo build --release",
@@ -15,7 +13,6 @@ local debug_build_commands = {
     c = "gcc -g -o %:p:r.o %",
     cpp = "g++ -std=c++17 -g -o %:p:r.o %",
     rust = "cargo build",
-    -- TODO: find the debug command to use for the rest of these languages
     go = "go build -o %:p:r.o %",
     typescript = "tsc %:p:r.ts"
 }
@@ -31,52 +28,65 @@ local run_commands = {
     java = "java %:p:r.java"
 }
 
-vim.api.nvim_create_user_command("Build", function()
-    local filetype = vim.bo.filetype
+-- TODO: Make a run release command for rust specifically because I want to have run and run_release, the same way with debug and debug_release ?
 
-    for file, command in pairs(build_commands) do
-        if (filetype == file) then
-            vim.cmd("!" .. command)
-            break
-        end
+local function bind(op, outer_opts)
+    outer_opts = outer_opts or { noremap = true }
+    return function(lhs, rhs, opts)
+        opts = vim.tbl_extend("force", outer_opts, opts or {})
+        vim.keymap.set(op, lhs, rhs, opts)
     end
-end, {})
+end
 
-vim.api.nvim_create_user_command("DebugBuild", function()
-    local filetype = vim.bo.filetype
+local nnoremap = bind("n")
+-- NOTE: Not used in this file
+-- local nmap = bind("n", { noremap = false })
+-- local vnoremap = bind("v")
+-- local xnoremap = bind("x")
+-- local inoremap = bind("i")
+-- local tnoremap = bind("t")
 
-    for file, command in pairs(debug_build_commands) do
-        if (filetype == file) then
-            vim.cmd("!" .. command)
-            break
+local t = {
+    Build = { name = build_commands, keymap = "cb", desc = "Build Release" },
+    DebugBuild = { name = debug_build_commands, keymap = "cd", desc = "Debug Build" },
+    -- TODO: Make the terminal to be interactive so that I can stop all that thing with just enter
+    Run = { name = run_commands, keymap = "cl", desc = "Run" },
+}
+
+-- Make a general function to create the custom command
+local create_custom_command = function(command_name, command_table)
+    vim.api.nvim_create_user_command(command_name, function()
+        local filetype = vim.bo.filetype
+
+        for file, command in pairs(command_table) do
+            if (filetype == file) then
+                if command_name == "Run" then
+                    vim.cmd("sp")
+                    vim.cmd("term " .. command)
+                    vim.cmd("resize 10S")
+                    local keys = vim.api.nvim_replace_termcodes("i", true, false, true)
+                    vim.api.nvim_feedkeys(keys, "n", false)
+                else
+                    vim.cmd("!" .. command)
+                end
+                break
+            end
         end
-    end
-end, {})
+    end, {})
+end
 
-vim.api.nvim_create_user_command("Run", function()
-    local filetype = vim.bo.filetype
+-- Building the functions.
+for name, command_table in pairs(t) do
+    nnoremap("<leader>" .. command_table["keymap"], "<Cmd>" .. name .. "<CR>",
+        { silent = true, desc = "FileCMD : " .. command_table["desc"] })
+    create_custom_command(name, command_table["name"])
+end
 
-    for file, command in pairs(run_commands) do
-        if (filetype == file) then
-            vim.cmd("sp")
-            vim.cmd("term " .. command)
-            vim.cmd("resize 20N")
-            local keys = vim.api.nvim_replace_termcodes("i", true, false, true)
-            vim.api.nvim_feedkeys(keys, "n", false)
-            break
-        end
-    end
-end, {})
-
+-- For rust, a combination of bulding and running release
 vim.api.nvim_create_user_command("Ha", function()
     vim.cmd [[Build]]
     vim.cmd [[Run]]
 end, {})
+nnoremap("<leader>cr", "<Cmd>Ha<CR>", { silent = true, desc = "FileCMD : Build and Run" })
 
-vim.api.nvim_create_user_command("Config",
-    function() vim.cmd [[cd ~/.config/nvim]] end,
-    {})
-
-vim.api.nvim_create_user_command("Cn", function()
-    vim.cmd [[CocCommand rust-analyzer.reload]]
-end, {})
+-- NOTE: from the dotfiles in https://github.com/NycRat/dotfiles

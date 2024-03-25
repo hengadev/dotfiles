@@ -1,4 +1,4 @@
--- TODO: A quoi tout cela me sert
+-- TODO: Do the setup for that, make a good register for it.
 return {
     {
         "mrjones2014/legendary.nvim",
@@ -42,7 +42,7 @@ return {
                 -- stylua: ignore
                 q = {
                     name = "Quit",
-                    q = { function() require("utils").quit() end, "Quit", },
+                    -- q = { function() require("utils").quit() end, "Quit", },
                     t = { "<cmd>tabclose<cr>", "Close Tab" },
                 },
                 b = { name = "+Buffer" },
@@ -64,7 +64,6 @@ return {
                     name = "+SearchTelescope",
                     c = { function() require("utils.coding").cht() end, "Cheatsheets", },
                     o = { function() require("utils.coding").stack_overflow() end, "Stack Overflow", },
-                    -- n = { name = "+Noice" },
                 },
                 c = {
                     name = "+Code",

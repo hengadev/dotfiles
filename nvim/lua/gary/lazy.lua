@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- part from the nvchad configuration for the UI.
 vim.g.base46_cache = vim.fn.stdpath('data') .. '/base46_cache/'
 
 dofile(vim.g.base46_cache .. "defaults")

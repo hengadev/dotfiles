@@ -1,109 +1,110 @@
 -- Je recupere ici tout l'ui de lazyvim dont je m'inspire on va pas se mentir
 
 return {
-    -- Better `vim.notify()`
-    {
-        "rcarriga/nvim-notify",
-        keys = {
-            {
-                "<leader>un",
-                function()
-                    require("notify").dismiss({ silent = true, pending = true })
-                end,
-                desc = "Delete all Notifications",
-            },
-            {
-                "<leader>sn",
-                function()
-                    require("telescope").extensions.notify.notify({})
-                end,
-                desc = "[S]earch all [N]otifications",
-            },
-        },
-        opts = {
-            timeout = 3000,
-            max_height = function()
-                return math.floor(vim.o.lines * 0.75)
-            end,
-            max_width = function()
-                return math.floor(vim.o.columns * 0.65)
-            end,
-            -- render = "compact",
-            stages = "fade",
-            top_down = "false",
-        },
-        init = function()
-            -- when noice is not enabled, install notify on VeryLazy
-            local Util = require("utils")
-            if not Util.has("noice.nvim") then
-                Util.on_very_lazy(function()
-                    vim.notify = require("notify")
-                end)
-            end
-        end,
-    },
+	-- Better `vim.notify()`
+	{
+		"rcarriga/nvim-notify",
+		keys = {
+			{
+				"<leader>un",
+				function()
+					require("notify").dismiss({ silent = true, pending = true })
+				end,
+				desc = "Delete all Notifications",
+			},
+			{
+				"<leader>sn",
+				function()
+					require("telescope").extensions.notify.notify({})
+				end,
+				desc = "[S]earch all [N]otifications",
+			},
+		},
+		opts = {
+			timeout = 3000,
+			max_height = function()
+				return math.floor(vim.o.lines * 0.75)
+			end,
+			max_width = function()
+				return math.floor(vim.o.columns * 0.65)
+			end,
+			-- render = "compact",
+			stages = "fade",
+			top_down = "false",
+		},
+		init = function()
+			-- when noice is not enabled, install notify on VeryLazy
+			local Util = require("utils")
+			if not Util.has("noice.nvim") then
+				Util.on_very_lazy(function()
+					vim.notify = require("notify")
+				end)
+			end
+		end,
+	},
 
-    -- better vim.ui
-    {
-        "stevearc/dressing.nvim",
-        lazy = true,
-        init = function()
-            ---@diagnostic disable-next-line: duplicate-set-field
-            vim.ui.select = function(...)
-                require("lazy").load({ plugins = { "dressing.nvim" } })
-                return vim.ui.select(...)
-            end
-            ---@diagnostic disable-next-line: duplicate-set-field
-            vim.ui.input = function(...)
-                require("lazy").load({ plugins = { "dressing.nvim" } })
-                return vim.ui.input(...)
-            end
-        end,
-    },
+	-- better vim.ui
+	{
+		"stevearc/dressing.nvim",
+		lazy = true,
+		init = function()
+			---@diagnostic disable-next-line: duplicate-set-field
+			vim.ui.select = function(...)
+				require("lazy").load({ plugins = { "dressing.nvim" } })
+				return vim.ui.select(...)
+			end
+			---@diagnostic disable-next-line: duplicate-set-field
+			vim.ui.input = function(...)
+				require("lazy").load({ plugins = { "dressing.nvim" } })
+				return vim.ui.input(...)
+			end
+		end,
+	},
 
-    -- statusline
-    {
-        "nvim-lualine/lualine.nvim",
-        event = "VeryLazy",
-        opts = function()
-            local icons = require("utils")
+	-- statusline
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		opts = function()
+			local icons = require("utils")
 
-            local function fg(name)
-                return function()
-                    ---@type {foreground?:number}?
-                    local hl = vim.api.nvim_get_hl_by_name(name, true)
-                    return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
-                end
-            end
+			local function fg(name)
+				return function()
+					---@type {foreground?:number}?
+					local hl = vim.api.nvim_get_hl_by_name(name, true)
+					return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
+				end
+			end
 
-            return {
-                options = {
-                    theme = "auto",
-                    globalstatus = true,
-                    disabled_filetypes = { statusline = { "dashboard", "alpha" } },
-                },
-                sections = {
-                    lualine_a = { "mode" },
-                    lualine_b = { "branch" },
-                    lualine_c = {
-                        {
-                            "diagnostics",
-                            symbols = {
-                                error = icons.lsp_signs.Error,
-                                warn = icons.lsp_signs.Warn,
-                                info = icons.lsp_signs.Info,
-                                hint = icons.lsp_signs.Hint,
-
-                            },
-                        },
-                        {
-                            "filetype",
-                            icon_only = true,
-                            separator = "",
-                            padding = {
-                                left = 1, right = 0 }
-                        },
-                        { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
+			return {
+				options = {
+					theme = "auto",
+					globalstatus = true,
+					disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+				},
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch" },
+					lualine_c = {
+						{
+							"diagnostics",
+							symbols = {
+								error = icons.lsp_signs.Error,
+								warn = icons.lsp_signs.Warn,
+								info = icons.lsp_signs.Info,
+								hint = icons.lsp_signs.Hint,
+							},
+						},
+						{
+							"filetype",
+							icon_only = true,
+							separator = "",
+							padding = {
+								left = 1,
+								right = 0,
+							},
+						},
+						{ "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
                         -- stylua: ignore
                         {
                             function() return require("nvim-navic").get_location() end,
@@ -112,8 +113,8 @@ return {
                                     require("nvim-navic").is_available()
                             end,
                         },
-                    },
-                    lualine_x = {
+					},
+					lualine_x = {
                         -- stylua: ignore
                         {
                             function() return require("noice").api.status.command.get() end,
@@ -129,75 +130,75 @@ return {
                             cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
                             color = fg("Constant"),
                         },
-                        {
-                            require("lazy.status").updates,
-                            cond = require("lazy.status").has_updates,
-                            color = fg("Special")
-                        },
-                        {
-                            "diff",
-                            symbols = {
-                                added = icons.git.added,
-                                modified = icons.git.modified,
-                                removed = icons.git.removed,
-                            },
-                        },
-                    },
-                    lualine_y = {
-                        { "progress", separator = " ",                  padding = { left = 1, right = 0 } },
-                        { "location", padding = { left = 0, right = 1 } },
-                    },
-                    lualine_z = {
-                        function()
-                            return " " .. os.date("%R")
-                        end,
-                    },
-                },
-                extensions = { "neo-tree", "lazy" },
-            }
-        end,
-    },
+						{
+							require("lazy.status").updates,
+							cond = require("lazy.status").has_updates,
+							color = fg("Special"),
+						},
+						{
+							"diff",
+							symbols = {
+								added = icons.git.added,
+								modified = icons.git.modified,
+								removed = icons.git.removed,
+							},
+						},
+					},
+					lualine_y = {
+						{ "progress", separator = " ", padding = { left = 1, right = 0 } },
+						{ "location", padding = { left = 0, right = 1 } },
+					},
+					lualine_z = {
+						function()
+							return " " .. os.date("%R")
+						end,
+					},
+				},
+				extensions = { "neo-tree", "lazy" },
+			}
+		end,
+	},
 
-    -- active indent guide and indent text objects
-    {
-        "echasnovski/mini.indentscope",
-        version = false, -- wait till new 0.7.0 release to put it back on semver
-        event = { "BufReadPre", "BufNewFile" },
-        opts = {
-            -- symbol = "▏",
-            symbol = "│",
-            options = { try_as_border = true },
-        },
-        init = function()
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
-                callback = function()
-                    vim.b.miniindentscope_disable = true
-                end,
-            })
-        end,
-        config = function(_, opts)
-            require("mini.indentscope").setup(opts)
-        end,
-    },
+	-- active indent guide and indent text objects
+	{
+		"echasnovski/mini.indentscope",
+		version = false, -- wait till new 0.7.0 release to put it back on semver
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {
+			-- symbol = "▏",
+			symbol = "│",
+			options = { try_as_border = true },
+		},
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+				callback = function()
+					vim.b.miniindentscope_disable = true
+				end,
+			})
+		end,
+		config = function(_, opts)
+			require("mini.indentscope").setup(opts)
+		end,
+	},
 
-    -- noicer ui
-    {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        opts = {
-            lsp = {
-                override = {
-                    ["vimtrue.lsp.util.convert_input_to_markdown_lines"] = true,
-                    ["vim.lsp.util.stylize_markdown"] = true,
-                },
-            },
-            presets = {
-                bottom_search = true,
-                command_palette = true,
-                long_message_to_split = true,
-            },
-        },
+	-- noicer ui
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			lsp = {
+				override = {
+					["vimtrue.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+				},
+			},
+			presets = {
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = true,
+			},
+		},
         -- stylua: ignore
         keys = {
             {
@@ -246,34 +247,33 @@ return {
                     "i", "n", "s" }
             },
         },
-    },
+	},
 
+	-- lsp symbol navigation for lualine
+	{
+		"SmiteshP/nvim-navic",
+		lazy = true,
+		init = function()
+			vim.g.navic_silence = true
+			require("utils").on_attach(function(client, buffer)
+				if client.server_capabilities.documentSymbolProvider then
+					require("nvim-navic").attach(client, buffer)
+				end
+			end)
+		end,
+		opts = function()
+			return {
+				separator = " ",
+				highlight = true,
+				depth_limit = 5,
+				icons = require("utils").lsp_kinds,
+			}
+		end,
+	},
 
-    -- lsp symbol navigation for lualine
-    {
-        "SmiteshP/nvim-navic",
-        lazy = true,
-        init = function()
-            vim.g.navic_silence = true
-            require("utils").on_attach(function(client, buffer)
-                if client.server_capabilities.documentSymbolProvider then
-                    require("nvim-navic").attach(client, buffer)
-                end
-            end)
-        end,
-        opts = function()
-            return {
-                separator = " ",
-                highlight = true,
-                depth_limit = 5,
-                icons = require("utils").lsp_kinds,
-            }
-        end,
-    },
+	-- icons
+	{ "nvim-tree/nvim-web-devicons", lazy = false },
 
-    -- icons
-    { "nvim-tree/nvim-web-devicons", lazy = false },
-
-    -- ui components
-    { "MunifTanjim/nui.nvim",        lazy = true },
+	-- ui components
+	{ "MunifTanjim/nui.nvim", lazy = true },
 }

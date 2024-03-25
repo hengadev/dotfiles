@@ -1,3 +1,5 @@
+vim.keymap.set("n", "<leader>gg", "<Cmd>LazyGit<CR>", { silent = true })
+
 return {
     "kdheepak/lazygit.nvim",
     -- NOTE: La seule option qu'il me fallait pour pouvoir launch lazy git a l'interieur de neovim
