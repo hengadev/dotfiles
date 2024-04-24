@@ -25,12 +25,19 @@ alias tl='tmux list-sessions'
 # WARNING: Je n'utilise plus cela maintenant que j'ai mon toggleterm dans neovim.
 # alias ide='tmux split-window -v -p 30' 
 
-#npm aliases 
+# npm aliases 
 alias ni="npm install"
 alias nrb="npm run build"
 alias nrs="npm run start"
 alias nrd="npm run dev"
 alias nrt="npm run test"
+
+# pnpm aliases 
+alias pi="pnpm install"
+alias prb="pnpm run build"
+alias prs="pnpm run start"
+alias prd="pnpm run dev"
+alias prt="pnpm run test"
 
 # Je rajoute des alias pour pouvoir utilise curl pour le dev 
 alias cll="curl 'http://localhost:5000"
@@ -42,6 +49,7 @@ alias gotb="go test -bench=." #Pour le bench sequentiel de base
 alias gotc="go test -cover" # To see the coverage of the tests written
 
 # rust aliases
+alias cb="cargo build"
 alias cr="cargo run"
 alias ct="cargo test"
 alias cc="cargo check"
