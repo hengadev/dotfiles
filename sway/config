@@ -3,6 +3,14 @@
 ######################
 
 
+# To handle the bluetooth, the current headphone is : 
+# B0:F0:0C:0E:A7:59
+# pair B0:F0:0C:0E:A7:59
+# trust B0:F0:0C:0E:A7:59
+# connect B0:F0:0C:0E:A7:59
+
+
+
 # Alt key as default mod.
 set $mod Mod1
 # set $mod Mod5
@@ -40,7 +48,8 @@ floating_modifier $mod
 
 # Start a terminal
 # set $term alacritty
-bindsym $mod+Return exec alacritty
+# bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec wezterm
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -86,7 +95,8 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 # set $ws1 "1: Firefox"
-set $ws1 "1: Alacritty"
+# set $ws1 "1: Alacritty"
+set $ws1 "1: Wezterm"
 set $ws2 "2: Brave"
 set $ws3 "3: Obsidian"
 set $ws4 "4: Discord"
@@ -182,9 +192,10 @@ bindsym $mod+d exec wofi --show run
 
 # At startup, launch apps.
 # exec --no-startup-id firefox
-exec --no-startup-id alacritty
+# exec --no-startup-id alacritty
+exec --no-startup-id wezterm
 exec --no-startup-id brave
-exec --no-startup-id obsidian
+# exec --no-startup-id obsidian
 # exec --no-startup-id discord
 # exec --no-startup-id notion-app-enhanced
 # exec --no-startup-id nautilus
@@ -193,8 +204,10 @@ exec --no-startup-id obsidian
 # exec --no-startup-id telegram-desktop
 
 # When opening one of the following app, go directly to the workspace.
-assign [class="alacritty"] $ws1
-for_window [class="alacritty"] focus
+# assign [class="alacritty"] $ws1
+# for_window [class="alacritty"] focus
+assign [class="wezterm"] $ws1
+for_window [class="wezterm"] focus
 
 # NOTE: Changed until fix for firefox with wayland and sway
 # assign [class="firefox"] $ws2
