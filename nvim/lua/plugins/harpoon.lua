@@ -1,18 +1,23 @@
-local write_desc = function(desc)
-    return "Harpoon: " .. desc
-end
-
 return {
-    'ThePrimeagen/harpoon',
-    dependencies = {
-        'nvim-lua/plenary.nvim',
-    },
-    keys = {
-        { "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<cr>",       desc = write_desc("[A]dd to harpoon") },
-        { "<C-e>",     "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = write_desc("Toggle menu") },
-        { "<C-1>",     "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", desc = write_desc("Navigate to file [1]") },
-        { "<C-2>",     "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", desc = write_desc("Navigate to file [2]") },
-        { "<C-3>",     "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", desc = write_desc("Navigate to file [3]") },
-        { "<C-4>",     "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", desc = write_desc("Navigate to file [4]") },
-    }
+	"ThePrimeagen/harpoon",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+	},
+	keys = {
+		{ "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<cr>", desc = "[Add to harpoon" },
+		-- { "<C-e>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>" },
+		-- { "<C-h>", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>" },
+		-- { "<C-t>", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>" },
+		-- { "<C-n>", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>" },
+		-- { "<C-m>", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>" },
+
+		-- temp mapping before I get something more serious
+		{ "<C-e>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>" },
+		{ "<C-1>", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>" },
+		{ "<C-2>", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>" },
+		{ "<C-3>", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>" },
+		{ "<C-4>", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>" },
+	},
 }
+
+-- Correspondance dvorak et qwerty ? to do the remapping ?

@@ -7,8 +7,12 @@ M.ui = {
 	hl_add = {},
 	hl_override = {},
 	changed_themes = {},
-	theme_toggle = { "decay", "tundra", "monochrome", "rosepine", "mountain", "nightowl", "oceanicnext" },
+	-- TODO: Implement the toggle the nvchad functionnalities
+	theme_toggle = { "radium", "decay", "tundra", "monochrome", "rosepine", "mountain", "nightowl", "oceanicnext" },
 	-- theme = "onedark", -- default theme
+	-- theme = "chadracula-evondev",
+	-- theme = "pastelDark", -- default theme
+    -- theme = "mountain", -- default theme
 	theme = "tundra", -- default theme
 	-- TODO: How to make sure that changing this files make the base46 using another theme, watch for the nvchad for that.
 	--

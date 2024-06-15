@@ -79,6 +79,7 @@ return { -- Autocompletion
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				-- NOTE: The version that i am used to but I can not use tab normally so...
 				-- ["<CR>"] = cmp.mapping.confirm({ select = false }),
+				-- ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
 				-- Manually trigger a completion from nvim-cmp.
 				--  Generally you don't need this, because nvim-cmp will display
