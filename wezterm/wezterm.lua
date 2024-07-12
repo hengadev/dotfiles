@@ -22,19 +22,20 @@ config.font = wezterm.font_with_fallback {
   'nonicons',
 }
 
-config.font_size = 12.5
+-- TODO: change that depending on the screen you  use
+-- config.font_size = 16.5
+config.font_size = 18
 
 -- default is true, has more "native" look
 config.use_fancy_tab_bar = false
 
 -- I don't like putting anything at the ege if I can help it.
 config.enable_scroll_bar = false
-local padding = 10
 config.window_padding = {
-  left = padding,
-  right = padding,
-  top = padding,
-  bottom = padding,
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
 }
 
 config.tab_bar_at_bottom = true
