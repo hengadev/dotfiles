@@ -1,4 +1,4 @@
--- NOTE: this configuration comes from kickstart where I used my previous keymaps
+-- NOTE: this configuration comes from kickstart where I used my previou keymaps
 
 return {
 	"nvim-telescope/telescope.nvim",
@@ -54,6 +54,8 @@ return {
 					require("telescope.themes").get_dropdown(),
 				},
 			},
+            -- extensions_list = {"themes",  "terms" },
+            extensions_list = {"themes"},
 		})
 
 		-- Enable Telescope extensions if they are installed
@@ -106,5 +108,15 @@ return {
 		vim.keymap.set("n", "<leader>nc", function()
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
 		end, { desc = helper_desc("[S]earch [N]eovim files") })
+
+        --
+        -- TODO:: Make the implementation of that thing.
+        vim.keymap.set("n", "<leader>th", function ()
+            -- 1. open the themes folder
+            -- 2. display the content of the theme folder (just the names before the lua thing) on a telescope popup
+            -- 3. make sur that the selection have you configure the file in the nvconfig.lua so that you can change theme
+            print("hello word")
+			builtin.find_files({ cwd = vim.fn.stdpath("config") })
+        end, { desc = helper_desc("Search [TH]emes") })
 	end,
 }

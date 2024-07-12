@@ -1,3 +1,4 @@
+
 return {
 	"NvChad/base46",
 	lazy = false,
@@ -5,3 +6,5 @@ return {
 		require("base46").load_all_highlights()
 	end,
 }
+
+

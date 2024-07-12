@@ -98,8 +98,8 @@ bindsym $mod+a focus parent
 # set $ws1 "1: Alacritty"
 set $ws1 "1: Wezterm"
 set $ws2 "2: Brave"
-set $ws3 "3: Obsidian"
-set $ws4 "4: Discord"
+set $ws3 "3: Discord"
+set $ws4 "4: Obsidian"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -195,6 +195,7 @@ bindsym $mod+d exec wofi --show run
 # exec --no-startup-id alacritty
 exec --no-startup-id wezterm
 exec --no-startup-id brave
+exec --no-startup-id discord
 # exec --no-startup-id obsidian
 # exec --no-startup-id discord
 # exec --no-startup-id notion-app-enhanced
@@ -216,11 +217,12 @@ for_window [class="wezterm"] focus
 assign [class="brave"] $ws2
 for_window [class="brave"] focus
 
-assign [class="obsidian"] $ws3
+assign [class="discord"] $ws3
+for_window [class="discord"] focus
+
+assign [class="obsidian"] $ws4
 for_window [class="obsidian"] focus
 
-assign [class="discord"] $ws4
-for_window [class="discord"] focus
 
 # assign [class="MongoDB Compass"] $ws4
 # for_window [class="MongoDB Compass"] focus
