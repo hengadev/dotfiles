@@ -15,6 +15,8 @@ return {
         dependencies = {
             "mrjones2014/legendary.nvim",
         },
+        -- the most recent versions causes the mapping to break...
+        version="2.1.0",
         event = "VeryLazy",
         config = function()
             local wk = require "which-key"
