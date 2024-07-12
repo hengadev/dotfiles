@@ -77,6 +77,7 @@ alias ld="lazydocker" # Launch lazydocker
 alias mt="make test"
 alias mr="make run"
 alias mb="make build"
+alias mp="make proto"
 
 #Mon journal de bord
 alias todo="cd ~/Documents/perso/ && nv Todo.md"
