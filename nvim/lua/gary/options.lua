@@ -24,7 +24,7 @@ local options = {
 	timeoutlen = 300,
 	-- Configure how new splits should be opened
 	splitright = true,
-	splitbelow = true,
+	splitbelow = false,
 	-- case independant searching
 	ignorecase = true,
 	smartcase = true,

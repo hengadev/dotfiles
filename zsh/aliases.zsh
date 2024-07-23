@@ -1,12 +1,14 @@
 #!/bin/sh
-#General shell aliases 
+# General shell aliases 
 alias nv="nvim"
 alias ll="ls -la"
 alias c="clear"
 alias conf="cd ~/.config"
 alias pj="cd ~/Documents/mesProjetsDev"
 alias src="source ~/.config/zsh/.zshrc"
-alias dotf="cd ~/dotFiles/.config"
+
+# navigation
+alias ..="cd .." #
 #Je rajoute le sudo pour pouvoir faire des commandes sudo, car sinon le shell n'interpretera pas maj car sudo n'est pas un alias
 alias sudo="sudo "
 alias maj="apt update && apt upgrade -y && rustup update"
@@ -55,17 +57,28 @@ alias ct="cargo test"
 alias cc="cargo check"
 
 #git aliases
-alias gs="git status"
-alias gl="git log"
+alias gs="git status -s"
 alias ga="git add"
-alias gc="git commit -m"
 alias gp="git push"
-# gives the name of all the branches that I have
-alias gb="git branch"
-alias gba="git branch --all"
-alias gbd="git branch -d"
-alias gch="git checkout"
-alias gdog="git log --all --decorate --oneline --graph"
+alias pr="git pull --rebase"
+alias ci="git commit"
+alias amend="git commit -a --amend --no-edit"
+alias co="git checkout"
+alias rh="git reset HEAD"
+alias rs="git restore --staged"
+alias gr="git remote -v"
+alias gl="git log"
+alias dog="git log --all --decorate --oneline --graph"
+# branch
+alias br="git branch"
+alias bra="git branch --all"
+alias brd="git branch -D"
+# worktree
+alias gw="git worktree"
+alias gwl="git worktree list"
+alias gwa="git worktree add"
+alias gwr="git worktree remove"
+
 
 alias lg="lazygit" # Launch lazygit
 # alias ld="~/go/bin/lazydocker" # Launch lazydocker
@@ -73,13 +86,14 @@ alias ld="lazydocker" # Launch lazydocker
 
 # TODO: D'autres commandes a venir
 
-#makefile command (since I use them a lot)
+# makefile command (since I use them a lot)
 alias mt="make test"
 alias mr="make run"
 alias mb="make build"
 alias mp="make proto"
+alias md="make docker"
 
-#Mon journal de bord
+# Mon journal de bord
 alias todo="cd ~/Documents/perso/ && nv Todo.md"
 alias note="cd ~/Documents/perso/ && nv Note.md"
 alias idea="cd ~/Documents/perso/Projets/Idees/ && nv idea.md"

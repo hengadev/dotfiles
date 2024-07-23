@@ -11,7 +11,7 @@ if wezterm.config_builder then
 end
 
 -- Set background to same color as neovim
--- config.colors = {}
+config.colors = {}
 -- config.colors.background = '#111111'
 config.color_scheme = 'Rosé Pine (base16)'
 
