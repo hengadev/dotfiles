@@ -1,4 +1,11 @@
 -- A collection a small plugins that makes the editor more pleasant to use
+local makeKey = require("utils.makeKey")
+
+SetCommentKey = makeKey("Comment")
+SetTodoKey = makeKey("Todo")
+SetUndoKey = makeKey("Undo")
+SetTerminalKey = makeKey("Terminal")
+
 return {
 	{
 		"NvChad/nvim-colorizer.lua",
@@ -26,26 +33,10 @@ return {
 	{
 		"numToStr/Comment.nvim",
 		keys = {
-			{
-				"gcc",
-				mode = "n",
-				"<Plug>(comment_toggle_linewise_current)",
-			},
-			{
-				"gcc",
-				mode = "x",
-				"<Plug>(comment_toggle_linewise_visual)",
-			},
-			{
-				"gbc",
-				mode = "n",
-				"<Plug>(comment_toggle_blockwise_current)",
-			},
-			{
-				"gbc",
-				mode = "x",
-				"<Plug>(comment_toggle_blockwise_visual)",
-			},
+			SetCommentKey( "gcc", "<Plug>(comment_toggle_linewise_current)", "Comment the current line", "n"),
+			SetCommentKey( "gcc", "<Plug>(comment_toggle_linewise_visual)", "Comment the current line", "x"),
+			SetCommentKey( "gbc", "<Plug>(comment_toggle_blockwise_current)", "Comment the current block", "n"),
+			SetCommentKey( "gbc", "<Plug>(comment_toggle_blockwise_visual)", "Comment the current block","x"),
 		},
 		opts = {
 			mappings = {
@@ -89,26 +80,27 @@ return {
 		config = true,
         -- stylua: ignore
         keys = {
-            { "]t",         function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-            { "[t",         function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-            { "<leader>xt", "<cmd>TodoTrouble<cr>",                              desc = "Todo (Trouble)" },
-            { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",      desc = "Todo/Fix/Fixme (Trouble)" },
-            { "<leader>st", "<cmd>TodoTelescope<cr>",                            desc = "[S]earch [T]odo" },
-            { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",    desc = "[S]earch [T]odo/Fix/Fixme" },
+            SetTodoKey( "]t", function() require("todo-comments").jump_next() end, "Next todo comment"),
+            SetTodoKey("[t", function() require("todo-comments").jump_prev() end, "Previous todo comment"),
+            SetTodoKey( "<leader>xt", "<cmd>TodoTrouble<cr>", "Todo (Trouble)"),
+            SetTodoKey( "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme (Trouble)" ),
+            SetTodoKey("<leader>st", "<cmd>TodoTelescope<cr>", "[S]earch [T]odo" ),
+            SetTodoKey("<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "[S]earch [T]odo/Fix/Fixme")
         },
 	},
 	{
 		"mbbill/undotree",
 		keys = {
-			{ "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle [U]ndo tree" } },
+			SetUndoKey( "<leader>u", vim.cmd.UndotreeToggle, "Toggle [U]ndo tree"),
 		},
 	},
 	-- Config qui vient de : https://raw.githubusercontent.com/alpha2phi/modern-neovim/main/lua/plugins/toggleterm.lua
 	{
 		"akinsho/toggleterm.nvim",
 		keys = {
-			{ [[<C-\>]] },
-			{ "<leader>0", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
+			-- SetTerminalKey([[<C-\>]], "<Cmd>2ToggleTerm<Cr>", "Toggle window"),
+			SetTerminalKey("<C-\\>", "<Cmd>2ToggleTerm<Cr>", "Toggle window"),
+			SetTerminalKey("<leader>0", "<Cmd>2ToggleTerm<Cr>", "Toggle window #2"),
 		},
 		cmd = { "ToggleTerm", "TermExec" },
 		opts = {

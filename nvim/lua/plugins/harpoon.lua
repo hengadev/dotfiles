@@ -1,23 +1,21 @@
+local makeKey = require("utils.makeKey")
+SetHarpoonKey = makeKey("Harpoon")
+
 return {
 	"ThePrimeagen/harpoon",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
 	keys = {
-		{ "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<cr>", desc = "[Add to harpoon" },
-		-- { "<C-e>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>" },
-		-- { "<C-h>", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>" },
-		-- { "<C-t>", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>" },
-		-- { "<C-n>", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>" },
-		-- { "<C-m>", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>" },
-
-		-- temp mapping before I get something more serious
-		{ "<C-e>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>" },
-		{ "<C-1>", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>" },
-		{ "<C-2>", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>" },
-		{ "<C-3>", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>" },
-		{ "<C-4>", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>" },
+		SetHarpoonKey("<leader>ra", "<cmd>lua require('harpoon.mark').add_file()<cr>", "[A]dd to harpoon"),
+		SetHarpoonKey( "<leader>ro", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "[T]oggle menu"),
+		SetHarpoonKey("<C-1>", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Open file number 1"),
+		SetHarpoonKey("<C-2>", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "Open file number 2"),
+		SetHarpoonKey("<C-3>", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "Open file number 3"),
+		SetHarpoonKey("<C-4>", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "Open file number 4"),
 	},
 }
 
 -- Correspondance dvorak et qwerty ? to do the remapping ?
+--
+-- old keymap to toggle the menu  "<C-e>"

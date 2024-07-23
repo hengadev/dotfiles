@@ -1,24 +1,16 @@
 -- Je recupere ici tout l'ui de lazyvim dont je m'inspire on va pas se mentir
 
+local makeKey = require("utils.makeKey")
+
+SetNotifyKey = makeKey("Notify")
+SetNoiceKey = makeKey("Noice")
+
 return {
-	-- Better `vim.notify()`
 	{
 		"rcarriga/nvim-notify",
 		keys = {
-			{
-				"<leader>un",
-				function()
-					require("notify").dismiss({ silent = true, pending = true })
-				end,
-				desc = "Delete all Notifications",
-			},
-			{
-				"<leader>sn",
-				function()
-					require("telescope").extensions.notify.notify({})
-				end,
-				desc = "[S]earch all [N]otifications",
-			},
+            SetNotifyKey("<leader>nd", function() require("notify").dismiss({ silent = true, pending = true }) end, "[D]elete all [N]otifications"),
+            SetNotifyKey("<leader>ns", function() require("telescope").extensions.notify.notify({}) end, "[S]earch all [N]otifications"),
 		},
 		opts = {
 			timeout = 2000,
@@ -201,51 +193,26 @@ return {
 		},
         -- stylua: ignore
         keys = {
-            {
-                "<S-Enter>",
-                function() require("noice").redirect(vim.fn.getcmdline()) end,
-                mode = "c",
-                desc =
-                "Redirect Cmdline"
-            },
-            {
-                "<leader>snl",
-                function() require("noice").cmd("last") end,
-                desc =
-                "Noice Last Message"
-            },
-            {
-                "<leader>snh",
-                function() require("noice").cmd("history") end,
-                desc =
-                "Noice History"
-            },
-            {
-                "<leader>sna",
-                function() require("noice").cmd("all") end,
-                desc =
-                "Noice All"
-            },
-            {
+            SetNoiceKey("<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, "Redirect Cmdline", "c"),
+            SetNoiceKey("<leader>nl", function() require("noice").cmd("last") end, "[N]otification [L]ast Message"),
+            SetNoiceKey( "<leader>nh", function() require("noice").cmd("history") end, "[N]otification [H]istory"),
+            SetNoiceKey( "<leader>na", function() require("noice").cmd("all") end, "[N]otification [A]ll"),
+            SetNoiceKey(
                 "<c-f>",
                 function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,
-                silent = true,
-                expr = true,
-                desc =
                 "Scroll forward",
-                mode = {
-                    "i", "n", "s" }
-            },
-            {
+                { "i", "n", "s" },
+                true,
+                true
+            ),
+            SetNoiceKey(
                 "<c-b>",
                 function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end,
-                silent = true,
-                expr = true,
-                desc =
                 "Scroll backward",
-                mode = {
-                    "i", "n", "s" }
-            },
+                { "i", "n", "s" },
+                true,
+                true
+            ),
         },
 	},
 

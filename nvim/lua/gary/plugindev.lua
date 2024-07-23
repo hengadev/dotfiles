@@ -20,4 +20,4 @@ end
 vim.api.nvim_create_user_command("SaveAndExecuteLuaFile", function()
     vim.cmd("silent !w")
     vim.cmd("source %")
-end, { desc = "Save and execute a lua file, used for plugin development." })
+end, { desc = "Dev: Save and execute a lua file." })

@@ -44,7 +44,7 @@ return {
 		-- map("<leader>dh", function() dap.ui.widgets.hover() end, "[D]ebug: [H]over Variables")
 		-- map("<leader>dS", function() dap.ui.widgets.scopes() end, "[D]ebug [S]copes")
 		map("<leader>dh", require("dap.ui.widgets").hover, "[D]ebug: [H]over Variables")
-		map("<leader>dS", require("dap.ui.widgets").scopes, "[D]ebug [S]copes")
+		map("<leader>dS", function() require("dap.ui.widgets").scopes() end, "[D]ebug [S]copes")
 		map("<leader>di", dap.step_into, "[D]ebug Step [I]nto")
 		map("<leader>do", dap.step_over, "[D]ebug Step [O]ver")
 		map("<leader>dp", dap.pause, "[D]ebug [P]ause")

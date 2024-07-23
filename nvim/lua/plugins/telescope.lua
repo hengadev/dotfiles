@@ -74,10 +74,10 @@ return {
 		map( "<leader>sc", builtin.git_commits, "[S]earch [C]ommits")
 		map( "<leader>so", builtin.oldfiles, "[S]earch [O]ld files")
 		map( "<leader><leader>", builtin.buffers, "[ ] Find existing buffers")
-		map( "<leader>m", builtin.marks, "[S]earch [M]arks")
+		map( "<leader>sm", builtin.marks, "[S]earch [M]arks")
 
 		-- Slightly advanced example of overriding default behavior and theme
-		map("<leader>/", function()
+		map("<leader>s/", function()
 			-- You can pass additional configuration to Telescope to change the theme, layout, etc.
 			builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 				winblend = 10,
@@ -95,17 +95,17 @@ return {
 		end, "[S]earch [/] in Open Files")
 
 		-- Shortcut for searching your Neovim configuration files
-		map("<leader>nc", function()
+		map("<leader>sv", function()
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
-		end, "Search [N]eovim [C]onfiguration files")
+		end, "[S]earch Neo[V]im configuration files")
 
         -- TODO:: Make the implementation of that thing.
-        map("<leader>th", function ()
+        map("<leader>su", function ()
             -- 1. open the themes folder
             -- 2. display the content of the theme folder (just the names before the lua thing) on a telescope popup
             -- 3. make sur that the selection have you configure the file in the nvconfig.lua so that you can change theme
             print("hello word")
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
-        end, "Search [T][H]emes")
+        end, "[S]earch [U]I")
 	end,
 }

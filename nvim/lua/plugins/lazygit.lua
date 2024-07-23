@@ -1,5 +1,5 @@
 local map = require("utils.map").set_prefix("LazyGit")
-map("<leader>gg", "<Cmd>LazyGit<CR>", "Open menu")
+map("<leader>lg", "<Cmd>LazyGit<CR>", "Open menu")
 
 return {
     "kdheepak/lazygit.nvim",

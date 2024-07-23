@@ -1,4 +1,3 @@
-
 return {
 	"NvChad/base46",
 	lazy = false,
