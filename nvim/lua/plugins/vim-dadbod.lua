@@ -1,10 +1,18 @@
-vim.keymap.set("n", "<leader>bd", "<Cmd>DBUIToggle<CR>", { silent = true, desc = "[D]atabase toggle vim-dadbod-ui" })
+local map = require("utils.map").set_prefix("Database")
+map("<leader>bd", "<Cmd>DBUIToggle<CR>", "[D]atabase toggle UI")
 
 return {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
-        { "tpope/vim-dadbod",                     lazy = false },
-        { "kristijanhusak/vim-dadbod-completion", ft = { 'sql', 'mysql', 'plsql', 'sqlite', 'mongo' }, lazy = false },
+        {
+            "tpope/vim-dadbod",
+            lazy = false,
+        },
+        { 
+            "kristijanhusak/vim-dadbod-completion",
+            ft = { 'sql', 'mysql', 'plsql', 'sqlite', 'mongo' },
+            lazy = false
+        },
     },
     cmd = {
         'DBUI',

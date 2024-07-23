@@ -1,4 +1,5 @@
-vim.keymap.set("n", "<leader>ld", "<Cmd>LazyDocker<CR>", { silent = true })
+local map = require("utils.map").set_prefix("LazyDocker")
+map("<leader>ld", "<Cmd>LazyDocker<CR>", "Open menu")
 
 return {
     "crnvl96/lazydocker.nvim",

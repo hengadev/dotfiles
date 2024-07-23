@@ -1,9 +1,9 @@
-vim.keymap.set("n", "<leader>gg", "<Cmd>LazyGit<CR>", { silent = true })
+local map = require("utils.map").set_prefix("LazyGit")
+map("<leader>gg", "<Cmd>LazyGit<CR>", "Open menu")
 
 return {
     "kdheepak/lazygit.nvim",
-    -- NOTE: La seule option qu'il me fallait pour pouvoir launch lazy git a l'interieur de neovim
-    lazy = false,
+    event = "VeryLazy",
     dependencies = {
         "nvim-telescope/telescope.nvim",
         "nvim-lua/plenary.nvim",
