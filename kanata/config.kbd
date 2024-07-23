@@ -1,0 +1,18 @@
+;; Kanata configuration for caps to backspace + ctrl
+;; Configuration from these links [1 = basic layer | 2 = setup as service + permissions, 3 = setup on linux as daemon service]:
+;; - https://www.youtube.com/watch?v=XuQVbZ0wENE
+;; - https://shom.dev/start/using-kanata-to-remap-any-keyboard/
+;; - https://github.com/jtroo/kanata/blob/main/docs/setup-linux.md
+
+
+(defsrc
+  caps
+)
+
+(defalias
+  bspcctrl (tap-hold 200 250 bspc lctrl)
+)
+
+(deflayer base
+  @bspcctrl
+)

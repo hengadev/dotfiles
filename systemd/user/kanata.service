@@ -1,0 +1,14 @@
+[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Environment=PATH=/home/henga/.cargo/bin
+Environment=DISPLAY=:0
+Type=simple
+ExecStartPre=/sbin/modprobe uinput
+ExecStart=/usr/bin/zsh -c 'exec $$(which kanata) --cfg $${HOME}/.config/kanata/config.kbd'
+Restart=no
+
+[Install]
+WantedBy=default.target
