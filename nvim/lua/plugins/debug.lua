@@ -1,24 +1,13 @@
--- TODO: Please finish the debugging thing
-local write_desc = function(desc)
-	return "DAP: " .. desc
-end
-
 return {
-	-- NOTE: Yes, you can install new plugins here!
 	"mfussenegger/nvim-dap",
 	event = "InsertEnter",
-	-- NOTE: And you can specify dependencies as well
 	dependencies = {
-		-- Creates a beautiful debugger UI
 		"rcarriga/nvim-dap-ui",
-
 		-- Required dependency for nvim-dap-ui
 		"nvim-neotest/nvim-nio",
-
 		-- Installs the debug adapters for you
 		"williamboman/mason.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
-
 		-- Add your own debuggers here
 		"leoluz/nvim-dap-go",
 	},
@@ -43,39 +32,29 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>dR", dap.run_to_cursor, { desc = write_desc("[D]ebug [R]un toCursor") })
-		vim.keymap.set("n", "<leader>dE", function()
-			dapui.eval(vim.fn.input("[Expression] > "))
-		end, { desc = write_desc("[D]ebug[E]valuate Input") })
-		vim.keymap.set("n", "<leader>dC", function()
-			dap.set_breakpoint(vim.fn.input("[Condition] > "))
-		end, { desc = write_desc("[D]ebug [C]onditional Breakpoint") })
-		vim.keymap.set("n", "<leader>dU", function()
-			require("dapui").toggle()
-		end, { desc = write_desc("[D]ebug Toggle [U]I") })
-		vim.keymap.set("n", "<leader>db", dap.step_back, { desc = write_desc("[D]ebug Step [B]ack") })
-		vim.keymap.set("n", "<leader>dc", dap.continue, { desc = write_desc("[D]ebug [C]ontinue") })
-		vim.keymap.set("n", "<leader>dd", dap.disconnect, { desc = write_desc("[D]ebug [D]isconnect") })
-		vim.keymap.set({ "n", "v" }, "<leader>de", dapui.eval, { desc = write_desc("[D]ebug [E]valuate") })
-		vim.keymap.set("n", "<leader>dg", dap.session, { desc = "[D]ebug Get Session" })
-		vim.keymap.set("n", "<leader>dh", function()
-			dap.ui.widgets.hover()
-		end, { desc = write_desc("[D]ebug: [H]over Variables") })
-		vim.keymap.set("n", "<leader>dS", function()
-			dap.ui.widgets.scopes()
-		end, { desc = write_desc("[D]ebug [S]copes") })
-		vim.keymap.set("n", "<leader>di", dap.step_into, { desc = write_desc("[D]ebug Step [I]nto") })
-		vim.keymap.set("n", "<leader>do", dap.step_over, { desc = write_desc("[D]ebug Step [O]ver") })
-		vim.keymap.set("n", "<leader>dp", dap.pause, { desc = write_desc("[D]ebug [P]ause") })
-		vim.keymap.set("n", "<leader>dq", dap.close, { desc = write_desc("[D]ebug [Q]uit") })
-		vim.keymap.set("n", "<leader>dr", dap.repl.toggle, { desc = write_desc("[D]ebug Toggle [R]EPL") })
-		vim.keymap.set("n", "<leader>ds", dap.continue, { desc = write_desc("[D]ebug [S]tart debugger") })
-		vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = write_desc("[D]ebug [T]oggle Breakpoint") })
-		vim.keymap.set("n", "<leader>dx", dap.terminate, { desc = write_desc("[D]ebug Terminate debug session") })
-		vim.keymap.set("n", "<leader>du", dap.step_out, { desc = write_desc("[D]ebug Step Out") })
-		vim.keymap.set("n", "<leader>dU", function()
-			require("dapui").toggle()
-		end, { desc = write_desc("[D]ebug Toggle [U]I") })
+        local map = require("utils.map").set_prefix("Debug")
+		map("<leader>dR", dap.run_to_cursor, "[D]ebug [R]un toCursor")
+		map("<leader>dE", function() dapui.eval(vim.fn.input("[Expression] > ")) end, "[D]ebug[E]valuate Input")
+		map("<leader>dC", function() dap.set_breakpoint(vim.fn.input("[Condition] > ")) end, "[D]ebug [C]onditional Breakpoint")
+		map("<leader>db", dap.step_back, "[D]ebug Step [B]ack")
+		map("<leader>dc", dap.continue, "[D]ebug [C]ontinue")
+		map("<leader>dd", dap.disconnect, "[D]ebug [D]isconnect")
+		map("<leader>de", dapui.eval, "[D]ebug [E]valuate", { "n", "v" })
+		map("<leader>dg", dap.session, "[D]ebug Get Session")
+		-- map("<leader>dh", function() dap.ui.widgets.hover() end, "[D]ebug: [H]over Variables")
+		-- map("<leader>dS", function() dap.ui.widgets.scopes() end, "[D]ebug [S]copes")
+		map("<leader>dh", require("dap.ui.widgets").hover, "[D]ebug: [H]over Variables")
+		map("<leader>dS", require("dap.ui.widgets").scopes, "[D]ebug [S]copes")
+		map("<leader>di", dap.step_into, "[D]ebug Step [I]nto")
+		map("<leader>do", dap.step_over, "[D]ebug Step [O]ver")
+		map("<leader>dp", dap.pause, "[D]ebug [P]ause")
+		map("<leader>dq", dap.close, "[D]ebug [Q]uit")
+		map("<leader>dr", require("dap.repl").toggle, "[D]ebug Toggle [R]EPL")
+		map("<leader>ds", dap.continue, "[D]ebug [S]tart debugger")
+		map("<leader>dt", dap.toggle_breakpoint, "[D]ebug [T]oggle Breakpoint")
+		map("<leader>dx", dap.terminate, "[D]ebug Terminate debug session")
+		map("<leader>du", dap.step_out, "[D]ebug Step Out")
+		map("<leader>dU", dapui.toggle, "[D]ebug Toggle [U]I")
 
 		-- Dap UI setup
 		-- For more information, see |:help nvim-dap-ui|
@@ -160,7 +139,7 @@ return {
 		})
 
 		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-		vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: See last session result." })
+		map("<F7>", dapui.toggle, "Debug: See last session result.")
 
 		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
