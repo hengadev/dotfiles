@@ -46,11 +46,11 @@ return {
                 vim.cmd("<Cmd>Gvdiff " .. input)
             end
 
-            map("<leader>hs",gs.stage_hunk, "[G]it [S]tage hunk", {"n", "v"})
-            map("<leader>hp",gs.preview_hunk, "[G]it [P]review")
-            map("<leader>ht", gs.toggle_current_line_blame, "[G]it [T]oggle current line blame")
-            map("<leader>hd", "<Cmd>Gvdiff<CR>", "[G]it [D]iff")
-            map("<leader>hb", diffBranch, "[G]it Diff [B]ranch")
+            map("<leader>hs",gs.stage_hunk, "[H]unk [S]tage", {"n", "v"})
+            map("<leader>hp",gs.preview_hunk, "[H]unk [P]review")
+            map("<leader>ht", gs.toggle_current_line_blame, "[H]unk [T]oggle line blame")
+            map("<leader>hd", "<Cmd>Gvdiff<CR>", "[H]unk [D]iff")
+            map("<leader>hb", diffBranch, "[H]unk Diff [B]ranch")
             map("[h", gs.prev_hunk, "Go to previous [H]unk")
             map("]h", gs.next_hunk, "Go to next [H]unk")
         end
