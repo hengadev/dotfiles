@@ -62,11 +62,6 @@ return {
                 v = { name = "+View" },
                 z = { name = "+System" },
                 -- stylua: ignore
-                s = {
-                    name = "+SearchTelescope",
-                    c = { function() require("utils.coding").cht() end, "Cheatsheets", },
-                    o = { function() require("utils.coding").stack_overflow() end, "Stack Overflow", },
-                },
                 c = {
                     name = "+Code",
                     g = { name = "Annotation" },
