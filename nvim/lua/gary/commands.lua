@@ -47,9 +47,9 @@ local nnoremap = bind("n")
 -- local tnoremap = bind("t")
 
 local t = {
-	Build = { name = build_commands, keymap = "cb", desc = "CustomCommand: Build Release" },
-	DebugBuild = { name = debug_build_commands, keymap = "cd", desc = "CustomCommand: Debug Build" },
-	Run = { name = run_commands, keymap = "cl", desc = "CustomCommand: Run" },
+	Build = { name = build_commands, keymap = "cb", desc = "Build Release" },
+	DebugBuild = { name = debug_build_commands, keymap = "cd", desc = "Build Debug" },
+	Run = { name = run_commands, keymap = "cl", desc = "Run" },
 }
 
 -- Make a general function to create the custom command
@@ -79,7 +79,7 @@ for name, command_table in pairs(t) do
 	nnoremap(
 		"<leader>" .. command_table["keymap"],
 		"<Cmd>" .. name .. "<CR>",
-		{ silent = true, desc = "FileCMD : " .. command_table["desc"] }
+		{ silent = true, desc = "Custom : " .. command_table["desc"] }
 	)
 	create_custom_command(name, command_table["name"])
 end
@@ -89,6 +89,6 @@ vim.api.nvim_create_user_command("Ha", function()
 	vim.cmd([[Build]])
 	vim.cmd([[Run]])
 end, {})
-nnoremap("<leader>cr", "<Cmd>Ha<CR>", { silent = true, desc = "FileCMD : Build and Run" })
+nnoremap("<leader>cr", "<Cmd>Ha<CR>", { silent = true, desc = "Build and Run" })
 
 -- NOTE: from the dotfiles in https://github.com/NycRat/dotfiles

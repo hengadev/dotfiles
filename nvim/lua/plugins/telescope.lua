@@ -78,7 +78,7 @@ return {
 		map( "<leader>sm", builtin.marks, "[S]earch [M]arks")
 
 		-- Slightly advanced example of overriding default behavior and theme
-		map("<leader>s/", function()
+		map("<leader>/", function()
 			-- You can pass additional configuration to Telescope to change the theme, layout, etc.
 			builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 				winblend = 10,

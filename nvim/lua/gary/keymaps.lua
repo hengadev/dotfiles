@@ -16,7 +16,7 @@ map("<leader>lz", "<Cmd>Lazy<CR>", "Open [L]a[Z]y menu")
 map("<leader>ms", "<Cmd>Mason<CR>", "Open [M]a[S]on menu")
 
 -- old, do not use since oil.nvim
-map("<leader>pv", vim.cmd.Ex, "Return to netrw")
+-- map("<leader>pv", vim.cmd.Ex, "Return to netrw")
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -26,11 +26,11 @@ map("<Esc>", "<cmd>nohlsearch<CR>", "Clear hightlight on pressing <Esc>")
 map("[d", vim.diagnostic.goto_prev, "Go to previous [D]iagnostic message")
 map("]d", vim.diagnostic.goto_next, "Go to next [D]iagnostic message")
 
--- To move things around when highlighted.
-map("J", ":m '>+1<CR>gv=gv", "Move the selected line upwards or exchange with the line above if there is content", {"v"})
-map("K", ":m '<-2<CR>gv=gv", "Move the selected line downwards, or  excchange with the line below if there is content", {"v"})
+-- To move lines up and down when highlighted.
+map("J", ":m '>+1<CR>gv=gv", "Move the selected lines upwards or exchange with the line above if there is content", {"v"})
+map("K", ":m '<-2<CR>gv=gv", "Move the selected lines downwards, or  excchange with the line below if there is content", {"v"})
 
-map("J", "mzJ`z", "Move the line below to the same line of current line")
+map("J", "mzJ`z", "Append the line below your current separated by a space")
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -44,8 +44,8 @@ map("<C-j>", "<C-w><C-j>", "Move focus to the lower window")
 map("<C-k>", "<C-w><C-k>", "Move focus to the upper window")
 
 -- Keep the cursor in the middle vertically when searching
-map("n", "nzzzv", "Search to next occurences with cursor center vertically")
-map("N", "Nzzzv", "Search to previous occurences with cursor center vertically")
+map("n", "nzzzv", "Search to next occurences with cursor centered vertically")
+map("N", "Nzzzv", "Search to previous occurences with cursor centered vertically")
 
 -- To navigate while having the cursor centered vertically
 map("}", "}zzzv", "Navigate a paragraph downward with cursor centered vertically")
@@ -74,4 +74,4 @@ map("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replac
 map("<leader>x", "<cmd>!chmod +x %<CR>", "Change the current buffered file to be executable")
 
 -- NOTE: For plugin development
-map("<leader>ex", "<Cmd>SaveAndExecuteLuaFile<CR>", "[EX]ecute lua file")
+map("<leader>cx", "<Cmd>SaveAndExecuteLuaFile<CR>", "E[X]ecute lua file")

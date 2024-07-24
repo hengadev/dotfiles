@@ -13,9 +13,7 @@ function M.set_prefix(prefix)
             vim.keymap.set("n", key, cmd, { desc = prefix .. ": " .. desc })
             return
         end
-        for _, mode in pairs(modes) do
-            vim.keymap.set(mode, key, cmd, { desc = prefix .. ": " .. desc })
-        end
+        vim.keymap.set(modes, key, cmd, { desc = prefix .. ": " .. desc })
     end
 end
 
