@@ -7,6 +7,10 @@ local map = require("utils.map").set_prefix("Custom")
 -- the best remap ever !
 map("jk", "<Esc>", "Replace the Esc key to return in normal mode", {"i"})
 
+-- tab handling
+map("<leader>nt", "<Cmd>tabnew<CR>", "[N]ew [T]ab")
+map("<leader>ct", "<Cmd>tabclose<CR>", "[C]lose current [T]ab")
+
 -- Help to open the lazy and mason menus
 map("<leader>lz", "<Cmd>Lazy<CR>", "Open [L]a[Z]y menu")
 map("<leader>ms", "<Cmd>Mason<CR>", "Open [M]a[S]on menu")
