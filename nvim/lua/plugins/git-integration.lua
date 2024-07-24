@@ -15,9 +15,9 @@ return {
         },
         keys = {
 			SetNeogitKey("<leader>gg", "<Cmd>Neogit<CR>", "Open menu"),
-			SetNeogitKey("<leader>gc", "<Cmd>Neogit commit<CR>", "Commit"),
-			SetNeogitKey("<leader>gp", "<Cmd>Neogit pull<CR>", "Pull"),
-			SetNeogitKey("<leader>gP", "<Cmd>Neogit push<CR>", "Push"),
+			SetNeogitKey("<leader>gc", "<Cmd>Neogit commit<CR>", "[C]ommit"),
+			SetNeogitKey("<leader>gp", "<Cmd>Neogit pull<CR>", "[P]ull"),
+			SetNeogitKey("<leader>gP", "<Cmd>Neogit push<CR>", "[P]ush"),
         },
         config = true
     },
@@ -50,18 +50,22 @@ return {
                 vim.cmd("<Cmd>Gvdiff " .. input)
             end
 
-            map("<leader>ga",gs.stage_hunk, "[H]unk [A]dd", {"n", "v"})
-            map("<leader>gs",gs.stage_buffer, "[H]unk [S]tage")
-            map("<leader>gu",gs.undo_stage_hunk, "[H]unk [U]ndo stage")
-            map("<leader>gp",gs.preview_hunk, "[H]unk [P]review")
-            map("<leader>gt", gs.toggle_current_line_blame, "[H]unk [T]oggle line blame")
-            map("<leader>gd", "<Cmd>Gvdiff<CR>", "[H]unk [D]iff")
-            map("<leader>gb", handle_diff_branch, "[H]unk Diff [B]ranch")
-            map("[g", gs.prev_hunk, "Go to previous [H]unk")
-            map("]g", gs.next_hunk, "Go to next [H]unk")
+            map("<leader>ga",gs.stage_hunk, "[G]it [A]dd", {"n", "v"})
+            map("<leader>gs",gs.stage_buffer, "[G]it [S]tage")
+            map("<leader>gu",gs.undo_stage_hunk, "[G]it [U]ndo stage")
+            map("<leader>gp",gs.preview_hunk, "[G]it [P]review")
+            map("<leader>gt", gs.toggle_current_line_blame, "[G]it [T]oggle line blame")
+            -- TODO: replace that with diff view since I do not have fugitive anymore
+            -- map("<leader>gd", "<Cmd>Gvdiff<CR>", "[G]it [D]iff")
+            -- map("<leader>gb", handle_diff_branch, "[G]it Diff [B]ranch")
+            map("[g", gs.prev_hunk, "Go to previous [G]it")
+            map("]g", gs.next_hunk, "Go to next [G]it")
         end
     },
 }
 
 -- Ressources :
 --     - https://github.com/rafi/vim-config/blob/master/lua/rafi/plugins/git.lua
+--
+-- TODO: plugins to add maybe :
+-- gitlinker to use link to part of the code on the host
