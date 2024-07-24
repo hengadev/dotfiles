@@ -15,6 +15,9 @@ config.colors = {}
 -- config.colors.background = '#111111'
 config.color_scheme = 'Rosé Pine (base16)'
 
+-- hide the bar, if only one tab, useful since I use tmux
+config.hide_tab_bar_if_only_one_tab = true
+
 
 config.font = wezterm.font_with_fallback {
   'FiraCode Nerd Font',
