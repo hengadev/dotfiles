@@ -50,15 +50,15 @@ return {
                 vim.cmd("<Cmd>Gvdiff " .. input)
             end
 
-            map("<leader>ha",gs.stage_hunk, "[H]unk [A]dd", {"n", "v"})
-            map("<leader>hs",gs.stage_buffer, "[H]unk [S]tage")
-            map("<leader>hu",gs.undo_stage_hunk, "[H]unk [U]ndo stage")
-            map("<leader>hp",gs.preview_hunk, "[H]unk [P]review")
-            map("<leader>ht", gs.toggle_current_line_blame, "[H]unk [T]oggle line blame")
-            map("<leader>hd", "<Cmd>Gvdiff<CR>", "[H]unk [D]iff")
-            map("<leader>hb", handle_diff_branch, "[H]unk Diff [B]ranch")
-            map("[h", gs.prev_hunk, "Go to previous [H]unk")
-            map("]h", gs.next_hunk, "Go to next [H]unk")
+            map("<leader>ga",gs.stage_hunk, "[H]unk [A]dd", {"n", "v"})
+            map("<leader>gs",gs.stage_buffer, "[H]unk [S]tage")
+            map("<leader>gu",gs.undo_stage_hunk, "[H]unk [U]ndo stage")
+            map("<leader>gp",gs.preview_hunk, "[H]unk [P]review")
+            map("<leader>gt", gs.toggle_current_line_blame, "[H]unk [T]oggle line blame")
+            map("<leader>gd", "<Cmd>Gvdiff<CR>", "[H]unk [D]iff")
+            map("<leader>gb", handle_diff_branch, "[H]unk Diff [B]ranch")
+            map("[g", gs.prev_hunk, "Go to previous [H]unk")
+            map("]g", gs.next_hunk, "Go to next [H]unk")
         end
     },
 }
