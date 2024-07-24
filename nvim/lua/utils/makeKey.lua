@@ -4,9 +4,9 @@ MakeKey = function (prefix)
 --- Setting key maps for the plugin.
 ---@param key string
 ---@param func string|function
----@param mode string|table|nil
----@param silent boolean|nil
----@param expr boolean|nil
+---@param mode? string|table
+---@param silent? boolean
+---@param expr? boolean
 ---@return table
     return function(key, func, desc, mode, silent, expr)
         local table = {

@@ -7,7 +7,7 @@ function M.set_prefix(prefix)
 ---@param key string
 ---@param cmd string|function
 ---@param desc string
----@param modes table|nil
+---@param modes? table
     return function(key, cmd, desc, modes)
         if modes == nil then
             vim.keymap.set("n", key, cmd, { desc = prefix .. ": " .. desc })
