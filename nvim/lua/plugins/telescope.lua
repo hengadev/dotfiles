@@ -72,6 +72,7 @@ return {
 		map( "<leader>sd", builtin.diagnostics, "[S]earch [D]iagnostics")
 		map( "<leader>sr", builtin.resume, "[S]earch [R]esume")
 		map( "<leader>sc", builtin.git_commits, "[S]earch [C]ommits")
+		map( "<leader>sb", builtin.git_branches, "[S]earch [B]ranches")
 		map( "<leader>so", builtin.oldfiles, "[S]earch [O]ld files")
 		map( "<leader><leader>", builtin.buffers, "[ ] Find existing buffers")
 		map( "<leader>sm", builtin.marks, "[S]earch [M]arks")
