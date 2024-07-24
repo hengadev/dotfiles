@@ -1,13 +1,7 @@
-return {
-    {
-        "tpope/vim-fugitive",
-        lazy=false,
+local makeKey = require("utils.makeKey")
+SetNeogitKey = makeKey("Neogit")
 
-        config = function()
-            local map = require("utils.map").set_prefix("Fugitive")
-            map("<leader>hw", "<Cmd>Gwrite<CR>", "[G]it [W]rite")
-        end
-    },
+return {
     {
         -- TODO: add the git worktree plugin from thePrimeAgen
     },
@@ -48,29 +42,26 @@ return {
 
             -- getting branch name for gitsigns
             ---a helper function to help with getting the input of the branch name.
-            ---@params:
-            local diffBranch = function()
-                -- TODO: use telescope git branches to select the branch, so for that you need to require brother.
+            local handle_diff_branch = function()
                 local input = vim.fn.input("Branch to diff with")
                 if input == "" then
                     return
                 end
-                -- todo: add a way to verify that input is in the list of branches of the project
                 vim.cmd("<Cmd>Gvdiff " .. input)
             end
 
-            map("<leader>hs",gs.stage_hunk, "[H]unk [S]tage", {"n", "v"})
+            map("<leader>ha",gs.stage_hunk, "[H]unk [A]dd", {"n", "v"})
+            map("<leader>hs",gs.stage_buffer, "[H]unk [S]tage")
+            map("<leader>hu",gs.undo_stage_hunk, "[H]unk [U]ndo stage")
             map("<leader>hp",gs.preview_hunk, "[H]unk [P]review")
             map("<leader>ht", gs.toggle_current_line_blame, "[H]unk [T]oggle line blame")
             map("<leader>hd", "<Cmd>Gvdiff<CR>", "[H]unk [D]iff")
-            map("<leader>hb", diffBranch, "[H]unk Diff [B]ranch")
+            map("<leader>hb", handle_diff_branch, "[H]unk Diff [B]ranch")
             map("[h", gs.prev_hunk, "Go to previous [H]unk")
             map("]h", gs.next_hunk, "Go to next [H]unk")
         end
     },
 }
 
--- the function that he add to the thing are :
--- -Gwrite
--- -Gread
--- - Gblame
+-- Ressources :
+--     - https://github.com/rafi/vim-config/blob/master/lua/rafi/plugins/git.lua
