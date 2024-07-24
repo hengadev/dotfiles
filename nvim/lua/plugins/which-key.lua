@@ -53,7 +53,12 @@ return {
                     d = { name = "Toggle DadBodUI menu" },
                 },
                 h = { name = "+Gitsigns" },
-                g = { name = "+Git", h = { name = "Hunk" }, t = { name = "Toggle" } },
+                g = { name = "+Git",
+                    c = { name = "Commit" },
+                    p = { name = "Pull" },
+                    P = { name = "Push" },
+                    b = { name = "Branches" }
+                },
                 n = { name = "+Notification" },
                 r = { name = "+Harpoon",
                     a = { name = "Add file" },
