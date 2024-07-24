@@ -57,6 +57,7 @@ alias ct="cargo test"
 alias cc="cargo check"
 
 #git aliases
+alias g="git"
 alias gs="git status -s"
 alias ga="git add"
 alias gp="git push"
@@ -67,7 +68,7 @@ alias co="git checkout"
 alias rh="git reset HEAD"
 alias rs="git restore --staged"
 alias gr="git remote -v"
-alias gl="git log"
+alias gl="git log --oneline"
 alias dog="git log --all --decorate --oneline --graph"
 # branch
 alias br="git branch"
