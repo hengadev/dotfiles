@@ -27,7 +27,7 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- TODO: Put that in the autocommand files ?  Use to dispay the content of diagnostic in a floating window
+-- TODO: Put that in the autocommand files ?  Use to remove the display of diagnostic content in a floating window
 vim.api.nvim_create_autocmd("CursorHold", {
 	callback = function()
 		local opts = {

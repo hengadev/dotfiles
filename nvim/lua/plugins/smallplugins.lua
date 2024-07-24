@@ -9,7 +9,7 @@ SetTerminalKey = makeKey("Terminal")
 return {
 	{
 		"NvChad/nvim-colorizer.lua",
-		event = "BufReadPre",
+		event = {"BufReadPre", "BufNewFile"},
 		opts = {
 			-- TODO: Change that to only css, and associated files ?
 			filetypes = { "*" },
@@ -47,6 +47,7 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
+        event="BufRead",
 		main = "ibl",
 		opts = {
 			-- space_char_blankline = " ",
@@ -67,7 +68,7 @@ return {
 	{
 		"kylechui/nvim-surround",
 		version = "*",
-		event = "VeryLazy",
+		keys = {"cs", "ds", "ys"},
 		config = function()
 			require("nvim-surround").setup({})
 		end,
@@ -76,7 +77,6 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		cmd = { "TodoTrouble", "TodoTelescope" },
-		event = { "BufReadPost", "BufNewFile" },
 		config = true,
         -- stylua: ignore
         keys = {
@@ -90,6 +90,7 @@ return {
 	},
 	{
 		"mbbill/undotree",
+		event = { "BufReadPre", "BufNewFile" },
 		keys = {
 			SetUndoKey( "<leader>u", vim.cmd.UndotreeToggle, "Toggle [U]ndo tree"),
 		},
@@ -97,6 +98,7 @@ return {
 	-- Config qui vient de : https://raw.githubusercontent.com/alpha2phi/modern-neovim/main/lua/plugins/toggleterm.lua
 	{
 		"akinsho/toggleterm.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		keys = {
 			-- SetTerminalKey([[<C-\>]], "<Cmd>2ToggleTerm<Cr>", "Toggle window"),
 			SetTerminalKey("<C-\\>", "<Cmd>2ToggleTerm<Cr>", "Toggle window"),

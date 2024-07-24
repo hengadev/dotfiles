@@ -4,6 +4,7 @@ return {
 		-- Je rajoute nvim context car c'est un plugin interessant surtout sur les gros projets
 		{
 			"nvim-treesitter/nvim-treesitter-context",
+            event = { "BufReadPre", "BufNewFile" },
 			config = function()
 				-- Option par default a voir si je veux les modifier
 				require("treesitter-context").setup({
@@ -23,7 +24,7 @@ return {
 			end,
 		},
 	},
-	event = { "BufReadPost", "BufNewFile" },
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = {

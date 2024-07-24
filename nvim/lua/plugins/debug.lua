@@ -1,15 +1,18 @@
+local dap_cmd = "DapNew"
+
 return {
 	"mfussenegger/nvim-dap",
-	event = "InsertEnter",
+	-- event = "InsertEnter",
+	cmd = dap_cmd,
 	dependencies = {
-		"rcarriga/nvim-dap-ui",
+		{"rcarriga/nvim-dap-ui", cmd=dap_cmd},
 		-- Required dependency for nvim-dap-ui
-		"nvim-neotest/nvim-nio",
+		{"nvim-neotest/nvim-nio", cmd=dap_cmd},
 		-- Installs the debug adapters for you
 		"williamboman/mason.nvim",
-		"jay-babu/mason-nvim-dap.nvim",
+		{"jay-babu/mason-nvim-dap.nvim", cmd=dap_cmd},
 		-- Add your own debuggers here
-		"leoluz/nvim-dap-go",
+		{"leoluz/nvim-dap-go", cmd=dap_cmd},
 	},
 	config = function()
 		local dap = require("dap")

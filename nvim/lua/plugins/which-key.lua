@@ -17,7 +17,7 @@ return {
         },
         -- the most recent versions causes the mapping to break...
         version="2.1.0",
-        event = "VeryLazy",
+        event = {"BufReadPre", "BufNewFile"},
         config = function()
             local wk = require "which-key"
             wk.setup {
@@ -44,7 +44,6 @@ return {
                 -- stylua: ignore
                 q = {
                     name = "Quit",
-                    -- q = { function() require("utils").quit() end, "Quit", },
                     t = { "<cmd>tabclose<cr>", "Close Tab" },
                 },
                 c = { name = "+Command" },

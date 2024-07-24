@@ -3,7 +3,7 @@ map("<leader>ld", "<Cmd>LazyDocker<CR>", "Open menu")
 
 return {
     "crnvl96/lazydocker.nvim",
-    event = "VeryLazy",
+    cmd = "LazyDocker",
     opts = {}, -- automatically calls `require("lazydocker").setup()`
     dependencies = {
         "MunifTanjim/nui.nvim",

@@ -8,6 +8,7 @@ SetNoiceKey = makeKey("Noice")
 return {
 	{
 		"rcarriga/nvim-notify",
+        event = "VeryLazy",
 		keys = {
             SetNotifyKey("<leader>nd", function() require("notify").dismiss({ silent = true, pending = true }) end, "[D]elete all [N]otifications"),
             SetNotifyKey("<leader>ns", function() require("telescope").extensions.notify.notify({}) end, "[S]earch all [N]otifications"),
@@ -39,6 +40,7 @@ return {
 	{
 		"stevearc/dressing.nvim",
 		lazy = true,
+		event = "VeryLazy",
 		init = function()
 			---@diagnostic disable-next-line: duplicate-set-field
 			vim.ui.select = function(...)
@@ -239,7 +241,7 @@ return {
 	},
 
 	-- icons
-	{ "nvim-tree/nvim-web-devicons", lazy = false },
+	{ "nvim-tree/nvim-web-devicons", lazy = true },
 
 	-- ui components
 	{ "MunifTanjim/nui.nvim", lazy = true },

@@ -3,7 +3,7 @@ map("<leader>lg", "<Cmd>LazyGit<CR>", "Open menu")
 
 return {
     "kdheepak/lazygit.nvim",
-    event = "VeryLazy",
+    cmd = "LazyGit",
     dependencies = {
         "nvim-telescope/telescope.nvim",
         "nvim-lua/plenary.nvim",

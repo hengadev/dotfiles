@@ -6,12 +6,10 @@ return {
     dependencies = {
         {
             "tpope/vim-dadbod",
-            lazy = false,
         },
-        { 
+        {
             "kristijanhusak/vim-dadbod-completion",
             ft = { 'sql', 'mysql', 'plsql', 'sqlite', 'mongo' },
-            lazy = false
         },
     },
     cmd = {

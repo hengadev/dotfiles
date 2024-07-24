@@ -1,22 +1,21 @@
+local mason_cmd = "Mason"
 return { -- LSP Configuration & Plugins
 	"neovim/nvim-lspconfig",
-	event = "BufReadPre",
+	event = {"BufReadPre", "BufNewFile"},
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{"williamboman/mason.nvim", cmd=mason_cmd},
+		{"williamboman/mason-lspconfig.nvim", cmd=mason_cmd, event={"BufReadPre", "BufNewFile"}},
+		{"WhoIsSethDaniel/mason-tool-installer.nvim", cmd=mason_cmd, event={"BufReadPre", "BufNewFile"}},
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-		{ "j-hui/fidget.nvim", opts = {}, lazy = "false" },
+		{ "j-hui/fidget.nvim", opts = {}, event={"BufReadPre", "BufNewFile"}},
 
 		-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
-		{ "folke/neodev.nvim", opts = {}, lazy = "false" },
+		{ "folke/neodev.nvim", opts = {}, event={"BufReadPre", "BufNewFile"}},
 	},
 	config = function()
-		-- setup for the vim diagnostics
-
 		--  This function gets run when an LSP attaches to a particular buffer.
 		--    That is to say, every time a new file is opened that is associated with
 		--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
