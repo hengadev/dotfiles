@@ -12,7 +12,20 @@ return {
         -- TODO: add the git worktree plugin from thePrimeAgen
     },
     {
-        -- TODO: use of neogit instead of fugitive ?
+        "NeogitOrg/neogit",
+        cmd = "Neogit",
+        dependencies = {
+            {"nvim-lua/plenary.nvim", event={"BufRead"}},         -- required
+            {"sindrets/diffview.nvim", event={"BufRead"}},        -- optional - Diff integration
+            "nvim-telescope/telescope.nvim",
+        },
+        keys = {
+			SetNeogitKey("<leader>gg", "<Cmd>Neogit<CR>", "Open menu"),
+			SetNeogitKey("<leader>gc", "<Cmd>Neogit commit<CR>", "Commit"),
+			SetNeogitKey("<leader>gp", "<Cmd>Neogit pull<CR>", "Pull"),
+			SetNeogitKey("<leader>gP", "<Cmd>Neogit push<CR>", "Push"),
+        },
+        config = true
     },
     {
         "lewis6991/gitsigns.nvim",
