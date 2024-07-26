@@ -53,7 +53,7 @@ return {
             map("<leader>ga",gs.stage_hunk, "[G]it [A]dd", {"n", "v"})
             map("<leader>gs",gs.stage_buffer, "[G]it [S]tage")
             map("<leader>gu",gs.undo_stage_hunk, "[G]it [U]ndo stage")
-            map("<leader>gp",gs.preview_hunk, "[G]it [P]review")
+            map("<leader>gw",gs.preview_hunk, "[G]it [P]review")
             map("<leader>gt", gs.toggle_current_line_blame, "[G]it [T]oggle line blame")
             -- TODO: replace that with diff view since I do not have fugitive anymore
             -- map("<leader>gd", "<Cmd>Gvdiff<CR>", "[G]it [D]iff")
