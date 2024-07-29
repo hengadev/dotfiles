@@ -73,6 +73,8 @@ alias rs="git restore --staged"
 alias gr="git remote -v"
 alias gl="git log --oneline -n 5 --graph"
 alias dog="git log --all --decorate --oneline --graph"
+alias bk="git reset --hard HEAD@{1}"
+
 # branch
 alias br="git branch"
 alias bra="git branch --all"
