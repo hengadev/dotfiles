@@ -71,7 +71,7 @@ alias rb="git rebase"
 alias rh="git reset HEAD"
 alias rs="git restore --staged"
 alias gr="git remote -v"
-alias gl="git log --oneline"
+alias gl="git log --oneline -n 5 --graph"
 alias dog="git log --all --decorate --oneline --graph"
 # branch
 alias br="git branch"
