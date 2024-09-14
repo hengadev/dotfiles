@@ -10,10 +10,34 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
--- Set background to same color as neovim
 config.colors = {}
 -- config.colors.background = '#111111'
-config.color_scheme = 'Rosé Pine (base16)'
+
+-- toggle light/dark scheme with CTRL+l (found this code here: https://github.com/wez/wezterm/discussions/1118)
+wezterm.on("toggle-dark-mode", function(window,pane)
+  local light_scheme = "Builtin Solarized Light"
+  local dark_scheme = "Rosé Pine (base16)"
+  local overrides = window:get_config_overrides() or {}
+  wezterm.log_info("Current color scheme is: ", overrides.color_scheme)
+  if (overrides.color_scheme == light_scheme)
+  then
+  wezterm.log_info("Setting to Dark Scheme: ", overrides.color_scheme)
+  overrides.color_scheme = dark_scheme
+
+  else
+  wezterm.log_info("Setting to Light ", overrides.color_scheme)
+  overrides.color_scheme = light_scheme
+  
+  end
+  window:set_config_overrides(overrides)
+end)
+
+config.keys = {
+    {
+        key="l", mods="CTRL", action=wezterm.action{EmitEvent="toggle-dark-mode"},
+    },
+}
+
 
 -- hide the bar, if only one tab, useful since I use tmux
 config.hide_tab_bar_if_only_one_tab = true
