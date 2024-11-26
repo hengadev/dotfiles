@@ -1,19 +1,21 @@
 lastupdatecheck: 0
 recentrepos:
+- /home/henga/Documents/projects/livio/leviosa/.worktrees/frontend
+- /home/henga/Documents/projects/learn_git/git_expert/local
+- /home/henga/Documents/projects/livio/leviosa/.worktrees/backend
+- /home/henga/Documents/projects/learn_git/git_expert/other_local
 - /home/henga/.config
-- /home/henga/Documents/projets/playground/git_test
+- /home/henga/Documents/projects/todo_app
+- /home/henga/Documents/projects/utils
+- /home/henga/Documents/projects/gary/portfolio
+- /home/henga/Documents/projects/plugins/stackmap.nvim
 - /home/henga/Documents/perso
-- /home/henga/Documents/projets/githubProfile
-- /home/henga/Documents/projets/siteTontonFrantz/website
-- /home/henga/Documents/projets/papa/desktop_app/test1
-- /home/henga/Documents/projets/papa/desktop_app/backend
-- /home/henga/dotfiles
-- /home/henga/Documents/projets/github/prosemirror
-- /home/henga/Documents/projets/github/git_test
-- /home/henga/Documents/projets/github/harpoon.nvim
-- /home/henga/Documents/projets/github/pagedjs
 startuppopupversion: 5
 customcommandshistory:
+- bra
+- git log
+- git remote -vvv
+- Lw
 - git fetch orgin
 - git push -u origin dev
 - git remote --delete origin dev
@@ -48,5 +50,6 @@ customcommandshistory:
 - git restore Sidebar.svelte
 - git remote origin --delete dev
 - git push origin --delete dev
+- dog
 hidecommandlog: false
-ignorewhitespaceindiffview: false
+ignorewhitespaceindiffview: true

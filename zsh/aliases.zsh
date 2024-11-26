@@ -64,7 +64,7 @@ alias gp="git push"
 alias gf="git fetch"
 alias pr="git pull --rebase"
 alias gd="git diff"
-alias ci="git commit"
+alias ci="git commit --verbose"
 alias amend="git commit -a --amend --no-edit"
 alias co="git checkout"
 alias sw="git switch"
@@ -87,6 +87,11 @@ alias gwl="git worktree list"
 alias gwa="git worktree add"
 alias gwr="git worktree remove"
 
+alias gb="git bisect"
+
+# TODO: docker
+alias di="docker images"
+
 
 alias lg="lazygit" # Launch lazygit
 # alias ld="~/go/bin/lazydocker" # Launch lazydocker
@@ -95,11 +100,12 @@ alias ld="lazydocker" # Launch lazydocker
 # TODO: D'autres commandes a venir
 
 # makefile command (since I use them a lot)
-alias mt="make test"
-alias mr="make run"
-alias mb="make build"
-alias mp="make proto"
-alias md="make docker"
+alias make="make -f local.makefile"
+alias mt="make -f local.makefile test"
+alias mr="make -f local.makefile run"
+alias mb="make -f local.makefile build"
+alias mp="make -f local.makefile proto"
+alias md="make -f local.makefile docker"
 
 # Mon journal de bord
 alias todo="cd ~/Documents/perso/ && nv Todo.md"
@@ -113,3 +119,6 @@ alias lampps="sudo /opt/lampp/lampp start"
 alias lamppd="sudo /opt/lampp/lampp stop"
 # open the file of my different php project.
 alias phpf="cd /opt/lampp/htdocs"
+
+alias ol="ollama list"
+alias or="ollama run qwen2.5-coder:1.5b"

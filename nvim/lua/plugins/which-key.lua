@@ -1,6 +1,8 @@
 local makeKey = require("utils.makeKey")
 SetLegendaryKey = makeKey("Legendary")
 
+-- NOTE: the site used to get the icons: https://www.nerdfonts.com/cheat-sheet
+
 return {
     {
         "mrjones2014/legendary.nvim",
@@ -39,11 +41,14 @@ return {
             { "<leader><leader>", require("telescope.builtin").buffers, desc="Telescope in existing buffers"},
             { "<leader>0", group = "+Terminal" },
             { "<leader>b", group = "+Database", icon="" },
+            { "<leader>a", group = "+Avante", icon="" },
             { "<leader>g", group = "+Git"},
+            { "<leader>d", group = "+Debug", icon=""},
             { "<leader>n", group = "+Notifications" },
             { "<leader>l", group = "+Lazy", icon="󰒲" },
             { "<leader>c", group = "+Custom", icon="󱁤" },
             { "<leader>s", group = "+Telescope" },
+            { "<leader>t", group = "+Neotest", icon="󰙨" },
             { "<leader>r", group = "+Harpoon", icon="󰛢"},
             { "<leader>u", group = "+Undo", icon=""},
             { "<leader>m", group = "+Mason", icon="󱁤"},

@@ -13,6 +13,7 @@ return {
 		},
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+        {"andrewberty/telescope-themes"},
 	},
 	config = function()
 
@@ -58,6 +59,7 @@ return {
 		-- Enable Telescope extensions if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
+		pcall(require("telescope").load_extension, "themes")
 
         local map = require("utils.map").set_prefix("Telescope")
 
@@ -100,13 +102,13 @@ return {
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
 		end, "[S]earch Neo[V]im configuration files")
 
-        -- TODO:: Make the implementation of that thing.
-        map("<leader>su", function ()
-            -- 1. open the themes folder
-            -- 2. display the content of the theme folder (just the names before the lua thing) on a telescope popup
-            -- 3. make sur that the selection have you configure the file in the nvconfig.lua so that you can change theme
-            print("hello word")
-			builtin.find_files({ cwd = vim.fn.stdpath("config") })
-        end, "[S]earch [U]I")
+        -- map("<leader>su", function()
+        --     local themes = require("base46").get_theme_tb "base_30"
+        --     for _, theme in pairs(themes) do
+        --         -- TODO: open a telescope windows with the list of all the themes
+        --         P(theme)
+        --         P("\n")
+        --     end
+        -- end, "[S]earch [U]I")
 	end,
 }
