@@ -72,10 +72,9 @@ M.ui = {
 }
 
 M.base46 = {
-    -- theme = "onedark", -- default theme
-    -- theme = "mountain", -- default theme
-    theme = "rosepine-dawn", -- default theme
-    -- theme = "tundra",   -- default theme
+    theme = "mountain", -- default theme
+    -- theme = "rosepine-dawn", -- default theme
+    -- theme = "tundra", -- default theme
     hl_add = {},
     hl_override = {},
     changed_themes = {},
