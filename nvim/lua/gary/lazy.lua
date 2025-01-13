@@ -11,18 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- part from the nvchad configuration for the UI.
-vim.g.base46_cache = vim.fn.stdpath('data') .. '/base46_cache/'
-
-dofile(vim.g.base46_cache .. "defaults")
-
-local integrations = require("nvconfig").base46.integrations
-
-for _, name in ipairs(integrations) do
-    dofile(vim.g.base46_cache .. name)
-end
-
-
 -- load lazy
 require("lazy").setup("plugins", {
     defaults = { lazy = true },
@@ -32,3 +20,9 @@ require("lazy").setup("plugins", {
     checker = { enabled = true },
     debug = false,
 })
+
+-- dofile(vim.g.base46_cache .. "defaults")
+local integrations = require("nvconfig").base46.integrations
+for _, name in ipairs(integrations) do
+    dofile(vim.g.base46_cache .. name)
+end
