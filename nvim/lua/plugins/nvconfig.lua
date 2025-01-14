@@ -11,9 +11,9 @@ local map = require("utils.map").set_prefix("NVChad")
 -- end, "Open NVChad base46 themes")
 
 return {
-	"NvChad/base46",
-    event="VimEnter",
-	build = function()
-		require("base46").load_all_highlights()
-	end,
+    "NvChad/base46",
+    event = "VimEnter",
+    build = function()
+        require("base46").load_all_highlights()
+    end,
 }

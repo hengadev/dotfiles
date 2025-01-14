@@ -40,6 +40,7 @@ return {
                 "c",
                 "yaml",
                 "typescript",
+                "svelte",
                 "json",
                 "luap",
                 "python",
