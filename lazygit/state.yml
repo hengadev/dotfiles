@@ -1,10 +1,11 @@
 lastupdatecheck: 0
 recentrepos:
+- /home/henga/.config
+- /home/henga/Documents/projects/livio/leviosa/.worktrees/backend
+- /home/henga/Documents/projects/example_pwa
 - /home/henga/Documents/projects/livio/leviosa/.worktrees/frontend
 - /home/henga/Documents/projects/learn_git/git_expert/local
-- /home/henga/Documents/projects/livio/leviosa/.worktrees/backend
 - /home/henga/Documents/projects/learn_git/git_expert/other_local
-- /home/henga/.config
 - /home/henga/Documents/projects/todo_app
 - /home/henga/Documents/projects/utils
 - /home/henga/Documents/projects/gary/portfolio
