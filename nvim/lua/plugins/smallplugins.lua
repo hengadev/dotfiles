@@ -164,5 +164,16 @@ return {
     {
         "echasnovski/mini.animate",
         event = { "BufReadPre", "BufNewFile" },
-    }
+    },
+    -- {
+    --     'akinsho/bufferline.nvim',
+    --     version = "*",
+    --     dependencies = 'nvim-tree/nvim-web-devicons',
+    --     config = require("bufferline").setup {
+    --         options = {
+    --             mode = 'tabs',
+    --         }
+    --     },
+    --
+    -- }
 }

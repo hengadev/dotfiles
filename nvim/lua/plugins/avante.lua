@@ -1,23 +1,22 @@
--- TODO: use the following general mistral api key : JnRl0HlPPPikHEnsyiEMiDJtg0uSu7Vw
--- or the codestral one : t0tMdw46duZZQbMFjXYR7whmR3OGhbBx
 return {
     "yetone/avante.nvim",
     event = "VeryLazy",
     opts = {
-        provider = "mistral", -- Recommend using Claude
+        provider = "mistral", -- recommend using claude
         vendors = {
             mistral = {
-                -- ['local'] = true,
-                api_key_name = '',
+                -- __inherited_from = "openai",
+                -- api_key_name = '',
+                api_key_name = 'MISTRAL_API_KEY',
                 endpoint = "https://codestral.mistral.ai/v1",
                 model = "codestral-latest",
                 parse_curl_args = function(opts, code_opts)
                     return {
                         url = opts.endpoint .. "/chat/completions",
                         headers = {
-                            ["Accept"] = "application/json",
-                            ["Content-Type"] = "application/json",
-                            ['X-API-KEY'] = 't0tMdw46duZZQbMFjXYR7whmR3OGhbBx',
+                            ["accept"] = "application/json",
+                            ["content-type"] = "application/json",
+                            ['x-api-key'] = 't0tmdw46duzzqbmfjxyr7whmr3oghbbx',
                         },
                         body = {
                             model = opts.model,
@@ -33,7 +32,7 @@ return {
             },
         },
 
-        -- NOTE: old thing with local ollama
+        -- note: old thing with local ollama
         -- provider = "ollama",
         -- -- use_absolute_path = true,
         -- vendors = {
@@ -46,9 +45,9 @@ return {
         --             return {
         --                 url = opts.endpoint .. "/chat/completions",
         --                 headers = {
-        --                     ["Accept"] = "application/json",
-        --                     ["Content-Type"] = "application/json",
-        --                     -- ['X-API-KEY'] = 'ollama',
+        --                     ["accept"] = "application/json",
+        --                     ["content-type"] = "application/json",
+        --                     -- ['x-api-key'] = 'ollama',
         --                 },
         --                 body = {
         --                     model = opts.model,
@@ -64,20 +63,20 @@ return {
         --     },
         -- },
     },
-    -- NOTE: if you want to download pre-built binary, then pass source=false. Make sure to follow instruction above.
-    -- Also note that downloading prebuilt binary is a lot faster comparing to compiling from source.
-    -- build = ":AvanteBuild source=false",
+    -- note: if you want to download pre-built binary, then pass source=false. make sure to follow instruction above.
+    -- also note that downloading prebuilt binary is a lot faster comparing to compiling from source.
+    -- build = ":avantebuild source=false",
     build = "make",
     dependencies = {
         "stevearc/dressing.nvim",
         "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        --- The below dependencies are optional,
+        "muniftanjim/nui.nvim",
+        --- the below dependencies are optional,
         "echasnovski/mini.icons",
         -- "zbirenbaum/copilot.lua", -- for providers='copilot'
         {
             -- support for image pasting
-            "HakonHarnes/img-clip.nvim",
+            "hakonharnes/img-clip.nvim",
             event = "VeryLazy",
             opts = {
                 -- recommended settings
@@ -87,18 +86,18 @@ return {
                     drag_and_drop = {
                         insert_mode = true,
                     },
-                    -- required for Windows users
+                    -- required for windows users
                     use_absolute_path = true,
                 },
             },
         },
         {
-            -- Make sure to set this up properly if you have lazy=true
-            "MeanderingProgrammer/render-markdown.nvim",
+            -- make sure to set this up properly if you have lazy=true
+            "meanderingprogrammer/render-markdown.nvim",
             opts = {
-                file_types = { "markdown", "Avante" },
+                file_types = { "markdown", "avante" },
             },
-            ft = { "markdown", "Avante" },
+            ft = { "markdown", "avante" },
         },
     },
 }
