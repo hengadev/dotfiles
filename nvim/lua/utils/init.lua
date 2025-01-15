@@ -1,4 +1,6 @@
 -- A part avant la fin, tous les elements de cette page vienent de : https://github.com/NavePnow/dotfiles/blob/main/.config/nvim/lua/utils/init.lua
+
+-- Table with all relevant LSP information needed
 local M = {}
 
 M.git_colors = {
