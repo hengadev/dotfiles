@@ -1,9 +1,13 @@
--- Config qui vient de : https://raw.githubusercontent.com/alpha2phi/modern-neovim/main/lua/plugins/toggleterm.lua
+-- Config vient de : https://raw.githubusercontent.com/alpha2phi/modern-neovim/main/lua/plugins/toggleterm.lua
+
+local makeKey = require("utils.makeKey")
+SetTerminalKey = makeKey("Terminal")
+
 return {
     "akinsho/toggleterm.nvim",
     keys = {
-        { [[<C-\>]] },
-        -- { "<leader>0", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
+        SetTerminalKey("<C-\\>", "<Cmd>2ToggleTerm<Cr>", "Toggle window"),
+        SetTerminalKey("<leader>0", "<Cmd>2ToggleTerm<Cr>", "Toggle window #2"),
     },
     cmd = { "ToggleTerm", "TermExec" },
     opts = {

@@ -2,12 +2,11 @@ return {
     "yetone/avante.nvim",
     event = "VeryLazy",
     opts = {
-        provider = "mistral", -- recommend using claude
+        provider = 'mistral', -- recommend using claude
         vendors = {
             mistral = {
                 -- __inherited_from = "openai",
-                -- api_key_name = '',
-                api_key_name = 'MISTRAL_API_KEY',
+                api_key_name = '',
                 endpoint = "https://codestral.mistral.ai/v1",
                 model = "codestral-latest",
                 parse_curl_args = function(opts, code_opts)
@@ -16,7 +15,7 @@ return {
                         headers = {
                             ["accept"] = "application/json",
                             ["content-type"] = "application/json",
-                            ['x-api-key'] = 't0tmdw46duzzqbmfjxyr7whmr3oghbbx',
+                            ['x-api-key'] = 't0tMdw46duZZQbMFjXYR7whmR3OGhbBx',
                         },
                         body = {
                             model = opts.model,
