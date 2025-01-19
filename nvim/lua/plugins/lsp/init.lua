@@ -5,6 +5,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         -- Automatically install LSPs and related tools to stdpath for Neovim
+        { 'saghen/blink.cmp' },
         { "williamboman/mason.nvim",                   cmd = mason_cmd },
         { "williamboman/mason-lspconfig.nvim",         cmd = mason_cmd, event = { "BufReadPre", "BufNewFile" } },
         { "WhoIsSethDaniel/mason-tool-installer.nvim", cmd = mason_cmd, event = { "BufReadPre", "BufNewFile" } },
@@ -32,8 +33,10 @@ return {
         --  By default, Neovim doesn't support everything that is in the LSP specification.
         --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
         --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+        -- NOTE: the old way with nvim cmp in case it does not work
+        -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+        -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
         -- Enable the following language servers
         --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -60,10 +63,14 @@ return {
                     -- This handles overriding only values explicitly passed
                     -- by the server configuration above. Useful when disabling
                     -- certain features of an LSP (for example, turning off formatting for tsserver)
+                    local capabilities = require('blink.cmp').get_lsp_capabilities()
                     server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
                     lspconfig[server_name].setup(server)
                 end,
             },
         })
+
+        -- TODO: use blink to get the capabilities as set in the example
+        -- local capabilities = require("blink.cmp").get_lsp_capabilities()
     end,
 }
