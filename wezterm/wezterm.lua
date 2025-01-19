@@ -20,7 +20,8 @@ config.font = wezterm.font_with_fallback {
 config.font_size = 19
 
 -- default color scheme
-wezterm.color_scheme = "Sweet Eliverlara (Gogh)"
+-- wezterm.color_scheme = "Sweet Eliverlara (Gogh)"
+config.color_scheme = "Sweet Eliverlara (Gogh)"
 
 -- Color settings
 -- toggle light/dark scheme with CTRL+l (found this code here: https://github.com/wez/wezterm/discussions/1118)
