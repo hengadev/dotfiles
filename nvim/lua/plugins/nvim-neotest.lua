@@ -1,6 +1,6 @@
 return {
     "nvim-neotest/neotest",
-	event = {"BufReadPre", "BufNewFile"},
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         "nvim-neotest/nvim-nio",
         "nvim-lua/plenary.nvim",
@@ -9,7 +9,7 @@ return {
         "nvim-telescope/telescope.nvim",
         -- my adapters
         "marilari88/neotest-vitest",
-		'thenbe/neotest-playwright',
+        'thenbe/neotest-playwright',
         "nvim-neotest/neotest-go",
         "rouge8/neotest-rust",
     },
@@ -19,17 +19,17 @@ return {
         neotest.setup({
             adapters = {
                 require("neotest-vitest"),
-				require('neotest-playwright').adapter({
-					options = {
-						persist_project_selection = true,
-						enable_dynamic_test_discovery = true,
-					},
-				}),
+                require('neotest-playwright').adapter({
+                    options = {
+                        persist_project_selection = true,
+                        enable_dynamic_test_discovery = true,
+                    },
+                }),
                 require("neotest-go"),
                 require("neotest-rust"),
             },
             icons = {
-                passed = "",-- the passed icon does not appear in golang
+                passed = "", -- the passed icon does not appear in golang
                 failed = ""
             },
         })
@@ -37,7 +37,7 @@ return {
         local map = require("utils.map").set_prefix("Neotest")
         map("<leader>tr", neotest.run.run, "[R]un nearest [T]est")
         map("<leader>tf", function() neotest.run.run(vim.fn.expand("%")) end, "[T]est [F]ile")
-        map("<leader>td", function() neotest.run.run({strategy = "dap"}) end, "[T]est [D]ebug")
+        map("<leader>td", function() neotest.run.run({ strategy = "dap" }) end, "[T]est [D]ebug")
         map("<leader>ts", neotest.run.stop, "[T]est [S]top")
         map("<leader>ta", neotest.run.attach, "[T]est [A]ttach to the nearesst test")
         map("<leader>to", neotest.output.open, "[T]est [O]utput")
