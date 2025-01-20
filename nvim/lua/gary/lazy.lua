@@ -25,7 +25,6 @@ require("lazy").setup("plugins", {
     debug = false,
 })
 
--- dofile(vim.g.base46_cache .. "defaults")
 local integrations = require("nvconfig").base46.integrations
 for _, name in ipairs(integrations) do
     dofile(vim.g.base46_cache .. name)

@@ -64,8 +64,6 @@ local function switcher()
             actions.select_default:replace(function()
                 if action_state.get_selected_entry() then
                     package.loaded.chadrc = nil
-                    -- TODO: remove that thing because the theme is not defined here but in the nvconfig file
-                    -- local old_theme = require("chadrc").base46.theme
                     local old_theme = require("nvconfig").base46.theme
                     old_theme = '"' .. old_theme .. '"'
 
