@@ -1,8 +1,6 @@
-local M = {}
-
 -- setting prefix for keymaps.
 ---@param prefix string
-function M.set_prefix(prefix)
+local set_prefix = function(prefix)
     -- setting keymaps for the plugin related to the prefix.
     ---@param key string
     ---@param cmd string|function
@@ -17,4 +15,4 @@ function M.set_prefix(prefix)
     end
 end
 
-return M
+return set_prefix

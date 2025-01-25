@@ -1,4 +1,4 @@
-local map = require("utils.map").set_prefix("LazyGit")
+local map = require("utils.helpers").set_prefix("LazyGit")
 map("<leader>lg", "<Cmd>LazyGit<CR>", "Open menu")
 
 return {

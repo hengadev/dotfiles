@@ -13,7 +13,7 @@ return {
                 show_hidden = true,
             }
         }
-        local map = require("utils.map").set_prefix("Oil")
+        local map = require("utils.helpers").set_prefix("Oil")
         map("-", "<CMD>Oil<CR>", "Open parent directory in current window")
         map("<leader>-", require("oil").toggle_float, "Open parent directory in floating window")
     end,

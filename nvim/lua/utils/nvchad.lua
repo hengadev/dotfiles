@@ -47,4 +47,53 @@ M.replace_word = function(old, new, filepath)
     end
 end
 
+---@param theme_name string
+M.set_wezterm_theme = function(theme_name)
+    local theme = require("base46.themes." .. theme_name)
+    local type = theme.type
+
+    if not type then
+        print(string.format("Error: Theme '%s' does not define a 'type'.", theme_name))
+        return
+    end
+
+    print("the type in the reload is :", type)
+
+    -- if type == "light" then
+    --     print("Changing wezterm color theme to light")
+    -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-!>", true, true, true), "n", true)
+    -- vim.cmd([[call feedkeys("\<C-!>")]])
+    -- io.write('\027[27;5;49~') -- Try this escape sequence for Ctrl+1
+    -- vim.fn.system('wezterm cli set-user-var nvim_theme light')
+    -- vim.fn.system('/usr/bin/wezterm cli set-user-var nvim_theme light')
+    -- vim.fn.system('/usr/bin/wezterm cli send-text --no-paste "\x01\x31"') -- Ctrl+1
+    -- elseif type == "dark" then
+    --     print("Changing wezterm color theme to dark")
+    -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-@>", true, true, true), "n", true)
+    -- vim.cmd([[call feedkeys("\<C-@>")]])
+    -- io.write('\027[27;5;50~') -- Try this escape sequence for Ctrl+2
+    -- vim.fn.system('wezterm cli set-user-var nvim_theme dark')
+    -- vim.fn.system('/usr/bin/wezterm cli set-user-var nvim_theme dark')
+    -- vim.fn.system('/usr/bin/wezterm cli send-text --no-paste "\x01\x32"') -- Ctrl+2
+    -- else
+    --     print(string.format("Error: theme '%s' is not supported. Use 'light' or 'dark'.", type))
+    -- end
+
+    if type == "light" or type == "dark" then
+        -- Write the theme type to file
+        local f = io.open(os.getenv("HOME") .. "/.theme_state", "w")
+        if f then
+            f:write(type)
+            f:close()
+            -- Trigger WezTerm config reload using a faster method
+            -- TODO: check if that one is good because I am not sure
+            -- vim.fn.system('kill -SIGUSR1 $(pgrep wezterm-gui)')
+        else
+            print("Error: Could not write to theme state file")
+        end
+    else
+        print(string.format("Error: theme '%s' is not supported. Use 'light' or 'dark'.", type))
+    end
+end
+
 return M

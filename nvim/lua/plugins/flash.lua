@@ -1,4 +1,4 @@
-local map = require("utils.map").set_prefix("Flash")
+local map = require("utils.helpers").set_prefix("Flash")
 map("s", function() require("flash").jump() end, "Jump", { "n", "x", "o" })
 map("S", function() require("flash").treesitter() end, "Flash Treesitter", { "n", "x", "o" })
 map("r", function() require("flash").remote() end, "Remote Flash", { "o" })

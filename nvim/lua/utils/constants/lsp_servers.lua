@@ -1,0 +1,16 @@
+return {
+    "clangd",
+    "tsserver",
+    "pyright",
+    "lua_ls",
+    "eslint",
+    "bashls",
+    "yamlls",
+    "jsonls",
+    "cssls",
+    "taplo",
+    "html",
+    "graphql",
+    "tailwindcss",
+    "gopls",
+}

@@ -42,7 +42,7 @@ return {
         vim.list_extend(ensure_installed, {
             "stylua",   -- Format Lua code
             "delve",    -- Debugger for the go programming language
-            "codelldb", -- A native debugger based on LLDB.        })
+            "codelldb", -- A native debugger based on LLDB.
         })
 
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

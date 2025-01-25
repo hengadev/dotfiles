@@ -22,7 +22,7 @@ return {
             },
         })
 
-        local map = require("utils.map").set_prefix("Debug")
+        local map = require("utils.helpers").set_prefix("Debug")
         map("<leader>hR", dap.run_to_cursor, "[D]ebug [R]un toCursor")
         map("<leader>hE", function() dapui.eval(vim.fn.input("[Expression] > ")) end, "[D]ebug[E]valuate Input")
         map("<leader>hC", function() dap.set_breakpoint(vim.fn.input("[Condition] > ")) end,

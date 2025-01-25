@@ -1,4 +1,4 @@
-local map = require("utils.map").set_prefix("Database")
+local map = require("utils.helpers").set_prefix("Database")
 map("<leader>bd", "<Cmd>DBUIToggle<CR>", "[D]atabase toggle UI")
 
 return {

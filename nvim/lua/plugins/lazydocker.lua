@@ -1,4 +1,4 @@
-local map = require("utils.map").set_prefix("LazyDocker")
+local map = require("utils.helpers").set_prefix("LazyDocker")
 map("<leader>ld", "<Cmd>LazyDocker<CR>", "Open menu")
 
 return {

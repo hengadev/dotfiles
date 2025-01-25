@@ -1,4 +1,4 @@
-local map = require("utils.map").set_prefix("Telescope")
+local map = require("utils.helpers").set_prefix("Telescope")
 
 return function()
     -- See `:help telescope.builtin`

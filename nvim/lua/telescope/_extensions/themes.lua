@@ -1,15 +1,22 @@
-local pickers = require "telescope.pickers"
-local finders = require "telescope.finders"
-local previewers = require "telescope.previewers"
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
+local previewers = require("telescope.previewers")
 
 local conf = require("telescope.config").values
-local actions = require "telescope.actions"
-local action_set = require "telescope.actions.set"
-local action_state = require "telescope.actions.state"
+local actions = require("telescope.actions")
+local action_set = require("telescope.actions.set")
+local action_state = require("telescope.actions.state")
+
+local utils = require("utils.nvchad")
+-- local utils = require("utils.base46")
+--
+-- utils.set_wezterm_theme("flexoki-light")
+-- utils.set_wezterm_theme("ashes")
 
 local function reload_theme(name)
     require("nvconfig").base46.theme = name
     require("base46").load_all_highlights()
+    utils.set_wezterm_theme(name)
 end
 
 local function switcher()
@@ -30,11 +37,11 @@ local function switcher()
 
     -- our picker function: colors
     local picker = pickers.new({}, {
-        prompt_title = "󱥚 Set NvChad Theme",
+        prompt_title = "󱥚 Base46 Themes",
         previewer = previewer,
         -- TODO: make sur that I can get all the themes from this function
         finder = finders.new_table {
-            results = require("utils.nvchad").list_themes(),
+            results = utils.list_themes(),
         },
         sorter = conf.generic_sorter(),
 
@@ -65,11 +72,13 @@ local function switcher()
                 if action_state.get_selected_entry() then
                     package.loaded.chadrc = nil
                     local old_theme = require("nvconfig").base46.theme
+                    -- NOTE: before me trying to do the things the way I want to
                     old_theme = '"' .. old_theme .. '"'
 
                     local theme = '"' .. action_state.get_selected_entry()[1] .. '"'
+                    -- local theme = action_state.get_selected_entry()[1]
 
-                    require("utils.nvchad").replace_word(old_theme, theme)
+                    utils.replace_word(old_theme, theme)
                     actions.close(prompt_bufnr)
                 end
             end)

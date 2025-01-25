@@ -1,0 +1,25 @@
+-- return the list of all mason package that I want ensured installed
+return {
+    "bash-language-server", "black",
+    "clang-format",
+    "clangd",
+    "codelldb",
+    "cspell",
+    "css-lsp",
+    "eslint-lsp",
+    "graphql-language-service-cli",
+    "html-lsp",
+    "json-lsp",
+    "lua-language-server",
+    "markdownlint",
+    "prettier",
+    "pyright",
+    "shfmt",
+    "stylua",
+    "tailwindcss-language-server",
+    "taplo",
+    "typescript-language-server",
+    "yaml-language-server",
+    "gopls",
+    "editorconfig-checker"
+}

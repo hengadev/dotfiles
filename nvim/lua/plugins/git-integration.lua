@@ -9,15 +9,15 @@ return {
         "NeogitOrg/neogit",
         cmd = "Neogit",
         dependencies = {
-            {"nvim-lua/plenary.nvim", event={"BufRead"}},         -- required
-            {"sindrets/diffview.nvim", event={"BufRead"}},        -- optional - Diff integration
+            { "nvim-lua/plenary.nvim",  event = { "BufRead" } }, -- required
+            { "sindrets/diffview.nvim", event = { "BufRead" } }, -- optional - Diff integration
             "nvim-telescope/telescope.nvim",
         },
         keys = {
-			SetNeogitKey("<leader>gg", "<Cmd>Neogit<CR>", "Open menu"),
-			SetNeogitKey("<leader>gc", "<Cmd>Neogit commit<CR>", "[C]ommit"),
-			SetNeogitKey("<leader>gp", "<Cmd>Neogit pull<CR>", "[P]ull"),
-			SetNeogitKey("<leader>gP", "<Cmd>Neogit push<CR>", "[P]ush"),
+            SetNeogitKey("<leader>gg", "<Cmd>Neogit<CR>", "Open menu"),
+            SetNeogitKey("<leader>gc", "<Cmd>Neogit commit<CR>", "[C]ommit"),
+            SetNeogitKey("<leader>gp", "<Cmd>Neogit pull<CR>", "[P]ull"),
+            SetNeogitKey("<leader>gP", "<Cmd>Neogit push<CR>", "[P]ush"),
         },
         config = true
     },
@@ -25,20 +25,19 @@ return {
         "lewis6991/gitsigns.nvim",
         event = "BufRead",
         config = function()
-
-            require("gitsigns").setup{
-              signs = {
-                add = { text = '+' },
-                change = { text = '~' },
-                delete = { text = '_' },
-                topdelete = { text = '‾' },
-                changedelete = { text = '~' },
-              },
+            require("gitsigns").setup {
+                signs = {
+                    add = { text = '+' },
+                    change = { text = '~' },
+                    delete = { text = '_' },
+                    topdelete = { text = '‾' },
+                    changedelete = { text = '~' },
+                },
             }
 
             local gs = package.loaded.gitsigns
             -- local map = require("utils").map("Gitsigns")
-            local map = require("utils.map").set_prefix("Gitsigns")
+            local map = require("utils.helpers").set_prefix("Gitsigns")
 
             -- getting branch name for gitsigns
             ---a helper function to help with getting the input of the branch name.
@@ -50,10 +49,10 @@ return {
                 vim.cmd("<Cmd>Gvdiff " .. input)
             end
 
-            map("<leader>ga",gs.stage_hunk, "[G]it [A]dd", {"n", "v"})
-            map("<leader>gs",gs.stage_buffer, "[G]it [S]tage")
-            map("<leader>gu",gs.undo_stage_hunk, "[G]it [U]ndo stage")
-            map("<leader>gw",gs.preview_hunk, "[G]it [P]review")
+            map("<leader>ga", gs.stage_hunk, "[G]it [A]dd", { "n", "v" })
+            map("<leader>gs", gs.stage_buffer, "[G]it [S]tage")
+            map("<leader>gu", gs.undo_stage_hunk, "[G]it [U]ndo stage")
+            map("<leader>gw", gs.preview_hunk, "[G]it [P]review")
             map("<leader>gt", gs.toggle_current_line_blame, "[G]it [T]oggle line blame")
             -- TODO: replace that with diff view since I do not have fugitive anymore
             -- map("<leader>gd", "<Cmd>Gvdiff<CR>", "[G]it [D]iff")

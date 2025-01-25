@@ -4,7 +4,8 @@ return {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         opts = function()
-            local icons = require("utils")
+            local diagnosticsIcons = require("utils.diagnostics.signs")
+            local gitIcons = require("utils.signs.git")
 
             local function fg(name)
                 return function()
@@ -13,6 +14,9 @@ return {
                     return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
                 end
             end
+
+            local navic = require("nvim-navic")
+            local noice = require("noice")
 
             return {
                 options = {
@@ -27,10 +31,10 @@ return {
                         {
                             "diagnostics",
                             symbols = {
-                                error = icons.lsp_signs.Error,
-                                warn = icons.lsp_signs.Warn,
-                                info = icons.lsp_signs.Info,
-                                hint = icons.lsp_signs.Hint,
+                                error = diagnosticsIcons.Error,
+                                warn = diagnosticsIcons.Warn,
+                                info = diagnosticsIcons.Info,
+                                hint = diagnosticsIcons.Hint,
                             },
                         },
                         {
@@ -45,27 +49,27 @@ return {
                         { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
                         -- stylua: ignore
                         {
-                            function() return require("nvim-navic").get_location() end,
+                            function() return navic.get_location() end,
                             cond = function()
                                 return package.loaded["nvim-navic"] and
-                                    require("nvim-navic").is_available()
+                                    navic.is_available()
                             end,
                         },
                     },
                     lualine_x = {
                         -- stylua: ignore
                         {
-                            function() return require("noice").api.status.command.get() end,
+                            function() return noice.api.status.command.get() end,
                             cond = function()
                                 return package.loaded["noice"] and
-                                    require("noice").api.status.command.has()
+                                    noice.api.status.command.has()
                             end,
                             color = fg("Statement")
                         },
                         -- stylua: ignore
                         {
-                            function() return require("noice").api.status.mode.get() end,
-                            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+                            function() return noice.api.status.mode.get() end,
+                            cond = function() return package.loaded["noice"] and noice.api.status.mode.has() end,
                             color = fg("Constant"),
                         },
                         {
@@ -76,9 +80,9 @@ return {
                         {
                             "diff",
                             symbols = {
-                                added = icons.git.added,
-                                modified = icons.git.modified,
-                                removed = icons.git.removed,
+                                added = gitIcons.added,
+                                modified = gitIcons.modified,
+                                removed = gitIcons.removed,
                             },
                         },
                     },

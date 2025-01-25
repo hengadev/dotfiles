@@ -34,7 +34,7 @@ return {
             },
         })
         -- remapping
-        local map = require("utils.map").set_prefix("Neotest")
+        local map = require("utils.helpers").set_prefix("Neotest")
         map("<leader>tr", neotest.run.run, "[R]un nearest [T]est")
         map("<leader>tf", function() neotest.run.run(vim.fn.expand("%")) end, "[T]est [F]ile")
         map("<leader>td", function() neotest.run.run({ strategy = "dap" }) end, "[T]est [D]ebug")

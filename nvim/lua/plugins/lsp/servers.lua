@@ -11,7 +11,8 @@ return {
     clangd = {},
     rust_analyzer = {},
     ts_ls = {},
-    svelte_language_server = {},
+    -- svelte_language_server = {},
+    svelte = {},
     docker_compose_language_service = {},
     dockerls = {},
     -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
