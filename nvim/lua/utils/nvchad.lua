@@ -33,18 +33,18 @@ M.replace_word = function(old, new, filepath)
         print("Error: Could not open file for reading")
         return
     end
-    if file then
-        local added_pattern = string.gsub(old, "-", "%%-") -- add % before - if exists
-        local new_content = file:read("*all"):gsub(added_pattern, new)
 
-        file = io.open(filepath, "w")
-        if not file then
-            print("Error: Could not open file for writing for NVChad theme picker extension")
-            return
-        end
-        file:write(new_content)
-        file:close()
+    local added_pattern = string.gsub(old, "-", "%%-") -- add % before - if exists
+    local new_content = file:read("*all"):gsub(added_pattern, new)
+    file:close()                                       --  close the file after reading
+
+    file = io.open(filepath, "w")
+    if not file then
+        print("Error: Could not open file for writing for NVChad theme picker extension")
+        return
     end
+    file:write(new_content)
+    file:close()
 end
 
 ---@param theme_name string

@@ -9,6 +9,7 @@ local messages = {
 
 return {
     virtual_text = true,
+    -- virtual_lines = true,
     float = {
         focusable = false,
         style = "minimal",

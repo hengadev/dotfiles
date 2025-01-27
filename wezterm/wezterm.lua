@@ -17,7 +17,7 @@ config.font = wezterm.font_with_fallback {
     'nonicons',
 }
 
-config.font_size = 19
+config.font_size = 18
 
 -- default color scheme
 -- wezterm.color_scheme = "Sweet Eliverlara (Gogh)"
