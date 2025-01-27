@@ -8,10 +8,6 @@ local action_set = require("telescope.actions.set")
 local action_state = require("telescope.actions.state")
 
 local utils = require("utils.nvchad")
--- local utils = require("utils.base46")
---
--- utils.set_wezterm_theme("flexoki-light")
--- utils.set_wezterm_theme("ashes")
 
 local function reload_theme(name)
     require("nvconfig").base46.theme = name
@@ -21,6 +17,8 @@ end
 
 local function switcher()
     local bufnr = vim.api.nvim_get_current_buf()
+    -- store the initial theme at the start
+    local initial_theme = require("nvconfig").base46.theme
 
     -- show current buffer content in previewer
     local previewer = previewers.new_buffer_previewer {
@@ -71,13 +69,8 @@ local function switcher()
             actions.select_default:replace(function()
                 if action_state.get_selected_entry() then
                     package.loaded.chadrc = nil
-                    local old_theme = require("nvconfig").base46.theme
-                    -- NOTE: before me trying to do the things the way I want to
-                    old_theme = '"' .. old_theme .. '"'
-
+                    local old_theme = '"' .. initial_theme .. '"'
                     local theme = '"' .. action_state.get_selected_entry()[1] .. '"'
-                    -- local theme = action_state.get_selected_entry()[1]
-
                     utils.replace_word(old_theme, theme)
                     actions.close(prompt_bufnr)
                 end
