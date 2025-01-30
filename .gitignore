@@ -41,3 +41,5 @@ gotoroot
 stripe
 zsh:w
 zshk:w
+nvim/*.md
+!nvim/README.md

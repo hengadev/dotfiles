@@ -1,4 +1,4 @@
--- here is the place where I place custom base46 themes
+-- Where I place custom base46 themes.
 
 local M = {}
 
