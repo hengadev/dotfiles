@@ -61,7 +61,6 @@ M.clock = function()
     local m = vim.api.nvim_get_mode().mode
     local mode_highlight = "%#St_" .. modes[m][2] .. "ModeSep#"
     local mode_highlight2 = "%#St_" .. modes[m][2] .. "Mode#"
-    -- return mode_highlight .. sep_l .. " " .. " %#St_cwd_text# " .. utils.clock() .. " "
     return mode_highlight .. sep_l .. mode_highlight2 .. "" .. " %#St_cwd_text# " .. utils.clock() .. " "
 end
 

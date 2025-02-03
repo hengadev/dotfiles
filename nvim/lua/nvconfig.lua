@@ -71,7 +71,7 @@ M.ui = {
 }
 
 M.base46 = {
-    theme = "everblush", -- default theme
+    theme = "flexoki-light", -- default theme
     hl_add = {},
     hl_override = {},
     changed_themes = {},

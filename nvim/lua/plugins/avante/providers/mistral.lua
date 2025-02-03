@@ -23,8 +23,26 @@ return {
                 }
             end,
             parse_response_data = function(data_stream, event_state, opts)
-                require("avante.providers").openai.parse_response(data_stream, event_state, opts)
+                -- the context seems to work, but I do not get any stream here
+                local ctx = {}
+                -- Debugging prints
+                print("ctx: ", vim.inspect(ctx))
+                print("data_stream:", vim.inspect(data_stream))
+                print("event_state:", vim.inspect(event_state))
+                print("opts:", vim.inspect(opts))
+
+                require("avante.providers").openai.parse_response(ctx, data_stream, event_state, opts)
             end,
         },
     },
 }
+
+-- curl -X POST "https://codestral.mistral.ai/v1/chat/completions" \
+--      -H "Content-Type: application/json" \
+--      -H "x-api-key: t0tMdw46duZZQbMFjXYR7whmR3OGhbBx" \
+--      -d '{
+--          "model": "codestral-latest",
+--          "messages": [{"role": "user", "content": "Hello, how are you?"}],
+--          "max_tokens": 2048,
+--          "stream": true
+--      }'
