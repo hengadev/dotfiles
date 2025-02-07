@@ -76,7 +76,7 @@ M.base46 = {
     hl_override = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "mountain", "tundra" },
+    theme_toggle = { "everblush", "everblush" },
 
     integrations = {
         "blankline",

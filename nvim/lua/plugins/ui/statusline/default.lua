@@ -34,6 +34,14 @@ M.git = function()
     return "%#St_gitIcons#" .. utils.git()
 end
 
+M.status_mode = function()
+    local reg = vim.fn.reg_recording()
+    if reg == "" then
+        return ""
+    end
+    return " %#ST_EmptySpace# " .. "%#St_gitIcons# " .. "recording @" .. reg
+end
+
 M.lsp_msg = function()
     return "%#St_LspMsg#" .. utils.lsp_msg()
 end

@@ -1,6 +1,8 @@
 local M = {}
 local config = require("nvconfig")
 
+-- TODO: add something that indicates macro recording.
+
 local function setup_statusline()
     -- Get highlight groups
     local highlights = require("base46.integrations.statusline." .. config.ui.statusline.theme)
