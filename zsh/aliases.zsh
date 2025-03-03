@@ -114,7 +114,7 @@ alias idea="cd ~/Documents/perso/Projets/Idees/ && nv idea.md"
 
 alias jdb="cd ~/Documents/perso/ && nv jdb.md"
 
-# lampp (pour gerer mon php)
+# lampp (pour gerer php)
 alias lampps="sudo /opt/lampp/lampp start"
 alias lamppd="sudo /opt/lampp/lampp stop"
 # open the file of my different php project.
