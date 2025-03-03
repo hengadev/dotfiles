@@ -6,7 +6,6 @@ M.list_themes = function()
     local default_themes = vim.fn.readdir(vim.fn.stdpath "data" .. "/lazy/base46/lua/base46/themes")
     -- NOTE: handle custom themes if I need to, but I do not think I will need it
     -- local custom_themes = vim.uv.fs_stat(fn.stdpath "config" .. "/lua/themes")
-    --
     -- if custom_themes and custom_themes.type == "directory" then
     --     local themes_tb = fn.readdir(fn.stdpath "config" .. "/lua/themes")
     --     for _, value in ipairs(themes_tb) do
@@ -22,7 +21,7 @@ M.list_themes = function()
 end
 
 M.replace_word = function(old, new, filepath)
-    filepath = filepath or vim.fn.stdpath "config" .. "/lua/" .. "nvconfig.lua"
+    filepath = filepath or vim.fn.stdpath "config" .. "/lua/nvconfig.lua"
 
     if not filepath then
         print("Error: filepath in NVChad theme picker extension is nil")

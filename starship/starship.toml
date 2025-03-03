@@ -72,3 +72,5 @@ command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print 
 style = "red"
 format = "[TUNNEL OPEN for $output]($style)"
 
+[aws]
+disabled = true

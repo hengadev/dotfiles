@@ -183,27 +183,18 @@ default_floating_border pixel 0
 
 bindsym $mod+d exec wofi --show run
 
-# On va utiiser waybar ici 
-# Polybar
-# exec_always --no-startup-id ~/.config/polybar/polybar.sh
 # Waybar
-# A tester si cela marche
-exec_always --no-startup-id ~/.config/waybar/waybar.sh
+# A tester si cela marche, that was the old one that did not work
+# exec_always --no-startup-id ~/.config/waybar/waybar.sh
+exec_always --no-startup-id waybar
 
 
 # At startup, launch apps.
-# exec --no-startup-id firefox
-# exec --no-startup-id alacritty
 exec --no-startup-id wezterm
 exec --no-startup-id brave
-exec --no-startup-id discord
-# exec --no-startup-id obsidian
+# exec --no-startup-id anki
 # exec --no-startup-id discord
-# exec --no-startup-id notion-app-enhanced
-# exec --no-startup-id nautilus
-# exec --no-startup-id insomnia
-# exec --no-startup-id mongodb compass
-# exec --no-startup-id telegram-desktop
+# exec --no-startup-id obsidian
 
 # When opening one of the following app, go directly to the workspace.
 # assign [class="alacritty"] $ws1
@@ -214,10 +205,13 @@ for_window [class="wezterm"] focus
 assign [class="brave"] $ws2
 for_window [class="brave"] focus
 
-assign [class="discord"] $ws3
+assign [class="anki"] $ws3
+for_window [class="anki"] focus
+
+assign [class="discord"] $ws4
 for_window [class="discord"] focus
 
-assign [class="obsidian"] $ws4
+assign [class="obsidian"] $ws5
 for_window [class="obsidian"] focus
 
 

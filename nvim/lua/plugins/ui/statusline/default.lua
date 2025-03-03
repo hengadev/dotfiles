@@ -34,12 +34,14 @@ M.git = function()
     return "%#St_gitIcons#" .. utils.git()
 end
 
+-- mostly to show the current macro recording
 M.status_mode = function()
     local reg = vim.fn.reg_recording()
     if reg == "" then
         return ""
     end
-    return " %#ST_EmptySpace# " .. "%#St_gitIcons# " .. "recording @" .. reg
+    -- return " %#ST_EmptySpace# " .. "%#St_gitIcons# " .. "recording @" .. reg
+    return "%#St_gitIcons# " .. "recording @" .. reg
 end
 
 M.lsp_msg = function()

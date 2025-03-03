@@ -1,13 +1,7 @@
--- local ollama = require("plugins.avante.providers.ollama")
-local mistral = require("plugins.avante.providers.mistral")
--- local deepseek = require("plugins.avante.providers.deepseek")
-
 return {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    -- NOTE: I could use telescope to pick the LLM that I want to use and make some extension to switch config
-    -- opts = deepseek,
-    opts = mistral,
+    opts = require("plugins.avante.providers.deepseek"),
     -- note: if you want to download pre-built binary, then pass source=false. make sure to follow instruction above.
     -- also note that downloading prebuilt binary is a lot faster comparing to compiling from source.
     -- build = ":avantebuild source=false",

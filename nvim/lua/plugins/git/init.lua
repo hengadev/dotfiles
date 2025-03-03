@@ -1,7 +1,7 @@
 return {
     require("plugins.git.neogit"),
-    require("plugins.git.git-worktree"), require("plugins.git.git-worktree"),
-    require("plugins.git.git-worktree"), require("plugins.git.gitsigns"),
+    require("plugins.git.git-worktree"),
+    require("plugins.git.gitsigns"),
 }
 
 
