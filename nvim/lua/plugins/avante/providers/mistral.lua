@@ -4,8 +4,9 @@ return {
         mistral = {
             __inherited_from = "openai",
             api_key_name = 'MISTRAL_API_KEY',
-            endpoint = "https://codestral.mistral.ai/v1",
+            endpoint = "https://codestral.mistral.ai/v1/",
             model = "codestral-latest",
+            max_tokens = 4096,
         }
     }
 }
