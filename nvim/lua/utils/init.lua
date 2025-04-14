@@ -6,10 +6,6 @@ M.git = signs.git
 M.lsp_kinds = signs.lsp_kinds
 M.dap_utils = signs.dap
 
--- constants
-M.mason_packages = require("utils.constants.mason")
-M.lsp_servers = require("utils.constants.lsp_servers")
-
 function M.warn(msg, notify_opts)
     vim.notify(msg, vim.log.levels.WARN, notify_opts)
 end
