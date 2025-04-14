@@ -10,9 +10,10 @@ map("jk", "<Esc>", "Replace the Esc key to return in normal mode", { "i" })
 map("<leader>nt", "<Cmd>tabnew<CR>", "[N]ew [T]ab")
 map("<leader>ct", "<Cmd>tabclose<CR>", "[C]lose current [T]ab")
 
--- Help to open the lazy and mason menus
+-- Help to work with lazy and mason menus
 map("<leader>lz", "<Cmd>Lazy<CR>", "Open [L]a[Z]y menu")
 map("<leader>ms", "<Cmd>Mason<CR>", "Open [M]a[S]on menu")
+map("<leader>mu", "<Cmd>MasonToolsUpdate<CR>", "Open [M]ason [U]pdate")
 
 -- old, do not use since oil.nvim
 -- map("<leader>pv", vim.cmd.Ex, "Return to netrw")
