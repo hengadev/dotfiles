@@ -24,6 +24,7 @@ M.ui = {
         lazyload = true,
         order = { "treeOffset", "buffers", "tabs", "btns" },
         modules = nil,
+        bufwidth = 21
     },
 
     nvdash = {
@@ -71,12 +72,12 @@ M.ui = {
 }
 
 M.base46 = {
-    theme = "everblush", -- default theme
+    theme = "flexoki-light", -- default theme
     hl_add = {},
     hl_override = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "everblush", "everblush" },
+    theme_toggle = { "flexoki-light", "flexoki-light" },
 
     integrations = {
         "blankline",
@@ -86,15 +87,20 @@ M.base46 = {
         "git",
         "lsp",
         "mason",
-        "nvcheatsheet",
-        -- "nvdash",
+        "bufferline",
         "nvimtree",
-        "statusline",
-        "syntax",
         "treesitter",
-        "tbline",
         "telescope",
         "whichkey",
+        "flash",
+        -- NOTE: trying some integrations that I should have
+        -- "nvim-dap",
+
+        -- NOTE: integrations for nvchad that I do not have
+        -- "statusline",
+        -- "nvcheatsheet",
+        -- "tbline",
+        -- "syntax",
     },
 }
 

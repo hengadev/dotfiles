@@ -8,17 +8,17 @@ local messages = {
 }
 
 return {
-    virtual_text = true,
-    -- virtual_lines = true,
-    float = {
-        focusable = false,
-        style = "minimal",
-        border = "rounded",
-        -- source = "always",
-        source = true,
-        header = "",
-        prefix = "",
-    },
+    -- virtual_text = true,
+    virtual_lines = true,
+    -- float = {
+    --     focusable = false,
+    --     style = "minimal",
+    --     border = "rounded",
+    --     -- source = "always",
+    --     source = true,
+    --     header = "",
+    --     prefix = "",
+    -- },
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = signs.Error,
@@ -32,7 +32,7 @@ return {
         texthl = messages,
         numhl = messages,
     },
-    underline = true,
+    -- underline = true,
     update_in_insert = true,
     severity_sort = true,
 }
