@@ -100,12 +100,12 @@ alias ld="lazydocker" # Launch lazydocker
 # TODO: D'autres commandes a venir
 
 # makefile command (since I use them a lot)
-alias make="make -f local.makefile"
-alias mt="make -f local.makefile test"
-alias mr="make -f local.makefile run"
-alias mb="make -f local.makefile build"
-alias mp="make -f local.makefile proto"
-alias md="make -f local.makefile docker"
+# alias make="make -f local.makefile"
+# alias mt="make -f local.makefile test"
+# alias mr="make -f local.makefile run"
+# alias mb="make -f local.makefile build"
+# alias mp="make -f local.makefile proto"
+# alias md="make -f local.makefile docker"
 
 # Mon journal de bord
 alias todo="cd ~/Documents/perso/ && nv Todo.md"
