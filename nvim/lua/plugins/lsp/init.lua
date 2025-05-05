@@ -43,6 +43,7 @@ return {
             "stylua",   -- Format Lua code
             "delve",    -- Debugger for the go programming language
             "codelldb", -- A native debugger based on LLDB.
+            "debugpy"
         })
 
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

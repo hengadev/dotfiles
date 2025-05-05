@@ -1,7 +1,7 @@
 return {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    opts = require("plugins.avante.providers.deepseek"),
+    opts = require("plugins.avante.providers.mistral"),
     -- note: if you want to download pre-built binary, then pass source=false. make sure to follow instruction above.
     -- also note that downloading prebuilt binary is a lot faster comparing to compiling from source.
     -- build = ":avantebuild source=false",

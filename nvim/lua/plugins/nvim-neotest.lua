@@ -45,6 +45,6 @@ return {
         map("<leader>tu", neotest.summary.toggle, "[T]est S[U]mmary")
         map("<leader>tl", neotest.run.run_last, "Run [L]ast [T]est")
         map("[f", neotest.run.run_last, "Go to previous [F]ailed test")
-        map("f]", neotest.run.run_last, "Go to next [F]ailed test")
+        map("]f", neotest.run.run_last, "Go to next [F]ailed test")
     end,
 }

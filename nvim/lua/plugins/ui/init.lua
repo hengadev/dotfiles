@@ -13,6 +13,6 @@ return {
     -- NOTE: replaced by snacks
     -- require("plugins.ui.nvim-notify"),
     -- TODO: that one need configuration, I need it to style tabs
-    require("plugins.ui.bufferline"),
     require("plugins.ui.statusline"),
+    require("plugins.ui.bufferline"),
 }

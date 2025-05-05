@@ -1,3 +1,4 @@
+-- TODO: I need to use ai for autocompletion
 return {
     'saghen/blink.cmp',
     dependencies = 'rafamadriz/friendly-snippets',

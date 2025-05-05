@@ -1,6 +1,6 @@
-local get_section_config = function(section)
-    return require("plugins.ui.lualine.lualine_" .. section)
-end
+-- local get_section_config = function(section)
+--     return require("plugins.ui.lualine.lualine_" .. section)
+-- end
 
 -- local sections = {}
 -- for _, v in pairs({ "a", "b" }) do
