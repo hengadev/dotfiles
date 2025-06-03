@@ -1,14 +1,11 @@
 return {
-    provider = 'mistral', -- recommend using claude
-    vendors = {
-        mistral = {
-            __inherited_from = "openai",
-            api_key_name = 'MISTRAL_API_KEY',
-            endpoint = "https://codestral.mistral.ai/v1/",
-            model = "codestral-latest",
-            max_tokens = 4096,
-        }
-    }
+    __inherited_from = "openai",
+    api_key_name = 'MISTRAL_API_KEY',
+    endpoint = "https://codestral.mistral.ai/v1/",
+    model = "codestral-latest",
+    extra_request_body = {
+        max_tokens = 4096,
+    },
 }
 
 -- curl -X POST "https://codestral.mistral.ai/v1/chat/completions" \
@@ -20,3 +17,5 @@ return {
 --          "max_tokens": 2048,
 --          "stream": true
 --      }'
+
+-- [DEPRECATED] The configuration of `vendors.mistral` should be placed in `providers.mistral`. For detailed migration instructions, please visit: https://github.com/yetone/avante.nvim/wiki/Provider-configuration-migration-guide
