@@ -122,3 +122,8 @@ alias phpf="cd /opt/lampp/htdocs"
 
 alias ol="ollama list"
 alias or="ollama run qwen2.5-coder:1.5b"
+
+alias tfi="terraform init"
+alias tfp="terraform plan"
+alias tfa="terraform apply"
+alias tfd="terraform destroy"
