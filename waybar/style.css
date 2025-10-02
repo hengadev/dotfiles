@@ -35,7 +35,7 @@ window#waybar {
 }
 
 #workspaces button {
-    padding: 0 12px;
+    padding: 4px 18px 4px 14px;
     margin: 0 2px;
     background-color: rgba(49, 50, 68, 0.8);
     color: #cdd6f4;
@@ -214,8 +214,9 @@ window#waybar {
 #custom-power {
     background-color: rgba(243, 139, 168, 0.2);
     color: #f38ba8;
-    padding: 0 16px;
-    margin-right: 8px;
+    font-size: 18px;
+    padding: 4px 18px 4px 14px;
+    margin: 4px 8px 4px 2px;
 }
 
 #custom-power:hover {
