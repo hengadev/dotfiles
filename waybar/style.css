@@ -1,239 +1,224 @@
-/* Je vais commenter tous les anciens elements que je ne trouve pas a mon gout et que je remplace  */
-/* Il me faut remplacer cela et trouver un truc un peu plus style mais cela viendra apres. */
 * {
     border: none;
-    border-radius: 4px;
-    /* `ttf-font-awesome` is required to be installed for icons */
-    /* font-family: "Roboto Mono Medium", Helvetica, Arial, sans-serif; */
-    font-family: "FiraCode Nerd", Helvetica, Arial, sans-serif;
-
-    /* adjust font-size value to your liking: */
-    font-size: 18px;
-
+    border-radius: 20px;
+    font-family: "FiraCode Nerd Font", "Roboto", sans-serif;
+    font-weight: 500;
     min-height: 0;
 }
 
 window#waybar {
-    background-color: rgba(50, 50, 50, 0.9);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
+    background-color: #1e1e2e;
+    color: #cdd6f4;
     border-radius: 0;
-    background-color: black;
+    font-size: 15px;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+/* OS Icon - Material You Primary Color */
+#custom-os-icon {
+    font-size: 24px;
+    color: #89b4fa;
+    padding: 0 16px;
+    margin: 4px 0 4px 8px;
+    background-color: rgba(137, 180, 250, 0.2);
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3F3F3F;
+#custom-os-icon:hover {
+    background-color: rgba(137, 180, 250, 0.3);
 }
 
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
+/* Workspaces - Material You Surface Containers */
+#workspaces {
+    margin: 4px 8px;
+    padding: 0;
 }
 
 #workspaces button {
-    padding: 0 0.4em;
-    padding: 0 0.6em;
-
-    background-color: transparent;
-    color: #ffffff;
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
+    padding: 0 12px;
+    margin: 0 2px;
+    background-color: rgba(49, 50, 68, 0.8);
+    color: #cdd6f4;
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-size: 24px;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 -3px #ffffff;
+    background-color: rgba(137, 180, 250, 0.2);
+    box-shadow: 0 2px 4px rgba(137, 180, 250, 0.3);
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+    background-color: #89b4fa;
+    color: #1e1e2e;
+    box-shadow: 0 2px 8px rgba(137, 180, 250, 0.5);
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: #f38ba8;
+    color: #1e1e2e;
+    box-shadow: 0 2px 12px rgba(243, 139, 168, 0.6);
 }
 
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
-}
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#mpd {
-    padding: 0 10px;
-    margin: 6px 3px;
-    color: #333333;
-}
-
-#window,
-#workspaces {
-    margin: 0 4px;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left>widget:first-child>#workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right>widget:last-child>#workspaces {
-    margin-right: 0;
-}
-
-#clock {
-    background-color: #bbccdd;
-    color: black;
-    /* background-color: #fccf67; */
-    /* color : white; */
+/* Window title - Material You On-Surface */
+#window {
+    margin: 4px 12px;
+    padding: 0 16px;
+    color: #cdd6f4;
+    background-color: rgba(49, 50, 68, 0.6);
+    border-radius: 20px;
     font-weight: 500;
 }
 
-#battery {
-    background-color: #bbccdd;
-    color: #333333;
+/* Right modules - Material You Surface Variants */
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#network,
+#battery,
+#clock,
+#custom-power {
+    padding: 0 12px;
+    margin: 4px 2px;
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-#battery.charging {
-    color: #ffffff;
-    background-color: #26A65B;
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#network,
+#battery,
+#clock,
+#custom-power {
+    background-color: rgba(49, 50, 68, 0.8);
+    color: #cdd6f4;
+    font-size: 18px;
 }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #333333;
-    }
-}
-
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-label:focus {
-    background-color: #000000;
-}
-
+/* CPU - Blue tones */
 #cpu {
-    background-color: #2ecc71;
-    color: #333333;
+    background-color: rgba(137, 180, 250, 0.2);
+    color: #89b4fa;
 }
 
+#cpu:hover {
+    background-color: rgba(137, 180, 250, 0.3);
+    box-shadow: 0 2px 4px rgba(137, 180, 250, 0.4);
+}
+
+/* Memory - Yellow/Amber tones */
 #memory {
-    background-color: #9b59b6;
+    background-color: rgba(249, 226, 175, 0.2);
+    color: #f9e2af;
 }
 
-#backlight {
-    background-color: #bbccdd;
+#memory:hover {
+    background-color: rgba(249, 226, 175, 0.3);
+    box-shadow: 0 2px 4px rgba(249, 226, 175, 0.4);
 }
 
-#network {
-    background-color: #bbccdd;
-}
-
-#network.disconnected {
-    background-color: #f53c3c;
-}
-
-#pulseaudio {
-    background-color: #bbccdd;
-    color: #333333;
-}
-
-#pulseaudio.muted {
-    background-color: #bbccdd;
-    color: #333333;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
+/* Temperature - Green tones */
 #temperature {
-    background-color: #f0932b;
+    background-color: rgba(166, 227, 161, 0.2);
+    color: #a6e3a1;
+}
+
+#temperature:hover {
+    background-color: rgba(166, 227, 161, 0.3);
+    box-shadow: 0 2px 4px rgba(166, 227, 161, 0.4);
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: rgba(243, 139, 168, 0.3);
+    color: #f38ba8;
 }
 
-#tray {
-    background-color: #2980b9;
+/* Audio - Purple tones */
+#pulseaudio {
+    background-color: rgba(203, 166, 247, 0.2);
+    color: #cba6f7;
 }
 
-#idle_inhibitor {
-    background-color: #2d3436;
+#pulseaudio:hover {
+    background-color: rgba(203, 166, 247, 0.3);
+    box-shadow: 0 2px 4px rgba(203, 166, 247, 0.4);
 }
 
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+#pulseaudio.muted {
+    background-color: rgba(108, 112, 134, 0.2);
+    color: #6c7086;
 }
 
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
+/* Network - Teal tones */
+#network {
+    background-color: rgba(148, 226, 213, 0.2);
+    color: #94e2d5;
 }
 
-#mpd.disconnected {
-    background-color: #f53c3c;
+#network:hover {
+    background-color: rgba(148, 226, 213, 0.3);
+    box-shadow: 0 2px 4px rgba(148, 226, 213, 0.4);
 }
 
-#mpd.stopped {
-    background-color: #90b1b1;
+#network.disconnected {
+    background-color: rgba(243, 139, 168, 0.3);
+    color: #f38ba8;
 }
 
-#mpd.paused {
-    background-color: #51a37a;
+/* Battery - Green tones */
+#battery {
+    background-color: rgba(166, 227, 161, 0.2);
+    color: #a6e3a1;
 }
 
-#language {
-    background: #bbccdd;
-    color: #333333;
-    padding: 0 5px;
-    margin: 6px 3px;
-    min-width: 16px;
+#battery:hover {
+    background-color: rgba(166, 227, 161, 0.3);
+    box-shadow: 0 2px 4px rgba(166, 227, 161, 0.4);
+}
+
+#battery.charging {
+    background-color: rgba(166, 227, 161, 0.3);
+    color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+    background-color: rgba(249, 226, 175, 0.3);
+    color: #f9e2af;
+}
+
+#battery.critical:not(.charging) {
+    background-color: rgba(243, 139, 168, 0.3);
+    color: #f38ba8;
+}
+
+/* Clock - Primary color */
+#clock {
+    background-color: rgba(137, 220, 235, 0.2);
+    color: #89dceb;
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+#clock:hover {
+    background-color: rgba(137, 220, 235, 0.3);
+    box-shadow: 0 2px 4px rgba(137, 220, 235, 0.4);
+}
+
+/* Power button - Error color */
+#custom-power {
+    background-color: rgba(243, 139, 168, 0.2);
+    color: #f38ba8;
+    padding: 0 16px;
+    margin-right: 8px;
+}
+
+#custom-power:hover {
+    background-color: rgba(243, 139, 168, 0.3);
+    box-shadow: 0 2px 4px rgba(243, 139, 168, 0.4);
 }

@@ -3,14 +3,6 @@
 ######################
 
 
-# To handle the bluetooth, the current headphone is : 
-# B0:F0:0C:0E:A7:59
-# pair B0:F0:0C:0E:A7:59
-# trust B0:F0:0C:0E:A7:59
-# connect B0:F0:0C:0E:A7:59
-
-
-
 # Alt key as default mod.
 set $mod Mod1
 # set $mod Mod5
@@ -183,15 +175,18 @@ default_floating_border pixel 0
 
 bindsym $mod+d exec wofi --show run
 
-# Waybar
-# A tester si cela marche, that was the old one that did not work
-# exec_always --no-startup-id ~/.config/waybar/waybar.sh
-exec_always --no-startup-id waybar
+# Start XDG Desktop Portal services
+exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec --no-startup-id systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec --no-startup-id /usr/libexec/xdg-desktop-portal -r &
+exec --no-startup-id /usr/libexec/xdg-desktop-portal-wlr &
+
+exec_always --no-startup-id sh -c "killall waybar; waybar"
 
 
 # At startup, launch apps.
 exec --no-startup-id wezterm
-exec --no-startup-id brave
+exec --no-startup-id brave-browser
 # exec --no-startup-id anki
 # exec --no-startup-id discord
 # exec --no-startup-id obsidian
@@ -238,9 +233,9 @@ for_window [class="obsidian"] focus
 #
 
 # Status bar
-bar {
+# bar {
     # Prend grave du temps a launch en fait, je ne sais pas si je garde la config par default
-    swaybar_command waybar
+    # swaybar_command waybar
 
     #NOTE: Old configuration
     # position bottom
@@ -256,4 +251,4 @@ bar {
     #     }
     # Donc je peux mettre des gaps avec sway, cela est cool
     # gaps 2px
-}
+# }
