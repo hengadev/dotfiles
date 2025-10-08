@@ -6,7 +6,7 @@ return {
         require("conform").setup({
             formatters_by_fmt = {
                 lua = { "stylua", "lua_ls" },
-                javascript = { "prettier" },
+                javascript = { "prettierd" },
             },
             format_on_save = {
                 timeout = 500,

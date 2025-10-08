@@ -15,6 +15,8 @@ return {
     svelte = {},
     docker_compose_language_service = {},
     dockerls = {},
+    terraformls = {},
+    tailwindcss_language_server = {},
     -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -24,7 +26,7 @@ return {
     lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
-        -- capabilities = {},
+
         settings = {
             Lua = {
                 completion = {

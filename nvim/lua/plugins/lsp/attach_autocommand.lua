@@ -46,6 +46,10 @@ return function()
             --  For example, in C this would take you to the header.
             map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
+            local symbols = require("plugins.lsp.goto_next_symbol")
+            map("]s", symbols.goto_next_symbol, "Next [S]ymbol")
+            map("[s", symbols.goto_prev_symbol, "Previous [S]ymbol")
+
             -- The following two autocommands are used to highlight references of the
             -- word under your cursor when your cursor rests there for a little while.
             --    See `:help CursorHold` for information about when this is executed

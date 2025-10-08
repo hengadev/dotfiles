@@ -43,8 +43,13 @@ return {
             "stylua",   -- Format Lua code
             "delve",    -- Debugger for the go programming language
             "codelldb", -- A native debugger based on LLDB.
-            "debugpy"
+            "debugpy",
+            "prettierd"
         })
+
+        -- ◍ tailwindcss-language-server tailwindcss (keywords: css)
+        -- ◍ terraform-ls terraformls (keywords: terraform)
+        -- ◍ typescript-language-server ts_ls (keywords: typescript, javascript)
 
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
