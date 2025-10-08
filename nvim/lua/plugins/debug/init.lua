@@ -8,7 +8,7 @@ return {
         "theHamsta/nvim-dap-virtual-text",
         -- debuggers
         "leoluz/nvim-dap-go",
-        "mfussenegger/nvim-dap-python",
+        -- "mfussenegger/nvim-dap-python",
         -- neotest
         "nvim-neotest/neotest",
     },
@@ -25,7 +25,7 @@ return {
             ensure_installed = {
                 "delve",
                 "codelldb",
-                "python", -- I get a notification but it does not install the thing
+                -- "python", -- I get a notification but it does not install the thing
             },
         })
 
@@ -59,7 +59,7 @@ return {
         -- go
         require("dap-go").setup()
         -- python
-        require("dap-python").setup("~/.local/share/nvim/mason/packages/debugpy/venv/bin/python")
+        -- require("dap-python").setup("~/.local/share/nvim/mason/packages/debugpy/venv/bin/python")
         -- C, C++, rust
         dap.adapters.codelldb = {
             type = "executable",
