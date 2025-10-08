@@ -127,3 +127,15 @@ alias tfi="terraform init"
 alias tfp="terraform plan"
 alias tfa="terraform apply"
 alias tfd="terraform destroy"
+
+# claude code
+alias cc="claude"
+alias cg='ANTHROPIC_AUTH_TOKEN=$ZAI_API_KEY \
+ANTHROPIC_BASE_URL=$ZAI_BASE_URL \
+ANTHROPIC_DEFAULT_OPUS_MODEL=$GLM_OPUS_MODEL \
+ANTHROPIC_DEFAULT_SONNET_MODEL=$GLM_SONNET_MODEL \
+ANTHROPIC_DEFAULT_HAIKU_MODEL=$GLM_HAIKU_MODEL \
+API_TIMEOUT_MS=3000000 \
+claude'
+
+
