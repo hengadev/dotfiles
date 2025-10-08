@@ -7,7 +7,7 @@ return {
         bottom = {
             {
                 ft = "toggleterm",
-                size = { height = 0.2 },
+                size = { height = 0.5 },
             },
             { ft = "dap-repl", size = { height = 0.15 }, title = " Debug REPL" },
             { ft = "dapui_console", size = { height = 0.15 }, title = "Debug Console" },
