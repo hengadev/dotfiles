@@ -23,6 +23,20 @@ return {
 			},
 		},
 		{ "Bilal2453/luvit-meta", lazy = true },
+		-- Automatically stop idle LSP servers to save memory
+		{
+			"hinell/lsp-timeout.nvim",
+			config = function()
+				require("lsp-timeout").setup({
+					-- Stop LSP servers after 15 minutes of inactivity
+					stopTimeout = 1000 * 60 * 15, -- 15 minutes in milliseconds
+					-- Optional: servers to never stop
+					-- serverStopTimeout = {
+					-- 	lua_ls = -1, -- Never stop lua_ls
+					-- },
+				})
+			end,
+		},
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
