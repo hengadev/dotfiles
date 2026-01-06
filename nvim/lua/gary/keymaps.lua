@@ -27,10 +27,18 @@ map("[d", vim.diagnostic.goto_prev, "Go to previous [D]iagnostic message")
 map("]d", vim.diagnostic.goto_next, "Go to next [D]iagnostic message")
 
 -- To move lines up and down when highlighted.
-map("J", ":m '>+1<CR>gv=gv", "Move the selected lines upwards or exchange with the line above if there is content",
-    { "v" })
-map("K", ":m '<-2<CR>gv=gv", "Move the selected lines downwards, or  excchange with the line below if there is content",
-    { "v" })
+map(
+	"J",
+	":m '>+1<CR>gv=gv",
+	"Move the selected lines upwards or exchange with the line above if there is content",
+	{ "v" }
+)
+map(
+	"K",
+	":m '<-2<CR>gv=gv",
+	"Move the selected lines downwards, or  excchange with the line below if there is content",
+	{ "v" }
+)
 
 map("J", "mzJ`z", "Append the line below your current separated by a space")
 
@@ -56,13 +64,13 @@ map("<C-d>", "<C-d>zz", "Navigate a paragraph half the screen down with cursor c
 map("<C-u>", "<C-u>zz", "Navigate a paragraph half the screen up with cursor centered vertically")
 
 -- Allows to select + copy and keep the copy inside the _ register.
-map("<leader>p", [["_dP]], "Select and copy inside the _ register")
+-- map("<leader>p", [["_dP]], "Select and copy inside the _ register")
+map("<leader>p", [["_dP]], "Select and copy inside the _ register", { "v" })
 
 -- next greatest remap ever : asbjornHaland
 -- TODO: right the description for these files
 map("<leader>y", [["+y]], "", { "n", "v" })
 map("<leader>Y", [["+Y]], "")
-
 
 -- Keep the last deleted selection into the _ register
 map("<leader>d", [["_d]], "Keep  the last deleted selection inside the _ register", { "n", "v" })
@@ -72,8 +80,11 @@ map("<C-k>", "<cmd>cprev<CR>zz", "Move down in the quickfixlist")
 map("<C-j>", "<cmd>cnext<CR>zz", "Move down in the quickfixlist")
 
 -- Pour remplacer toutes les occurrence du mot sur lequel je suis, mais je peux faire cela facilement avec un regex.
-map("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    "Replace all the occurrences of the word under the cursor in the current buffer")
+map(
+	"<leader>s",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	"Replace all the occurrences of the word under the cursor in the current buffer"
+)
 map("<leader>x", "<cmd>!chmod +x %<CR>", "Change the current buffered file to be executable")
 
 -- NOTE: For plugin development
