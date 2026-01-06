@@ -23,26 +23,26 @@ return {
 			},
 		},
 		{ "Bilal2453/luvit-meta", lazy = true },
-		-- Automatically stop idle LSP servers to save memory
-		{
-			"hinell/lsp-timeout.nvim",
-			config = function()
-				require("lsp-timeout").setup({
-					-- Stop LSP servers after 15 minutes of inactivity
-					stopTimeout = 1000 * 60 * 15, -- 15 minutes in milliseconds
-					-- Optional: servers to never stop
-					-- serverStopTimeout = {
-					-- 	lua_ls = -1, -- Never stop lua_ls
-					-- },
-				})
-			end,
-		},
+		-- Automatically stop idle LSP servers to save memory (loads automatically)
+		"hinell/lsp-timeout.nvim",
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
 
 		-- Memory optimization: Limit LSP log level
 		vim.lsp.set_log_level("WARN") -- Change from default "INFO" to reduce memory
+
+		-- Configure lsp-timeout to stop idle servers after 15 minutes
+		local has_lsp_timeout, lsp_timeout = pcall(require, "lsp-timeout")
+		if has_lsp_timeout then
+			lsp_timeout.setup({
+				stopTimeout = 1000 * 60 * 15, -- 15 minutes
+				-- Optional: configure per-server timeouts
+				-- serverStopTimeout = {
+				-- 	lua_ls = -1, -- Never stop lua_ls
+				-- },
+			})
+		end
 
 		--  This function gets run when an LSP attaches to a particular buffer.
 		--    That is to say, every time a new file is opened that is associated with
