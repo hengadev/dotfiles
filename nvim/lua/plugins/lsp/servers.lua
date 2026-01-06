@@ -75,6 +75,9 @@ return {
         },
     },
     ts_ls = {
+        -- Only attach to .ts, .js, .tsx, .jsx files (not .svelte files)
+        -- Svelte LSP handles TypeScript/JavaScript inside .svelte files
+        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
         -- Limit TypeScript server memory
         init_options = {
             maxTsServerMemory = 2048, -- Limit to 2GB (adjust lower if needed)
@@ -105,7 +108,10 @@ return {
         },
     },
     -- svelte_language_server = {},
-    svelte = {},
+    svelte = {
+        -- Svelte LSP handles .svelte files including embedded TS/JS
+        -- It has its own TypeScript language service
+    },
     docker_compose_language_service = {},
     dockerls = {},
     terraformls = {},
