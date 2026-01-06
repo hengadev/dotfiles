@@ -6,11 +6,104 @@
 --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 return {
     taplo = {},
-    gopls = {},
-    pyright = {},
-    clangd = {},
-    rust_analyzer = {},
-    ts_ls = {},
+    gopls = {
+        settings = {
+            gopls = {
+                -- Reduce memory usage
+                ["ui.diagnostic.analyses"] = {
+                    unusedparams = false,
+                    shadow = false,
+                },
+                ["ui.completion.usePlaceholders"] = false,
+                codelenses = {
+                    gc_details = false,
+                    generate = false,
+                    regenerate_cgo = false,
+                    test = false,
+                    tidy = false,
+                    upgrade_dependency = false,
+                    vendor = false,
+                },
+            },
+        },
+    },
+    pyright = {
+        settings = {
+            python = {
+                analysis = {
+                    -- Limit analysis to open files for memory savings
+                    diagnosticMode = "openFilesOnly",
+                    typeCheckingMode = "basic", -- use "off" for even more savings
+                },
+            },
+        },
+    },
+    clangd = {
+        cmd = {
+            "clangd",
+            "--background-index=false", -- Disable background indexing
+            "--clang-tidy=false", -- Disable clang-tidy for memory savings
+            "--completion-style=bundled",
+            "--header-insertion=never",
+            "--limit-results=20",
+        },
+    },
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                -- Critical memory optimizations
+                cargo = {
+                    allFeatures = false,
+                    loadOutDirsFromCheck = false,
+                },
+                checkOnSave = {
+                    enable = true,
+                    command = "clippy",
+                    extraArgs = { "--no-deps" }, -- Don't check dependencies
+                },
+                procMacro = {
+                    enable = false, -- Disable proc macros to save memory
+                },
+                diagnostics = {
+                    disabled = { "unresolved-proc-macro" },
+                },
+                -- Limit completion items
+                completion = {
+                    limit = 20,
+                },
+            },
+        },
+    },
+    ts_ls = {
+        -- Limit TypeScript server memory
+        init_options = {
+            maxTsServerMemory = 2048, -- Limit to 2GB (adjust lower if needed)
+        },
+        settings = {
+            typescript = {
+                inlayHints = {
+                    includeInlayParameterNameHints = "none",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = false,
+                    includeInlayVariableTypeHints = false,
+                    includeInlayPropertyDeclarationTypeHints = false,
+                    includeInlayFunctionLikeReturnTypeHints = false,
+                    includeInlayEnumMemberValueHints = false,
+                },
+            },
+            javascript = {
+                inlayHints = {
+                    includeInlayParameterNameHints = "none",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = false,
+                    includeInlayVariableTypeHints = false,
+                    includeInlayPropertyDeclarationTypeHints = false,
+                    includeInlayFunctionLikeReturnTypeHints = false,
+                    includeInlayEnumMemberValueHints = false,
+                },
+            },
+        },
+    },
     -- svelte_language_server = {},
     svelte = {},
     docker_compose_language_service = {},
