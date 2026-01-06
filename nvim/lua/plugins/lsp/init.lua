@@ -26,6 +26,10 @@ return {
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
+
+		-- Memory optimization: Limit LSP log level
+		vim.lsp.set_log_level("WARN") -- Change from default "INFO" to reduce memory
+
 		--  This function gets run when an LSP attaches to a particular buffer.
 		--    That is to say, every time a new file is opened that is associated with
 		--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -65,7 +69,41 @@ return {
 					-- by the server configuration above. Useful when disabling
 					-- certain features of an LSP (for example, turning off formatting for tsserver)
 					local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+					-- Memory optimization: Disable semantic tokens for memory savings
+					-- Uncomment the lines below if you want even more memory savings
+					-- capabilities.textDocument.semanticTokens = nil
+
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+
+					-- Add global workspace folder exclusions to reduce indexing
+					if not server.settings then
+						server.settings = {}
+					end
+
+					-- Add common exclusions for all servers that support workspace configuration
+					local workspace_folders_exclude = {
+						"**/node_modules/**",
+						"**/.git/**",
+						"**/build/**",
+						"**/dist/**",
+						"**/target/**", -- Rust/Java
+						"**/.next/**", -- Next.js
+						"**/.nuxt/**", -- Nuxt
+						"**/vendor/**", -- PHP/Go
+						"**/__pycache__/**", -- Python
+						"**/venv/**", -- Python
+						"**/.venv/**", -- Python
+					}
+
+					-- Apply exclusions based on server type
+					if server_name == "rust_analyzer" and server.settings["rust-analyzer"] then
+						if not server.settings["rust-analyzer"].files then
+							server.settings["rust-analyzer"].files = {}
+						end
+						server.settings["rust-analyzer"].files.excludeDirs = workspace_folders_exclude
+					end
+
 					lspconfig[server_name].setup(server)
 				end,
 			},
