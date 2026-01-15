@@ -128,7 +128,6 @@ alias tfp="terraform plan"
 alias tfa="terraform apply"
 alias tfd="terraform destroy"
 
-# claude code
 alias cc="claude"
 alias cg='ANTHROPIC_AUTH_TOKEN=$ZAI_API_KEY \
 ANTHROPIC_BASE_URL=$ZAI_BASE_URL \
