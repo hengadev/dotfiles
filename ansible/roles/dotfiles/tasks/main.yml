@@ -1,0 +1,36 @@
+---
+- name: Check if dotfiles repo is already initialized
+  ansible.builtin.stat:
+    path: "{{ dotfiles_dest }}/.git"
+  register: dotfiles_git_dir
+
+- name: Clone dotfiles into ~/.config (fresh machine)
+  # Uses init+fetch approach to clone into a pre-existing non-empty directory
+  ansible.builtin.shell: |
+    set -e
+    git init "{{ dotfiles_dest }}"
+    cd "{{ dotfiles_dest }}"
+    git remote add origin "{{ dotfiles_repo }}"
+    git fetch --depth=1 origin "{{ dotfiles_branch }}"
+    git checkout -f "{{ dotfiles_branch }}"
+    git branch --set-upstream-to=origin/"{{ dotfiles_branch }}" "{{ dotfiles_branch }}"
+  args:
+    executable: /bin/bash
+  when: not dotfiles_git_dir.stat.exists
+  changed_when: true
+
+- name: Update dotfiles repository
+  ansible.builtin.git:
+    repo: "{{ dotfiles_repo }}"
+    dest: "{{ dotfiles_dest }}"
+    version: "{{ dotfiles_branch }}"
+    update: true
+    force: false
+  when: dotfiles_git_dir.stat.exists
+
+- name: Initialize git submodules (zsh plugins, etc.)
+  ansible.builtin.shell: |
+    cd "{{ dotfiles_dest }}" && git submodule update --init --recursive
+  args:
+    executable: /bin/bash
+  changed_when: false

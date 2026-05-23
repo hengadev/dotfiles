@@ -1,0 +1,27 @@
+---
+system_packages:
+  - git
+  - curl
+  - wget
+  - build-essential
+  - zsh
+  - tmux
+  - ripgrep
+  - fd-find
+  - fzf
+  - unzip
+  - zip
+  - xclip
+  - xdg-utils
+  - ca-certificates
+  - gnupg
+  - lsb-release
+  - software-properties-common
+  - python3-pip
+
+dev_packages:
+  - lazygit
+  - lazydocker
+
+gui_packages:
+  - alacritty

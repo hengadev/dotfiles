@@ -1,0 +1,32 @@
+---
+- name: Check if dconf settings file exists
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.config/dconf"
+  register: dconf_dir
+
+- name: Find dconf dump files
+  ansible.builtin.find:
+    paths: "{{ ansible_env.HOME }}/.config/dconf"
+    patterns: "*.ini"
+  register: dconf_files
+  when: dconf_dir.stat.exists
+
+- name: Apply dconf settings
+  ansible.builtin.shell: |
+    dconf load / < "{{ item.path }}"
+  args:
+    executable: /bin/bash
+  loop: "{{ dconf_files.files }}"
+  when:
+    - dconf_dir.stat.exists
+    - dconf_files.files is defined
+    - dconf_files.files | length > 0
+  changed_when: true
+
+- name: Install GNOME tweaks
+  ansible.builtin.apt:
+    name:
+      - gnome-tweaks
+      - gnome-shell-extensions
+    state: present
+  become: true

@@ -1,0 +1,54 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  become: true
+
+- name: Install system packages
+  ansible.builtin.apt:
+    name: "{{ system_packages }}"
+    state: present
+  become: true
+
+- name: Install lazygit
+  block:
+    - name: Get latest lazygit version
+      ansible.builtin.uri:
+        url: https://api.github.com/repos/jesseduffield/lazygit/releases/latest
+        return_content: true
+      register: lazygit_release
+
+    - name: Set lazygit version fact
+      ansible.builtin.set_fact:
+        lazygit_version: "{{ lazygit_release.json.tag_name | regex_replace('^v', '') }}"
+
+    - name: Download lazygit
+      ansible.builtin.unarchive:
+        src: "https://github.com/jesseduffield/lazygit/releases/download/v{{ lazygit_version }}/lazygit_{{ lazygit_version }}_Linux_x86_64.tar.gz"
+        dest: /usr/local/bin
+        remote_src: true
+        include:
+          - lazygit
+      become: true
+
+- name: Install lazydocker
+  block:
+    - name: Get latest lazydocker version
+      ansible.builtin.uri:
+        url: https://api.github.com/repos/jesseduffield/lazydocker/releases/latest
+        return_content: true
+      register: lazydocker_release
+
+    - name: Set lazydocker version fact
+      ansible.builtin.set_fact:
+        lazydocker_version: "{{ lazydocker_release.json.tag_name | regex_replace('^v', '') }}"
+
+    - name: Download lazydocker
+      ansible.builtin.unarchive:
+        src: "https://github.com/jesseduffield/lazydocker/releases/download/v{{ lazydocker_version }}/lazydocker_{{ lazydocker_version }}_Linux_x86_64.tar.gz"
+        dest: /usr/local/bin
+        remote_src: true
+        include:
+          - lazydocker
+      become: true

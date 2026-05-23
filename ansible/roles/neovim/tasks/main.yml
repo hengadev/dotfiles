@@ -1,0 +1,39 @@
+---
+- name: Add neovim PPA
+  ansible.builtin.apt_repository:
+    repo: ppa:neovim-ppa/unstable
+    state: present
+  become: true
+
+- name: Install neovim
+  ansible.builtin.apt:
+    name: neovim
+    state: present
+    update_cache: true
+  become: true
+
+- name: Install neovim Python provider
+  ansible.builtin.pip:
+    name: pynvim
+    state: present
+    extra_args: --user
+
+- name: Install neovim Node provider
+  ansible.builtin.shell: |
+    export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+    npm install -g neovim
+  args:
+    executable: /bin/bash
+  changed_when: false
+
+- name: Sync neovim plugins with Lazy
+  ansible.builtin.shell: |
+    nvim --headless "+Lazy! sync" +qa
+  args:
+    executable: /bin/bash
+  environment:
+    HOME: "{{ ansible_env.HOME }}"
+    XDG_CONFIG_HOME: "{{ ansible_env.HOME }}/.config"
+  changed_when: true
+  # Lazy sync always runs to pick up any new plugins

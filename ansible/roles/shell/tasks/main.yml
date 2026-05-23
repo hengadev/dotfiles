@@ -1,0 +1,35 @@
+---
+- name: Ensure zsh is installed
+  ansible.builtin.apt:
+    name: zsh
+    state: present
+  become: true
+
+- name: Set zsh as default shell
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    shell: /usr/bin/zsh
+  become: true
+
+- name: Create ~/.zshenv pointing to ~/.config/zsh
+  ansible.builtin.copy:
+    dest: "{{ ansible_env.HOME }}/.zshenv"
+    content: |
+      ZDOTDIR=$HOME/.config/zsh
+    mode: "0644"
+    force: false
+
+- name: Install starship prompt
+  block:
+    - name: Check if starship is installed
+      ansible.builtin.stat:
+        path: /usr/local/bin/starship
+      register: starship_bin
+
+    - name: Download and install starship
+      ansible.builtin.shell: |
+        curl -sS https://starship.rs/install.sh | sh -s -- --yes
+      args:
+        executable: /bin/bash
+      when: not starship_bin.stat.exists
+      changed_when: not starship_bin.stat.exists

@@ -1,0 +1,27 @@
+---
+- name: Bootstrap dotfiles and development environment
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  vars_files:
+    - vars/packages.yml
+
+  roles:
+    - role: system
+      tags: [system]
+
+    - role: dotfiles
+      tags: [dotfiles]
+
+    - role: shell
+      tags: [shell]
+
+    - role: languages
+      tags: [languages]
+
+    - role: neovim
+      tags: [neovim]
+
+    - role: gnome
+      tags: [gnome]
+      when: ansible_env.XDG_CURRENT_DESKTOP is defined and 'GNOME' in ansible_env.XDG_CURRENT_DESKTOP

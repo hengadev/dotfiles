@@ -1,0 +1,89 @@
+---
+- name: Install nvm and Node.js
+  block:
+    - name: Check if nvm is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+      register: nvm_sh
+
+    - name: Install nvm
+      ansible.builtin.shell: |
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+      args:
+        executable: /bin/bash
+      when: not nvm_sh.stat.exists
+      changed_when: not nvm_sh.stat.exists
+
+    - name: Install latest LTS Node.js via nvm
+      ansible.builtin.shell: |
+        export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
+        source "$NVM_DIR/nvm.sh"
+        nvm install --lts
+        nvm alias default lts/*
+      args:
+        executable: /bin/bash
+      changed_when: false
+
+- name: Install Rust via rustup
+  block:
+    - name: Check if rustup is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
+      register: rustup_bin
+
+    - name: Install rustup
+      ansible.builtin.shell: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+      args:
+        executable: /bin/bash
+      when: not rustup_bin.stat.exists
+      changed_when: not rustup_bin.stat.exists
+
+    - name: Update rust toolchain
+      ansible.builtin.shell: |
+        "{{ ansible_env.HOME }}/.cargo/bin/rustup" update stable
+      args:
+        executable: /bin/bash
+      changed_when: false
+
+- name: Install Go
+  block:
+    - name: Check if go is installed
+      ansible.builtin.stat:
+        path: /usr/local/go/bin/go
+      register: go_bin
+
+    - name: Get latest Go version
+      ansible.builtin.uri:
+        url: https://go.dev/VERSION?m=text
+        return_content: true
+      register: go_version_raw
+      when: not go_bin.stat.exists
+
+    - name: Set go version fact
+      ansible.builtin.set_fact:
+        go_version: "{{ go_version_raw.content.split('\n')[0] }}"
+      when: not go_bin.stat.exists
+
+    - name: Download and install Go
+      ansible.builtin.unarchive:
+        src: "https://go.dev/dl/{{ go_version }}.linux-amd64.tar.gz"
+        dest: /usr/local
+        remote_src: true
+      become: true
+      when: not go_bin.stat.exists
+
+- name: Install Bun
+  block:
+    - name: Check if bun is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.bun/bin/bun"
+      register: bun_bin
+
+    - name: Install bun
+      ansible.builtin.shell: |
+        curl -fsSL https://bun.sh/install | bash
+      args:
+        executable: /bin/bash
+      when: not bun_bin.stat.exists
+      changed_when: not bun_bin.stat.exists
