@@ -35,7 +35,7 @@ alias nrd="npm run dev"
 alias nrt="npm run test"
 
 # pnpm aliases 
-alias pi="pnpm install"
+alias pni="pnpm install"
 alias prb="pnpm run build"
 alias prs="pnpm run start"
 alias prd="pnpm run dev"
