@@ -1,6 +1,7 @@
 astro
 autostart
 BraveSoftware
+cluo
 composer
 configstore
 dconf
@@ -19,12 +20,15 @@ gtk-3.0
 gtk-4.0
 ibus
 lazygit/state.yml
+libreoffice
 mimeapps.list
 nautilus
 netlify
 procps
 pulse
 stacer
+systemd/user/timers.target.wants
+totem
 ubuntu-xdg-terminals.list
 update-notifier
 user-dirs.dirs
