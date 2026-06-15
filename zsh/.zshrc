@@ -15,6 +15,8 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 export MANPAGER='nvim +Man!'
 
+export ANKI_API_KEY=$(grep '^ANKI_API_KEY=' "$HOME/Documents/projects/homelab/.env" 2>/dev/null | cut -d= -f2-)
+
 
 # NOTE: Pour pouvoir mettre la conf ici, il me faut le zshenv ou je precise la 
 # variable ZDOTDIR.
