@@ -1,0 +1,11 @@
+[Unit]
+Description=Sync Pi agent theme with WezTerm dark/light toggle
+After=default.target
+
+[Service]
+ExecStart=%h/.pi/agent/themes/sync-theme.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
