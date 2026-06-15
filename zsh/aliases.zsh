@@ -138,3 +138,5 @@ API_TIMEOUT_MS=3000000 \
 claude'
 
 alias oc="opencode"
+
+alias cluo="./cluo_desktop/build/bin/cluo_desktop"
