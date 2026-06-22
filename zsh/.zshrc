@@ -21,3 +21,4 @@ export ANKI_API_KEY=$(grep '^ANKI_API_KEY=' "$HOME/Documents/projects/homelab/.e
 # NOTE: Pour pouvoir mettre la conf ici, il me faut le zshenv ou je precise la 
 # variable ZDOTDIR.
 
+export PATH="$HOME/.local/bin:$PATH"
