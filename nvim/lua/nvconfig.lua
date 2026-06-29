@@ -72,12 +72,12 @@ M.ui = {
 }
 
 M.base46 = {
-    theme = "midnight_breeze", -- default theme
+    theme = "sunrise_breeze", -- default theme
     hl_add = {},
     hl_override = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "midnight_breeze", "midnight_breeze" },
+    theme_toggle = { "sunrise_breeze", "sunrise_breeze" },
 
     integrations = {
         "blankline",
