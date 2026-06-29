@@ -6,6 +6,15 @@ M.set = function(api, theme, theme_type)
 		api.log_info("Setting to " .. theme_type, overrides.color_scheme)
 		overrides.color_scheme = theme
 		window:set_config_overrides(overrides)
+
+		-- Persist the choice so pi-theme-sync.service follows along.
+		-- (The WezTerm keys Ctrl+1/Ctrl+2 are the source of truth.)
+		local state_file = os.getenv("HOME") .. "/.theme_state"
+		local f = io.open(state_file, "w")
+		if f then
+			f:write(theme_type)
+			f:close()
+		end
 	end
 end
 
