@@ -200,11 +200,11 @@ for_window [class="wezterm"] focus
 assign [class="brave"] $ws2
 for_window [class="brave"] focus
 
-assign [class="anki"] $ws3
-for_window [class="anki"] focus
-
-assign [class="discord"] $ws4
+assign [class="discord"] $ws3
 for_window [class="discord"] focus
+
+assign [class="anki"] $ws4
+for_window [class="anki"] focus
 
 assign [class="obsidian"] $ws5
 for_window [class="obsidian"] focus
