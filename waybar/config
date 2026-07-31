@@ -1,10 +1,10 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 40,
-    "modules-left": ["custom/os-icon", "sway/workspaces"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["cpu", "memory", "temperature", "pulseaudio", "network", "battery", "clock", "custom/power"],
+    "height": 49,
+    "modules-left": ["custom/os-icon", "cpu", "memory", "temperature"],
+    "modules-center": ["clock", "sway/workspaces"],
+    "modules-right": ["pulseaudio", "network", "battery", "custom/power"],
 
     "custom/os-icon": {
         "exec": "~/.config/waybar/scripts/os-icon.sh",
@@ -19,16 +19,11 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "󰈹",
             "3": "󰙯",
             "4": "󰗚",
         }
-    },
-
-    "sway/window": {
-        "format": "{}",
-        "max-length": 60
     },
 
     "cpu": {

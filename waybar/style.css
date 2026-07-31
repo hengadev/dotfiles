@@ -43,9 +43,9 @@ window#waybar {
 #custom-os-icon.raspberrypi { color: #c51a4a; }
 #custom-os-icon.tux         { color: #cdd6f4; }
 
-/* Workspaces */
+/* Workspaces - grouped tightly with the clock in the center for a compact cluster */
 #workspaces {
-    margin: 4px 8px;
+    margin: 4px 8px 4px 4px;
     padding: 0;
 }
 
@@ -74,17 +74,8 @@ window#waybar {
     color: #f38ba8;
 }
 
-/* Window title */
-#window {
-    margin: 4px 12px;
-    padding: 0 16px;
-    color: #a6adc8;
-    background-color: rgba(30, 30, 46, 0.5);
-    border-radius: 20px;
-    font-weight: 500;
-}
-
-/* Right modules - unified neutral dark styling */
+/* Status modules (CPU/memory/temperature on the left, audio/network/battery/power
+   on the right) - unified neutral dark styling */
 #cpu,
 #memory,
 #temperature,
@@ -141,7 +132,7 @@ window#waybar {
 #clock {
     font-weight: 600;
     color: #cdd6f4;
-    margin-right: 4px;
+    margin: 4px 4px 4px 8px;
 }
 
 /* Power button */
