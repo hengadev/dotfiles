@@ -55,7 +55,6 @@ window {
 
 #entry:selected {
     background-color: @pill-bg-focused;
-    border: 1px solid @pill-border-hover;
 }
 
 #text {
