@@ -115,12 +115,16 @@ window#waybar {
 
 /* Only real alerts get color */
 #temperature.critical,
-#battery.critical:not(.charging) {
+#battery.critical:not(.charging),
+#cpu.critical,
+#memory.critical {
     background-color: rgba(243, 139, 168, 0.25);
     color: #f38ba8;
 }
 
-#battery.warning:not(.charging) {
+#battery.warning:not(.charging),
+#cpu.warning,
+#memory.warning {
     background-color: rgba(249, 226, 175, 0.2);
     color: #f9e2af;
 }
