@@ -61,10 +61,12 @@
 
     "network": {
         "interval": 5,
-        "format-wifi": "󰖩 {essid} {signalStrength}%",
+        "format-wifi": "󰖩 {signalStrength}%",
         "format-ethernet": "󰈀 {ifname}",
         "format-disconnected": "󰖪 Disconnected",
-        "tooltip-format": "{ipaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid}/{ipaddr}",
+        "tooltip-format-ethernet": "{ifname}/{ipaddr}",
+        "tooltip-format-disconnected": "Disconnected",
         "on-click": "nmtui"
     },
 
