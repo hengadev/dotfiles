@@ -7,7 +7,10 @@
     "modules-right": ["cpu", "memory", "temperature", "pulseaudio", "network", "battery", "clock", "custom/power"],
 
     "custom/os-icon": {
-        "format": "󰣇",
+        "exec": "~/.config/waybar/scripts/os-icon.sh",
+        "return-type": "json",
+        "interval": "once",
+        "format": "{}",
         "tooltip": false
     },
 
@@ -16,7 +19,7 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "󰈹",
             "3": "󰙯",
             "4": "󰗚",
