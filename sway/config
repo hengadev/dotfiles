@@ -176,9 +176,9 @@ bindsym $mod+r mode "resize"
 default_border pixel 0
 default_floating_border pixel 0
 
-# Theme sync: applies the light/dark mode from ~/.theme_state to the
-# wallpaper, waybar palette, tmux flavour, and herdr theme.
-bindsym $mod+Shift+t exec ~/.config/theme-sync/apply-theme.sh --toggle
+# Theme picker: choose any nvim/base46 theme; propagates its exact palette
+# to nvim's default, tmux, wezterm, herdr, waybar, and the wallpaper.
+bindsym $mod+Shift+t exec ~/.config/theme-sync/pick-theme.sh
 
 bindsym $mod+d exec wofi --show run
 
