@@ -7,7 +7,7 @@
 }
 
 window#waybar {
-    background-color: #11111b;
+    background-color: #0a0a0a;
     color: #a6adc8;
     border-radius: 0;
     font-size: 15px;
@@ -19,7 +19,7 @@ window#waybar {
     font-size: 24px;
     padding: 4px 20px 4px 12px;
     margin: 4px 4px 4px 8px;
-    background-color: rgba(30, 30, 46, 0.6);
+    background-color: rgba(15, 15, 15, 0.6);
     color: #a6adc8;
     border: 1px solid rgba(166, 173, 200, 0.35);
     border-radius: 20px;
@@ -27,7 +27,7 @@ window#waybar {
 }
 
 #custom-os-icon:hover {
-    background-color: rgba(69, 71, 90, 0.7);
+    background-color: rgba(40, 40, 40, 0.7);
     border-color: rgba(205, 214, 244, 0.6);
 }
 
@@ -52,7 +52,7 @@ window#waybar {
 #workspaces button {
     padding: 4px 18px 4px 14px;
     margin: 0 2px;
-    background-color: rgba(30, 30, 46, 0.6);
+    background-color: rgba(15, 15, 15, 0.6);
     color: #6c7086;
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -60,12 +60,12 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    background-color: rgba(69, 71, 90, 0.6);
+    background-color: rgba(40, 40, 40, 0.6);
     color: #a6adc8;
 }
 
 #workspaces button.focused {
-    background-color: rgba(69, 71, 90, 0.9);
+    background-color: rgba(40, 40, 40, 0.9);
     color: #cdd6f4;
 }
 
@@ -88,7 +88,7 @@ window#waybar {
     margin: 4px 2px;
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background-color: rgba(30, 30, 46, 0.6);
+    background-color: rgba(15, 15, 15, 0.6);
     color: #a6adc8;
     font-size: 16px;
 }
@@ -101,7 +101,7 @@ window#waybar {
 #battery:hover,
 #clock:hover,
 #custom-power:hover {
-    background-color: rgba(69, 71, 90, 0.7);
+    background-color: rgba(40, 40, 40, 0.7);
 }
 
 /* Muted / disconnected states fade further instead of changing hue */
