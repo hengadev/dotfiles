@@ -68,11 +68,20 @@ local function switcher()
             ------------ save theme to chadrc on enter ----------------
             actions.select_default:replace(function()
                 if action_state.get_selected_entry() then
+                    local selected_name = action_state.get_selected_entry()[1]
+
                     package.loaded.chadrc = nil
                     local old_theme = '"' .. initial_theme .. '"'
-                    local theme = '"' .. action_state.get_selected_entry()[1] .. '"'
+                    local theme = '"' .. selected_name .. '"'
                     utils.replace_word(old_theme, theme)
                     actions.close(prompt_bufnr)
+
+                    -- Confirmed selection only (not live preview while cycling):
+                    -- propagate the exact palette to tmux/wezterm/herdr/waybar/wallpaper.
+                    vim.fn.jobstart(
+                        { vim.fn.expand("~/.config/theme-sync/set-theme.sh"), selected_name },
+                        { detach = true }
+                    )
                 end
             end)
             return true
