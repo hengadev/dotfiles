@@ -45,20 +45,29 @@ window#waybar {
 #custom-os-icon.raspberrypi { color: #c51a4a; }
 #custom-os-icon.tux         { color: @wb-fg-bright; }
 
-/* Workspaces - grouped tightly with the clock in the center for a compact cluster */
+/* Workspaces - one pill holding every workspace. 1-5 are each assigned an
+   app (see sway/config's `assign` rules) and show that app's icon; 6-10
+   have nothing assigned and collapse to a small dot instead of a number. */
 #workspaces {
     margin: 4px 8px 4px 4px;
-    padding: 0;
+    padding: 4px 6px;
+    background-color: @pill-bg;
+    border-radius: 20px;
 }
 
 #workspaces button {
+    /* Asymmetric padding (more on the right) is what actually centers these
+       nerd-font glyphs in their pill - their glyph box isn't visually
+       centered on its own. Only applies to named workspaces (1-5); the dot
+       workspaces (6-10) override padding below. */
     padding: 4px 18px 4px 14px;
     margin: 0 2px;
-    background-color: @pill-bg;
+    min-width: 0;
+    background-color: transparent;
     color: @wb-fg-dim;
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 24px;
+    font-size: 18px;
 }
 
 #workspaces button:hover {
@@ -74,6 +83,32 @@ window#waybar {
 #workspaces button.urgent {
     background-color: @alert-red-bg-urgent;
     color: @alert-red;
+}
+
+/* Unnamed workspaces (6-10): GTK CSS has no ::before/::after content
+   injection, so the button itself becomes the dot - shrunk to a small
+   square with the number's color made transparent, background-color and
+   border-radius doing the rest. */
+#workspaces button:nth-child(n+6) {
+    min-width: 8px;
+    min-height: 8px;
+    padding: 0;
+    /* GTK stretches box children to the row's full height by default;
+       generous vertical margin is what actually shrinks the visible box
+       down to a small dot instead of a tall bar. */
+    margin: 14px 5px;
+    font-size: 1px;
+    color: transparent;
+    background-color: @wb-fg-muted;
+    border-radius: 999px;
+}
+
+#workspaces button:nth-child(n+6):hover {
+    background-color: @wb-fg-dim;
+}
+
+#workspaces button.focused:nth-child(n+6) {
+    background-color: @wb-fg-bright;
 }
 
 /* Status modules (CPU/memory/temperature on the left, audio/network/battery/power
