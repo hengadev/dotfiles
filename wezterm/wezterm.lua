@@ -19,20 +19,16 @@ config.font = wezterm.font_with_fallback({
 
 config.font_size = 18
 
--- default color scheme
--- wezterm.color_scheme = "Sweet Eliverlara (Gogh)"
-config.color_scheme = "Sweet Eliverlara (Gogh)"
-
-local theme_toggler = require("theme_toggler")
-wezterm.on("toggle-dark-mode", theme_toggler.set(wezterm, "Sweet Eliverlara (Gogh)", "dark"))
-wezterm.on("toggle-light-mode", theme_toggler.set(wezterm, "flexoki-light", "light"))
-wezterm.on("window-config-reloaded", theme_toggler.watch_theme_file(wezterm))
-
-config.keys = {
-	-- theme manual switching
-	{ key = "1", mods = "CTRL", action = wezterm.action({ EmitEvent = "toggle-light-mode" }) },
-	{ key = "2", mods = "CTRL", action = wezterm.action({ EmitEvent = "toggle-dark-mode" }) },
-}
+-- Colors mirror whichever nvim theme was last picked (via Telescope or the
+-- wofi menu) - see ~/.config/theme-sync/set-theme.sh, which regenerates
+-- nvim_palette.lua and touches this file to trigger a reload. Falls back to
+-- a fixed scheme until the first theme pick generates that file.
+local palette_ok, nvim_palette = pcall(dofile, wezterm.config_dir .. "/nvim_palette.lua")
+if palette_ok then
+	config.colors = nvim_palette
+else
+	config.color_scheme = "Sweet Eliverlara (Gogh)"
+end
 
 -- Appearance settings
 config.hide_tab_bar_if_only_one_tab = true -- hide the bar, if only one tab, useful since I use tmux
