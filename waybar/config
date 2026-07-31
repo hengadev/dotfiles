@@ -103,6 +103,6 @@
     "custom/power": {
         "format": "⏻",
         "tooltip": false,
-        "on-click": "swaynag -t warning -m 'Power Menu' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'swaymsg exit'"
+        "on-click": "~/.config/waybar/scripts/power-menu.sh"
     }
 }
