@@ -1,0 +1,21 @@
+/* Light palette tokens - selected via ~/.theme_state, swapped in as palette.css */
+@define-color wb-bg #e8e8e8;
+@define-color wb-fg #3a3a3a;
+@define-color wb-fg-dim #6e6e6e;
+@define-color wb-fg-bright #1a1a1a;
+@define-color wb-fg-muted #9a9a9a;
+
+@define-color pill-bg rgba(255, 255, 255, 0.75);
+@define-color pill-bg-hover rgba(255, 255, 255, 0.95);
+@define-color pill-bg-focused rgba(210, 210, 210, 0.9);
+@define-color pill-border rgba(58, 58, 58, 0.2);
+@define-color pill-border-hover rgba(26, 26, 26, 0.35);
+
+/* Catppuccin Latte accent hues - more saturated than the dark pastels so
+   alerts stay legible against a light background */
+@define-color alert-red #d20f39;
+@define-color alert-red-bg rgba(210, 15, 57, 0.15);
+@define-color alert-red-bg-urgent rgba(210, 15, 57, 0.2);
+@define-color alert-red-bg-soft rgba(210, 15, 57, 0.12);
+@define-color alert-yellow #df8e1d;
+@define-color alert-yellow-bg rgba(223, 142, 29, 0.15);

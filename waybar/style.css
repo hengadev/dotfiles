@@ -1,3 +1,5 @@
+@import url("palette.css");
+
 * {
     border: none;
     border-radius: 20px;
@@ -7,8 +9,8 @@
 }
 
 window#waybar {
-    background-color: #0a0a0a;
-    color: #a6adc8;
+    background-color: @wb-bg;
+    color: @wb-fg;
     border-radius: 0;
     font-size: 15px;
 }
@@ -19,16 +21,16 @@ window#waybar {
     font-size: 24px;
     padding: 4px 20px 4px 12px;
     margin: 4px 4px 4px 8px;
-    background-color: rgba(32, 32, 32, 0.75);
-    color: #a6adc8;
-    border: 1px solid rgba(166, 173, 200, 0.35);
+    background-color: @pill-bg;
+    color: @wb-fg;
+    border: 1px solid @pill-border;
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #custom-os-icon:hover {
-    background-color: rgba(55, 55, 55, 0.8);
-    border-color: rgba(205, 214, 244, 0.6);
+    background-color: @pill-bg-hover;
+    border-color: @pill-border-hover;
 }
 
 /* Distro accent colors - the one deliberate splash of color, kept to the glyph only */
@@ -41,7 +43,7 @@ window#waybar {
 #custom-os-icon.opensuse    { color: #73ba25; }
 #custom-os-icon.mint        { color: #87cf3e; }
 #custom-os-icon.raspberrypi { color: #c51a4a; }
-#custom-os-icon.tux         { color: #cdd6f4; }
+#custom-os-icon.tux         { color: @wb-fg-bright; }
 
 /* Workspaces - grouped tightly with the clock in the center for a compact cluster */
 #workspaces {
@@ -52,26 +54,26 @@ window#waybar {
 #workspaces button {
     padding: 4px 18px 4px 14px;
     margin: 0 2px;
-    background-color: rgba(32, 32, 32, 0.75);
-    color: #6c7086;
+    background-color: @pill-bg;
+    color: @wb-fg-dim;
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 24px;
 }
 
 #workspaces button:hover {
-    background-color: rgba(55, 55, 55, 0.75);
-    color: #a6adc8;
+    background-color: @pill-bg-hover;
+    color: @wb-fg;
 }
 
 #workspaces button.focused {
-    background-color: rgba(60, 60, 60, 0.9);
-    color: #cdd6f4;
+    background-color: @pill-bg-focused;
+    color: @wb-fg-bright;
 }
 
 #workspaces button.urgent {
-    background-color: rgba(243, 139, 168, 0.3);
-    color: #f38ba8;
+    background-color: @alert-red-bg-urgent;
+    color: @alert-red;
 }
 
 /* Status modules (CPU/memory/temperature on the left, audio/network/battery/power
@@ -88,8 +90,8 @@ window#waybar {
     margin: 4px 2px;
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background-color: rgba(32, 32, 32, 0.75);
-    color: #a6adc8;
+    background-color: @pill-bg;
+    color: @wb-fg;
     font-size: 16px;
 }
 
@@ -101,16 +103,16 @@ window#waybar {
 #battery:hover,
 #clock:hover,
 #custom-power:hover {
-    background-color: rgba(55, 55, 55, 0.8);
+    background-color: @pill-bg-hover;
 }
 
 /* Muted / disconnected states fade further instead of changing hue */
 #pulseaudio.muted {
-    color: #585b70;
+    color: @wb-fg-muted;
 }
 
 #network.disconnected {
-    color: #585b70;
+    color: @wb-fg-muted;
 }
 
 /* Only real alerts get color */
@@ -118,36 +120,36 @@ window#waybar {
 #battery.critical:not(.charging),
 #cpu.critical,
 #memory.critical {
-    background-color: rgba(243, 139, 168, 0.25);
-    color: #f38ba8;
+    background-color: @alert-red-bg;
+    color: @alert-red;
 }
 
 #battery.warning:not(.charging),
 #cpu.warning,
 #memory.warning {
-    background-color: rgba(249, 226, 175, 0.2);
-    color: #f9e2af;
+    background-color: @alert-yellow-bg;
+    color: @alert-yellow;
 }
 
 #battery.charging {
-    color: #cdd6f4;
+    color: @wb-fg-bright;
 }
 
 #clock {
     font-weight: 600;
-    color: #cdd6f4;
+    color: @wb-fg-bright;
     margin: 4px 4px 4px 8px;
 }
 
 /* Power button */
 #custom-power {
-    color: #6c7086;
+    color: @wb-fg-dim;
     font-size: 18px;
     padding: 4px 18px 4px 14px;
     margin: 4px 8px 4px 2px;
 }
 
 #custom-power:hover {
-    background-color: rgba(243, 139, 168, 0.2);
-    color: #f38ba8;
+    background-color: @alert-red-bg-soft;
+    color: @alert-red;
 }

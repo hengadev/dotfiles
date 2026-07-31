@@ -1,0 +1,19 @@
+/* Dark palette tokens - selected via ~/.theme_state, swapped in as palette.css */
+@define-color wb-bg #0a0a0a;
+@define-color wb-fg #a6adc8;
+@define-color wb-fg-dim #6c7086;
+@define-color wb-fg-bright #cdd6f4;
+@define-color wb-fg-muted #585b70;
+
+@define-color pill-bg rgba(32, 32, 32, 0.75);
+@define-color pill-bg-hover rgba(55, 55, 55, 0.8);
+@define-color pill-bg-focused rgba(60, 60, 60, 0.9);
+@define-color pill-border rgba(166, 173, 200, 0.35);
+@define-color pill-border-hover rgba(205, 214, 244, 0.6);
+
+@define-color alert-red #f38ba8;
+@define-color alert-red-bg rgba(243, 139, 168, 0.25);
+@define-color alert-red-bg-urgent rgba(243, 139, 168, 0.3);
+@define-color alert-red-bg-soft rgba(243, 139, 168, 0.2);
+@define-color alert-yellow #f9e2af;
+@define-color alert-yellow-bg rgba(249, 226, 175, 0.2);
