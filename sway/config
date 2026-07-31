@@ -176,6 +176,10 @@ bindsym $mod+r mode "resize"
 default_border pixel 0
 default_floating_border pixel 0
 
+# Theme sync: applies the light/dark mode from ~/.theme_state to the
+# wallpaper, waybar palette, tmux flavour, and herdr theme.
+bindsym $mod+Shift+t exec ~/.config/theme-sync/apply-theme.sh --toggle
+
 bindsym $mod+d exec wofi --show run
 
 # Start XDG Desktop Portal services
@@ -184,6 +188,7 @@ exec --no-startup-id systemctl --user import-environment WAYLAND_DISPLAY XDG_CUR
 exec --no-startup-id /usr/libexec/xdg-desktop-portal -r &
 exec --no-startup-id /usr/libexec/xdg-desktop-portal-wlr &
 
+exec_always --no-startup-id ~/.config/theme-sync/apply-theme.sh
 exec_always --no-startup-id sh -c "killall waybar; waybar"
 
 
