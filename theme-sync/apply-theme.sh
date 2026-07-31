@@ -10,10 +10,10 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 STATE_FILE="$HOME/.theme_state"
 WAYBAR_DIR="$HOME/.config/waybar"
-WALLPAPER_DARK="$HOME/Pictures/Wallpapers/mountain.jpg"
-WALLPAPER_LIGHT="$HOME/Pictures/Wallpapers/lofi_forest.jpg"
+source "$SCRIPT_DIR/wallpapers.sh"
 
 mode="dark"
 if [ -f "$STATE_FILE" ]; then
