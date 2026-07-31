@@ -1,0 +1,213 @@
+/* Vertical variant of style.css, used when waybar-launch.sh decides the
+ * connected output is wide enough to move the bar to the left edge. Shares
+ * style.css's palette and pill language, but isn't just the horizontal bar
+ * rotated: status modules go icon-only here (their values move to
+ * tooltip-format, set in config-vertical) so a fixed, genuinely narrow rail
+ * width (see config-vertical's "width") isn't fighting wide inline text,
+ * and modules-left holds everything but the power button so the column
+ * stays one continuous top-anchored stack instead of three screen-thirds
+ * with dead space between them. */
+@import url("palette.css");
+
+* {
+    border: none;
+    border-radius: 20px;
+    font-family: "FiraCode Nerd Font", "Roboto", sans-serif;
+    font-weight: 500;
+    min-height: 0;
+    min-width: 0;
+}
+
+window#waybar {
+    background-color: @wb-bg;
+    color: @wb-fg;
+    border-radius: 0;
+    font-size: 15px;
+}
+
+#custom-os-icon {
+    font-size: 22px;
+    /* Asymmetric padding centers the glyph in its pill, same trick as the
+     * horizontal bar's icon buttons: nerd-font icons aren't drawn centered
+     * in their own advance width, so equal padding still looks off. */
+    padding: 10px 12px 10px 8px;
+    margin: 8px 4px 6px 4px;
+    background-color: @pill-bg;
+    color: @wb-fg;
+    border: 1px solid @pill-border;
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#custom-os-icon:hover {
+    background-color: @pill-bg-hover;
+    border-color: @pill-border-hover;
+}
+
+#custom-os-icon.arch        { color: #1793d1; }
+#custom-os-icon.ubuntu      { color: #e95420; }
+#custom-os-icon.debian      { color: #d70a53; }
+#custom-os-icon.fedora      { color: #3c6eb4; }
+#custom-os-icon.nixos       { color: #5277c3; }
+#custom-os-icon.manjaro     { color: #35bf5c; }
+#custom-os-icon.opensuse    { color: #73ba25; }
+#custom-os-icon.mint        { color: #87cf3e; }
+#custom-os-icon.raspberrypi { color: #c51a4a; }
+#custom-os-icon.tux         { color: @wb-fg-bright; }
+
+#workspaces {
+    margin: 2px 4px 8px 4px;
+    padding: 6px 4px;
+    background-color: @pill-bg;
+    border-radius: 20px;
+}
+
+#workspaces button {
+    /* Slightly more right padding than left re-centers the icon glyph,
+     * same reasoning as #custom-os-icon above. Only applies to named
+     * workspaces (1-5); the dot workspaces (6-10) override padding below. */
+    padding: 6px 10px 6px 6px;
+    margin: 2px 0;
+    min-height: 0;
+    background-color: transparent;
+    color: @wb-fg-dim;
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 17px;
+}
+
+#workspaces button:hover {
+    background-color: @pill-bg-hover;
+    color: @wb-fg;
+}
+
+#workspaces button.focused {
+    background-color: @pill-bg-focused;
+    color: @wb-fg-bright;
+}
+
+#workspaces button.urgent {
+    background-color: @alert-red-bg-urgent;
+    color: @alert-red;
+}
+
+/* Dots: GTK stretches box children across the *cross* axis by default. In
+ * the horizontal bar that was height, so a tall vertical margin shrank it;
+ * here the stacking direction is vertical, so the cross axis is width -
+ * the large margin moves to left/right to shrink the dot down instead. */
+#workspaces button:nth-child(n+6) {
+    min-width: 8px;
+    min-height: 8px;
+    padding: 0;
+    margin: 4px 15px;
+    font-size: 1px;
+    color: transparent;
+    background-color: @wb-fg-muted;
+    border-radius: 999px;
+}
+
+#workspaces button:nth-child(n+6):hover {
+    background-color: @wb-fg-dim;
+}
+
+#workspaces button.focused:nth-child(n+6) {
+    background-color: @wb-fg-bright;
+}
+
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#network,
+#battery,
+#custom-power {
+    /* Same icon-centering asymmetry as #custom-os-icon. */
+    padding: 8px 10px 8px 6px;
+    margin: 2px 4px;
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: @pill-bg;
+    color: @wb-fg;
+    font-size: 17px;
+}
+
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#custom-power:hover {
+    background-color: @pill-bg-hover;
+}
+
+/* First module of each group below the OS icon gets a bit of extra top
+ * margin, so the continuous top-anchored stack still reads as distinct
+ * sections (identity / time+workspaces / system stats / connectivity)
+ * instead of one undifferentiated column. */
+#cpu {
+    margin-top: 6px;
+}
+
+#pulseaudio {
+    margin-top: 6px;
+}
+
+#pulseaudio.muted {
+    color: @wb-fg-muted;
+}
+
+#network.disconnected {
+    color: @wb-fg-muted;
+}
+
+#temperature.critical,
+#battery.critical:not(.charging),
+#cpu.critical,
+#memory.critical {
+    background-color: @alert-red-bg;
+    color: @alert-red;
+}
+
+#battery.warning:not(.charging),
+#cpu.warning,
+#memory.warning {
+    background-color: @alert-yellow-bg;
+    color: @alert-yellow;
+}
+
+#battery.charging {
+    color: @wb-fg-bright;
+}
+
+/* Stacked HH / MM instead of one wide "HH:MM" string - stays fully
+ * readable at a glance while staying inside the narrow fixed rail width,
+ * closer to the reference sidebar than a horizontal time string. */
+#clock {
+    font-weight: 600;
+    font-size: 15px;
+    color: @wb-fg-bright;
+    background-color: @pill-bg;
+    padding: 8px 6px;
+    margin: 8px 4px 2px 4px;
+    border-radius: 20px;
+}
+
+#clock:hover {
+    background-color: @pill-bg-hover;
+}
+
+#custom-power {
+    padding: 8px 10px 8px 6px;
+    margin: 2px 4px 8px 4px;
+    border-radius: 20px;
+    background-color: @pill-bg;
+    color: @wb-fg-dim;
+    font-size: 18px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#custom-power:hover {
+    background-color: @alert-red-bg-soft;
+    color: @alert-red;
+}
