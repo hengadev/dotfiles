@@ -7,7 +7,7 @@
 
 @define-color pill-bg rgba(32, 32, 32, 0.75);
 @define-color pill-bg-hover rgba(55, 55, 55, 0.8);
-@define-color pill-bg-focused rgba(60, 60, 60, 0.9);
+@define-color pill-bg-focused rgba(180, 190, 254, 0.28);
 @define-color pill-border rgba(166, 173, 200, 0.35);
 @define-color pill-border-hover rgba(205, 214, 244, 0.6);
 
