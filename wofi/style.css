@@ -1,38 +1,71 @@
-*{
-    border-radius: 3px;
+/* Reuses waybar's palette symlink, so wofi follows whatever light/dark
+ * theme apply-theme.sh last selected - no separate wiring needed here. */
+@import url("file:///home/henga/.config/waybar/palette.css");
+
+* {
     border: none;
+    border-radius: 12px;
+    font-family: "FiraCode Nerd Font", "Roboto", sans-serif;
+    font-size: 16px;
+    min-height: 0;
 }
 
 window {
-    font-size: 28px;
-    font-family: "Roboto Mono Medium", sans-serif;
-    background-color: rgba(50, 50, 50, 0.9);
-    color: #ffffff;
-    border-bottom: 3px solid white; 
+    background-color: @wb-bg;
+    color: @wb-fg;
+    border: 1px solid @pill-border;
+    border-radius: 16px;
+    padding: 4px;
 }
 
-#entry{
-    padding: .25em;
-}
-
-#entry:selected {
-    background-color: #bbccdd;
-    background: linear-gradient(90deg, #bbccdd, #cca5dd);
-    color: #333333;
-}
-
-#text:selected {
-    color: #333333;
+#outer-box {
+    margin: 6px;
 }
 
 #input {
-    background-color: rgba(50, 50, 50, 0.5);
-    color: #ffffff;
-    padding: .25em;
+    margin-bottom: 8px;
+    padding: 8px 14px;
+    background-color: @pill-bg;
+    color: @wb-fg-bright;
+    border: 1px solid @pill-border;
+    /* Concentric with the window's 16px radius: window's border (1px) +
+     * padding (4px) + #outer-box's margin (6px) = 11px gap, so 16 - 11 = 6. */
+    border-radius: 6px;
 }
 
-image{
-    margin-left: .25em;
-    margin-right: .25em;
+#input:focus {
+    border: 1px solid @pill-border-hover;
 }
 
+#inner-box {
+    margin: 0;
+}
+
+#scroll {
+    margin: 0;
+}
+
+#entry {
+    padding: 8px 12px;
+    margin: 2px 0;
+    /* Same 11px gap to the window edge as #input (no horizontal margin here
+     * either), so the same concentric radius applies. */
+    border-radius: 6px;
+}
+
+#entry:selected {
+    background-color: @pill-bg-focused;
+    border: 1px solid @pill-border-hover;
+}
+
+#text {
+    color: @wb-fg;
+}
+
+#text:selected {
+    color: @wb-fg-bright;
+}
+
+#img {
+    margin-right: 10px;
+}
