@@ -7,28 +7,28 @@
 }
 
 window#waybar {
-    background-color: #1e1e2e;
-    color: #cdd6f4;
+    background-color: #11111b;
+    color: #a6adc8;
     border-radius: 0;
     font-size: 15px;
 }
 
-/* OS Icon - Material You Primary Color */
+/* OS Icon */
 #custom-os-icon {
     font-size: 24px;
-    color: #89b4fa;
+    color: #a6adc8;
     padding: 0 16px;
     margin: 4px 0 4px 8px;
-    background-color: rgba(137, 180, 250, 0.2);
+    background-color: rgba(49, 50, 68, 0.6);
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #custom-os-icon:hover {
-    background-color: rgba(137, 180, 250, 0.3);
+    background-color: rgba(69, 71, 90, 0.7);
 }
 
-/* Workspaces - Material You Surface Containers */
+/* Workspaces */
 #workspaces {
     margin: 4px 8px;
     padding: 0;
@@ -37,42 +37,39 @@ window#waybar {
 #workspaces button {
     padding: 4px 18px 4px 14px;
     margin: 0 2px;
-    background-color: rgba(49, 50, 68, 0.8);
-    color: #cdd6f4;
+    background-color: rgba(30, 30, 46, 0.6);
+    color: #6c7086;
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     font-size: 24px;
 }
 
 #workspaces button:hover {
-    background-color: rgba(137, 180, 250, 0.2);
-    box-shadow: 0 2px 4px rgba(137, 180, 250, 0.3);
+    background-color: rgba(69, 71, 90, 0.6);
+    color: #a6adc8;
 }
 
 #workspaces button.focused {
-    background-color: #89b4fa;
-    color: #1e1e2e;
-    box-shadow: 0 2px 8px rgba(137, 180, 250, 0.5);
+    background-color: rgba(69, 71, 90, 0.9);
+    color: #cdd6f4;
 }
 
 #workspaces button.urgent {
-    background-color: #f38ba8;
-    color: #1e1e2e;
-    box-shadow: 0 2px 12px rgba(243, 139, 168, 0.6);
+    background-color: rgba(243, 139, 168, 0.3);
+    color: #f38ba8;
 }
 
-/* Window title - Material You On-Surface */
+/* Window title */
 #window {
     margin: 4px 12px;
     padding: 0 16px;
-    color: #cdd6f4;
-    background-color: rgba(49, 50, 68, 0.6);
+    color: #a6adc8;
+    background-color: rgba(30, 30, 46, 0.5);
     border-radius: 20px;
     font-weight: 500;
 }
 
-/* Right modules - Material You Surface Variants */
+/* Right modules - unified neutral dark styling */
 #cpu,
 #memory,
 #temperature,
@@ -85,141 +82,62 @@ window#waybar {
     margin: 4px 2px;
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: rgba(30, 30, 46, 0.6);
+    color: #a6adc8;
+    font-size: 16px;
 }
 
-#cpu,
-#memory,
-#temperature,
-#pulseaudio,
-#network,
-#battery,
-#clock,
-#custom-power {
-    background-color: rgba(49, 50, 68, 0.8);
-    color: #cdd6f4;
-    font-size: 18px;
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#clock:hover,
+#custom-power:hover {
+    background-color: rgba(69, 71, 90, 0.7);
 }
 
-/* CPU - Blue tones */
-#cpu {
-    background-color: rgba(137, 180, 250, 0.2);
-    color: #89b4fa;
+/* Muted / disconnected states fade further instead of changing hue */
+#pulseaudio.muted {
+    color: #585b70;
 }
 
-#cpu:hover {
-    background-color: rgba(137, 180, 250, 0.3);
-    box-shadow: 0 2px 4px rgba(137, 180, 250, 0.4);
+#network.disconnected {
+    color: #585b70;
 }
 
-/* Memory - Yellow/Amber tones */
-#memory {
+/* Only real alerts get color */
+#temperature.critical,
+#battery.critical:not(.charging) {
+    background-color: rgba(243, 139, 168, 0.25);
+    color: #f38ba8;
+}
+
+#battery.warning:not(.charging) {
     background-color: rgba(249, 226, 175, 0.2);
     color: #f9e2af;
 }
 
-#memory:hover {
-    background-color: rgba(249, 226, 175, 0.3);
-    box-shadow: 0 2px 4px rgba(249, 226, 175, 0.4);
-}
-
-/* Temperature - Green tones */
-#temperature {
-    background-color: rgba(166, 227, 161, 0.2);
-    color: #a6e3a1;
-}
-
-#temperature:hover {
-    background-color: rgba(166, 227, 161, 0.3);
-    box-shadow: 0 2px 4px rgba(166, 227, 161, 0.4);
-}
-
-#temperature.critical {
-    background-color: rgba(243, 139, 168, 0.3);
-    color: #f38ba8;
-}
-
-/* Audio - Purple tones */
-#pulseaudio {
-    background-color: rgba(203, 166, 247, 0.2);
-    color: #cba6f7;
-}
-
-#pulseaudio:hover {
-    background-color: rgba(203, 166, 247, 0.3);
-    box-shadow: 0 2px 4px rgba(203, 166, 247, 0.4);
-}
-
-#pulseaudio.muted {
-    background-color: rgba(108, 112, 134, 0.2);
-    color: #6c7086;
-}
-
-/* Network - Teal tones */
-#network {
-    background-color: rgba(148, 226, 213, 0.2);
-    color: #94e2d5;
-}
-
-#network:hover {
-    background-color: rgba(148, 226, 213, 0.3);
-    box-shadow: 0 2px 4px rgba(148, 226, 213, 0.4);
-}
-
-#network.disconnected {
-    background-color: rgba(243, 139, 168, 0.3);
-    color: #f38ba8;
-}
-
-/* Battery - Green tones */
-#battery {
-    background-color: rgba(166, 227, 161, 0.2);
-    color: #a6e3a1;
-}
-
-#battery:hover {
-    background-color: rgba(166, 227, 161, 0.3);
-    box-shadow: 0 2px 4px rgba(166, 227, 161, 0.4);
-}
-
 #battery.charging {
-    background-color: rgba(166, 227, 161, 0.3);
-    color: #a6e3a1;
+    color: #cdd6f4;
 }
 
-#battery.warning:not(.charging) {
-    background-color: rgba(249, 226, 175, 0.3);
-    color: #f9e2af;
-}
-
-#battery.critical:not(.charging) {
-    background-color: rgba(243, 139, 168, 0.3);
-    color: #f38ba8;
-}
-
-/* Clock - Primary color */
 #clock {
-    background-color: rgba(137, 220, 235, 0.2);
-    color: #89dceb;
     font-weight: 600;
+    color: #cdd6f4;
     margin-right: 4px;
 }
 
-#clock:hover {
-    background-color: rgba(137, 220, 235, 0.3);
-    box-shadow: 0 2px 4px rgba(137, 220, 235, 0.4);
-}
-
-/* Power button - Error color */
+/* Power button */
 #custom-power {
-    background-color: rgba(243, 139, 168, 0.2);
-    color: #f38ba8;
+    color: #6c7086;
     font-size: 18px;
     padding: 4px 18px 4px 14px;
     margin: 4px 8px 4px 2px;
 }
 
 #custom-power:hover {
-    background-color: rgba(243, 139, 168, 0.3);
-    box-shadow: 0 2px 4px rgba(243, 139, 168, 0.4);
+    background-color: rgba(243, 139, 168, 0.2);
+    color: #f38ba8;
 }
