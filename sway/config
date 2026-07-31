@@ -189,7 +189,8 @@ exec --no-startup-id /usr/libexec/xdg-desktop-portal -r &
 exec --no-startup-id /usr/libexec/xdg-desktop-portal-wlr &
 
 exec_always --no-startup-id ~/.config/theme-sync/apply-theme.sh
-exec_always --no-startup-id sh -c "killall waybar; waybar"
+exec_always --no-startup-id ~/.config/waybar/scripts/waybar-launch.sh
+exec --no-startup-id ~/.config/waybar/scripts/output-watch.sh
 
 
 # At startup, launch apps.
