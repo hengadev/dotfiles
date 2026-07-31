@@ -13,20 +13,35 @@ window#waybar {
     font-size: 15px;
 }
 
-/* OS Icon */
+/* OS Icon - same box model as workspace buttons (proven to size/center correctly),
+   just with an added border and a per-distro accent color */
 #custom-os-icon {
     font-size: 24px;
+    padding: 4px 20px 4px 12px;
+    margin: 4px 4px 4px 8px;
+    background-color: rgba(30, 30, 46, 0.6);
     color: #a6adc8;
-    padding: 0 16px;
-    margin: 4px 0 4px 8px;
-    background-color: rgba(49, 50, 68, 0.6);
+    border: 1px solid rgba(166, 173, 200, 0.35);
     border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #custom-os-icon:hover {
     background-color: rgba(69, 71, 90, 0.7);
+    border-color: rgba(205, 214, 244, 0.6);
 }
+
+/* Distro accent colors - the one deliberate splash of color, kept to the glyph only */
+#custom-os-icon.arch        { color: #1793d1; }
+#custom-os-icon.ubuntu      { color: #e95420; }
+#custom-os-icon.debian      { color: #d70a53; }
+#custom-os-icon.fedora      { color: #3c6eb4; }
+#custom-os-icon.nixos       { color: #5277c3; }
+#custom-os-icon.manjaro     { color: #35bf5c; }
+#custom-os-icon.opensuse    { color: #73ba25; }
+#custom-os-icon.mint        { color: #87cf3e; }
+#custom-os-icon.raspberrypi { color: #c51a4a; }
+#custom-os-icon.tux         { color: #cdd6f4; }
 
 /* Workspaces */
 #workspaces {
