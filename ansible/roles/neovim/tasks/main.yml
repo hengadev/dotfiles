@@ -26,7 +26,7 @@
 
 - name: Install neovim Node provider
   ansible.builtin.shell: |
-    export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
+    export NVM_DIR="{{ ansible_facts.env.HOME }}/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
     npm install -g neovim
   args:
@@ -39,7 +39,7 @@
   args:
     executable: /bin/bash
   environment:
-    HOME: "{{ ansible_env.HOME }}"
-    XDG_CONFIG_HOME: "{{ ansible_env.HOME }}/.config"
+    HOME: "{{ ansible_facts.env.HOME }}"
+    XDG_CONFIG_HOME: "{{ ansible_facts.env.HOME }}/.config"
   changed_when: true
   # Lazy sync always runs to pick up any new plugins

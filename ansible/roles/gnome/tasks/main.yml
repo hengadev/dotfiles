@@ -1,12 +1,12 @@
 ---
 - name: Check if dconf settings file exists
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/.config/dconf"
+    path: "{{ ansible_facts.env.HOME }}/.config/dconf"
   register: dconf_dir
 
 - name: Find dconf dump files
   ansible.builtin.find:
-    paths: "{{ ansible_env.HOME }}/.config/dconf"
+    paths: "{{ ansible_facts.env.HOME }}/.config/dconf"
     patterns: "*.ini"
   register: dconf_files
   when: dconf_dir.stat.exists

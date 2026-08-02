@@ -3,7 +3,7 @@
   block:
     - name: Check if nvm is installed
       ansible.builtin.stat:
-        path: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+        path: "{{ ansible_facts.env.HOME }}/.nvm/nvm.sh"
       register: nvm_sh
 
     - name: Install nvm
@@ -16,7 +16,7 @@
 
     - name: Install latest LTS Node.js via nvm
       ansible.builtin.shell: |
-        export NVM_DIR="{{ ansible_env.HOME }}/.nvm"
+        export NVM_DIR="{{ ansible_facts.env.HOME }}/.nvm"
         source "$NVM_DIR/nvm.sh"
         nvm install --lts
         nvm alias default lts/*
@@ -28,7 +28,7 @@
   block:
     - name: Check if rustup is installed
       ansible.builtin.stat:
-        path: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
+        path: "{{ ansible_facts.env.HOME }}/.cargo/bin/rustup"
       register: rustup_bin
 
     - name: Install rustup
@@ -41,7 +41,7 @@
 
     - name: Update rust toolchain
       ansible.builtin.shell: |
-        "{{ ansible_env.HOME }}/.cargo/bin/rustup" update stable
+        "{{ ansible_facts.env.HOME }}/.cargo/bin/rustup" update stable
       args:
         executable: /bin/bash
       changed_when: false
@@ -77,7 +77,7 @@
   block:
     - name: Check if bun is installed
       ansible.builtin.stat:
-        path: "{{ ansible_env.HOME }}/.bun/bin/bun"
+        path: "{{ ansible_facts.env.HOME }}/.bun/bin/bun"
       register: bun_bin
 
     - name: Install bun

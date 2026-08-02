@@ -2,4 +2,4 @@
 # Set this to your dotfiles git repository URL before running
 dotfiles_repo: "git@github.com:hengadev/dotfiles.git"
 dotfiles_branch: "main"
-dotfiles_dest: "{{ ansible_env.HOME }}/.config"
+dotfiles_dest: "{{ ansible_facts.env.HOME }}/.config"
