@@ -59,6 +59,7 @@
         return_content: true
       register: go_version_raw
       when: not go_bin.stat.exists
+      check_mode: false
 
     - name: Set go version fact
       ansible.builtin.set_fact:
