@@ -26,9 +26,11 @@ fi
 # --- waybar ---
 ln -sf "palette-$mode.css" "$WAYBAR_DIR/palette.css"
 if pgrep -x waybar >/dev/null 2>&1; then
-    killall waybar
-    setsid waybar >/tmp/waybar.log 2>&1 &
-    disown
+    # Delegate to waybar-launch.sh rather than restarting waybar directly:
+    # it cd's into WAYBAR_DIR first (waybar resolves "include" against the
+    # process cwd, not the config file's own directory) and picks the
+    # layout matching the current screen width.
+    "$WAYBAR_DIR/scripts/waybar-launch.sh"
 fi
 
 # --- wallpaper ---
