@@ -1,6 +1,6 @@
 ---
 - name: Ensure zsh is installed
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name: zsh
     state: present
   become: true

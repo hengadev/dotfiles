@@ -1,9 +1,9 @@
 ---
-system_packages:
+# Package names shared across distros (apt and dnf agree on these).
+system_packages_common:
   - git
   - curl
   - wget
-  - build-essential
   - zsh
   - tmux
   - ripgrep
@@ -14,10 +14,22 @@ system_packages:
   - xclip
   - xdg-utils
   - ca-certificates
-  - gnupg
+  - python3-pip
+
+# Debian/Ubuntu-only extras (compiler meta-package, PPA/repo tooling).
+system_packages_debian:
+  - build-essential
   - lsb-release
   - software-properties-common
-  - python3-pip
+  - gnupg
+
+# Fedora/RHEL equivalents.
+system_packages_redhat:
+  - gcc
+  - gcc-c++
+  - make
+  - dnf-plugins-core
+  - gnupg2
 
 dev_packages:
   - lazygit

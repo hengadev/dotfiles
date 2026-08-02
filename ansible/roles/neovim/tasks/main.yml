@@ -1,15 +1,21 @@
 ---
-- name: Add neovim PPA
+- name: Add neovim PPA (Debian/Ubuntu)
   ansible.builtin.apt_repository:
     repo: ppa:neovim-ppa/unstable
     state: present
   become: true
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Update apt cache after adding PPA (Debian/Ubuntu)
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: Install neovim
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name: neovim
     state: present
-    update_cache: true
   become: true
 
 - name: Install neovim Python provider
