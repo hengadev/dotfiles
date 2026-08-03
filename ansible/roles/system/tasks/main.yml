@@ -101,6 +101,51 @@
       when: not brave_bin.stat.exists
       changed_when: not brave_bin.stat.exists
 
+- name: Install Discord
+  block:
+    - name: Check if Discord is installed
+      ansible.builtin.stat:
+        path: /usr/bin/discord
+      register: discord_bin
+
+    - name: Download Discord
+      ansible.builtin.get_url:
+        url: "https://discord.com/api/download?platform=linux&format=tar.gz"
+        dest: /tmp/discord.tar.gz
+      when: not discord_bin.stat.exists
+
+    - name: Extract Discord to /opt
+      ansible.builtin.unarchive:
+        src: /tmp/discord.tar.gz
+        dest: /opt
+        remote_src: true
+      become: true
+      when: not discord_bin.stat.exists
+
+    - name: Symlink discord binary into PATH
+      ansible.builtin.file:
+        src: /opt/Discord/discord
+        dest: /usr/bin/discord
+        state: link
+      become: true
+      when: not discord_bin.stat.exists
+
+    - name: Install Discord desktop entry
+      ansible.builtin.copy:
+        src: /opt/Discord/discord.desktop
+        dest: /usr/share/applications/discord.desktop
+        remote_src: true
+      become: true
+      when: not discord_bin.stat.exists
+
+    - name: Install Discord icon
+      ansible.builtin.copy:
+        src: /opt/Discord/discord.png
+        dest: /usr/share/pixmaps/discord.png
+        remote_src: true
+      become: true
+      when: not discord_bin.stat.exists
+
 - name: Install lazygit
   block:
     - name: Get latest lazygit version
