@@ -2,7 +2,6 @@ return {
     require("plugins.ui.dashboard-nvim"),
     require("plugins.ui.snacks"),
     require("plugins.ui.dressing"),
-    require("plugins.ui.lualine"),
     require("plugins.ui.noice"),
     require("plugins.ui.mini-indentscope"),
     require("plugins.ui.nvim-navic"),
