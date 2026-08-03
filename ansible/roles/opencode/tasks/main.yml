@@ -1,0 +1,17 @@
+---
+- name: Check if opencode is installed
+  ansible.builtin.stat:
+    path: "{{ ansible_facts.env.HOME }}/.opencode/bin/opencode"
+  register: opencode_bin
+
+- name: Install opencode
+  ansible.builtin.shell: |
+    curl -fsSL https://opencode.ai/install | bash
+  args:
+    executable: /bin/bash
+  when: not opencode_bin.stat.exists
+  changed_when: not opencode_bin.stat.exists
+
+# opencode resolves and installs its own (and its plugins') dependencies
+# into node_modules using its embedded runtime the first time it runs -
+# no separate bun/npm install step needed.

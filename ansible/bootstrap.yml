@@ -25,6 +25,9 @@
     - role: herdr
       tags: [herdr]
 
+    - role: opencode
+      tags: [opencode]
+
     - role: neovim
       tags: [neovim]
 
