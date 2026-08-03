@@ -194,7 +194,7 @@ exec --no-startup-id ~/.config/waybar/scripts/output-watch.sh
 exec --no-startup-id wezterm
 exec --no-startup-id brave-browser
 # exec --no-startup-id anki
-# exec --no-startup-id discord
+exec --no-startup-id discord
 # exec --no-startup-id obsidian
 
 # When opening one of the following app, go directly to the workspace.
