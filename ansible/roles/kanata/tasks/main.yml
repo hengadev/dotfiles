@@ -1,0 +1,54 @@
+---
+- name: Check if kanata is installed
+  ansible.builtin.stat:
+    path: "{{ ansible_facts.env.HOME }}/.cargo/bin/kanata"
+  register: kanata_bin
+
+- name: Install kanata via cargo
+  ansible.builtin.shell: |
+    "{{ ansible_facts.env.HOME }}/.cargo/bin/cargo" install kanata
+  args:
+    executable: /bin/bash
+  when: not kanata_bin.stat.exists
+  changed_when: not kanata_bin.stat.exists
+
+- name: Create uinput group
+  ansible.builtin.group:
+    name: uinput
+    state: present
+  become: true
+
+- name: Add user to uinput group
+  ansible.builtin.user:
+    name: "{{ ansible_facts.env.USER }}"
+    groups: uinput
+    append: true
+  become: true
+
+- name: Install udev rule for uinput access
+  ansible.builtin.copy:
+    dest: /etc/udev/rules.d/99-input.rules
+    content: |
+      KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  register: kanata_udev_rule
+
+- name: Reload udev rules
+  ansible.builtin.shell: |
+    udevadm control --reload-rules
+    udevadm trigger
+  args:
+    executable: /bin/bash
+  become: true
+  when: kanata_udev_rule.changed
+
+- name: Enable and start kanata systemd user service
+  ansible.builtin.systemd_service:
+    name: kanata.service
+    scope: user
+    enabled: true
+    state: started
+    daemon_reload: true

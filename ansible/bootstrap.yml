@@ -22,6 +22,9 @@
     - role: languages
       tags: [languages]
 
+    - role: kanata
+      tags: [kanata]
+
     - role: herdr
       tags: [herdr]
 
