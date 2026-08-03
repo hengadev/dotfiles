@@ -16,6 +16,7 @@ system_packages_common:
   - ca-certificates
   - python3-pip
   - zoxide
+  - zstd
 
 # Debian/Ubuntu-only extras (compiler meta-package, PPA/repo tooling).
 system_packages_debian:

@@ -146,6 +146,42 @@
       become: true
       when: not discord_bin.stat.exists
 
+- name: Install Anki
+  block:
+    - name: Check if Anki is installed
+      ansible.builtin.stat:
+        path: /usr/local/bin/anki
+      register: anki_bin
+
+    - name: Get latest Anki release info
+      ansible.builtin.uri:
+        url: https://api.github.com/repos/ankitects/anki/releases/latest
+        return_content: true
+      register: anki_release
+      check_mode: false
+      when: not anki_bin.stat.exists
+
+    - name: Download Anki
+      ansible.builtin.get_url:
+        url: "{{ anki_release.json.assets | selectattr('name', 'match', '.*linux-x86_64\\.tar\\.zst$') | map(attribute='browser_download_url') | first }}"
+        dest: /tmp/anki.tar.zst
+      when: not anki_bin.stat.exists
+
+    - name: Extract and install Anki
+      # install.sh's xdg-mime calls can fail on systems without a writable
+      # /usr/share/mime (harmless - the binary/desktop/icon are already
+      # copied by that point), so don't let that abort the whole task.
+      ansible.builtin.shell: |
+        set -e
+        tar --zstd -xf /tmp/anki.tar.zst -C /tmp
+        cd /tmp/anki-linux
+        ./install.sh || true
+      args:
+        executable: /bin/bash
+      become: true
+      when: not anki_bin.stat.exists
+      changed_when: not anki_bin.stat.exists
+
 - name: Install lazygit
   block:
     - name: Get latest lazygit version
