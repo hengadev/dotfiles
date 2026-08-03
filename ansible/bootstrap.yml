@@ -19,6 +19,9 @@
     - role: shell
       tags: [shell]
 
+    - role: fonts
+      tags: [fonts]
+
     - role: languages
       tags: [languages]
 

@@ -2,7 +2,7 @@ PLAYBOOK  = ansible/bootstrap.yml
 INVENTORY = ansible/inventory
 ANSIBLE   = ansible-playbook
 
-.PHONY: bootstrap dotfiles shell neovim languages gnome check verbose help
+.PHONY: bootstrap dotfiles shell neovim fonts languages gnome check verbose help
 
 bootstrap: ## Full bootstrap with all roles
 	$(ANSIBLE) -i $(INVENTORY) $(PLAYBOOK) --ask-become-pass
@@ -15,6 +15,9 @@ shell: ## Shell setup only (zsh, starship)
 
 neovim: ## Neovim setup only
 	$(ANSIBLE) -i $(INVENTORY) $(PLAYBOOK) --tags neovim --ask-become-pass
+
+fonts: ## Nerd Fonts only (waybar/wofi/alacritty/wezterm/sway icons)
+	$(ANSIBLE) -i $(INVENTORY) $(PLAYBOOK) --tags fonts
 
 languages: ## Language runtimes only (node, rust, go, bun)
 	$(ANSIBLE) -i $(INVENTORY) $(PLAYBOOK) --tags languages
