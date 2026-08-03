@@ -25,7 +25,7 @@
     dest: "{{ dotfiles_dest }}"
     version: "{{ dotfiles_branch }}"
     update: true
-    force: false
+    force: true
   when: dotfiles_git_dir.stat.exists
 
 - name: Initialize git submodules (zsh plugins, etc.)
