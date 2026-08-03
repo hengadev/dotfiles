@@ -63,7 +63,7 @@ return {
         -- C, C++, rust
         dap.adapters.codelldb = {
             type = "executable",
-            command = "/home/henga/.local/share/nvim/mason/bin/codelldb",
+            command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
         }
         dap.configurations.c = {
             {

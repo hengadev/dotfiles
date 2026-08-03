@@ -1,6 +1,6 @@
 /* Reuses waybar's palette symlink, so wofi follows whatever light/dark
  * theme apply-theme.sh last selected - no separate wiring needed here. */
-@import url("file:///home/henga/.config/waybar/palette.css");
+@import url("../waybar/palette.css");
 
 * {
     border: none;
