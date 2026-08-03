@@ -16,7 +16,7 @@ shell: ## Shell setup only (zsh, starship)
 neovim: ## Neovim setup only
 	$(ANSIBLE) -i $(INVENTORY) $(PLAYBOOK) --tags neovim --ask-become-pass
 
-fonts: ## Nerd Fonts only (waybar/wofi/alacritty/wezterm/sway icons)
+fonts: ## Nerd Fonts only (waybar/wofi/wezterm/sway icons)
 	$(ANSIBLE) -i $(INVENTORY) $(PLAYBOOK) --tags fonts
 
 languages: ## Language runtimes only (node, rust, go, bun)

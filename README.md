@@ -40,7 +40,7 @@ See `Makefile` for individual role targets (shell, neovim, languages, gnome).
 
 ## Layout
 
-Each top-level directory is a tool's config (`nvim`, `sway`, `waybar`, `zsh`, `tmux`, `alacritty`, `wezterm`, `wofi`, `kanata`, `git`, `starship`, ...). A few are supporting tooling rather than app config:
+Each top-level directory is a tool's config (`nvim`, `sway`, `waybar`, `zsh`, `tmux`, `wezterm`, `wofi`, `kanata`, `git`, `starship`, ...). A few are supporting tooling rather than app config:
 
 - `ansible/` — bootstrap playbook and roles
 - `theme-sync/` — keeps terminal/app themes in sync on theme switch
