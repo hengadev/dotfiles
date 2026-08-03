@@ -28,6 +28,9 @@
     - role: opencode
       tags: [opencode]
 
+    - role: claude-code
+      tags: [claude-code]
+
     - role: neovim
       tags: [neovim]
 
