@@ -44,6 +44,6 @@ Each top-level directory is a tool's config (`nvim`, `sway`, `waybar`, `zsh`, `t
 
 - `ansible/` — bootstrap playbook and roles
 - `theme-sync/` — keeps terminal/app themes in sync on theme switch
-- `to_root/`, `gotoroot/` — helper scripts
+- `to_root/` — dotfiles that must live at `$HOME` rather than `$HOME/.config` (e.g. `.profile`, `.zshenv`); symlinked into place by the `to_root` Ansible role
 
 Untracked directories (caches, app-generated state) are excluded via `.gitignore`.

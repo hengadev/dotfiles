@@ -13,6 +13,9 @@
     - role: dotfiles
       tags: [dotfiles]
 
+    - role: to_root
+      tags: [dotfiles, to_root]
+
     - role: shell
       tags: [shell]
 

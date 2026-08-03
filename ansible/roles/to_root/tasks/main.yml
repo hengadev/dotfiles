@@ -1,0 +1,17 @@
+---
+- name: Find files to link into the home directory
+  ansible.builtin.find:
+    paths: "{{ dotfiles_dest }}/to_root"
+    hidden: true
+    file_type: file
+  register: to_root_files
+
+- name: Symlink to_root files into the home directory
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_facts.env.HOME }}/{{ item.path | basename }}"
+    state: link
+    force: true
+  loop: "{{ to_root_files.files }}"
+  loop_control:
+    label: "{{ item.path | basename }}"

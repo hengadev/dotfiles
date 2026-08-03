@@ -11,14 +11,6 @@
     shell: /usr/bin/zsh
   become: true
 
-- name: Create ~/.zshenv pointing to ~/.config/zsh
-  ansible.builtin.copy:
-    dest: "{{ ansible_facts.env.HOME }}/.zshenv"
-    content: |
-      ZDOTDIR=$HOME/.config/zsh
-    mode: "0644"
-    force: false
-
 - name: Install starship prompt
   block:
     - name: Check if starship is installed
