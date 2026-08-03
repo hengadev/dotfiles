@@ -31,6 +31,9 @@
     - role: claude-code
       tags: [claude-code]
 
+    - role: pi
+      tags: [pi]
+
     - role: neovim
       tags: [neovim]
 

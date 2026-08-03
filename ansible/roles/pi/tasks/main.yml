@@ -1,0 +1,9 @@
+---
+- name: Install pi coding agent
+  ansible.builtin.shell: |
+    export NVM_DIR="{{ ansible_facts.env.HOME }}/.nvm"
+    source "$NVM_DIR/nvm.sh"
+    npm install -g @earendil-works/pi-coding-agent
+  args:
+    executable: /bin/bash
+  changed_when: false
