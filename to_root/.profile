@@ -27,6 +27,20 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 . "$HOME/.cargo/env"
 
-# export cargo bin
+# export cargo bin and go bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/usr/local/go/bin
+# for the go binaries that I get with "go install"
+export PATH=$PATH:$HOME/go/bin
+# wezterm path
+export PATH=$PATH:/usr/bin/wezterm
+export PATH=$PATH:/bin/wezterm
+
+export MISTRAL_API_KEY=REPLACE_WITH_MISTRAL_API_KEY
+
+# Z.ai related
+export ZAI_API_KEY=REPLACE_WITH_ZAI_API_KEY
+export ZAI_BASE_URL=https://api.z.ai/api/anthropic
+export GLM_OPUS_MODEL="GLM-4.6"
+export GLM_SONNET_MODEL="GLM-4.6"
+export GLM_HAIKU_MODEL="GLM-4.5-Air"
