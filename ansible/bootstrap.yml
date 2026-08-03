@@ -22,6 +22,9 @@
     - role: languages
       tags: [languages]
 
+    - role: herdr
+      tags: [herdr]
+
     - role: neovim
       tags: [neovim]
 

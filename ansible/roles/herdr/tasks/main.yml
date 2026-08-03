@@ -1,0 +1,13 @@
+---
+- name: Check if herdr is installed
+  ansible.builtin.stat:
+    path: "{{ ansible_facts.env.HOME }}/.local/bin/herdr"
+  register: herdr_bin
+
+- name: Install herdr
+  ansible.builtin.shell: |
+    curl -fsSL https://herdr.dev/install.sh | sh
+  args:
+    executable: /bin/bash
+  when: not herdr_bin.stat.exists
+  changed_when: not herdr_bin.stat.exists

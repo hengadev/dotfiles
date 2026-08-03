@@ -1,0 +1,67 @@
+onboarding = false
+# herdr config — mirrors ~/.config/tmux/tmux.conf muscle memory
+# Reload live:   herdr server reload-config   (or prefix+shift+r)
+# Full template: herdr --default-config
+# Everything not set here stays at the herdr default.
+
+# ── Theme ────────────────────────────────────────────────────────────
+# Replaces: dreamsofcode-io/catppuccin-tmux
+[theme]
+name = "catppuccin"
+
+# ── Terminal ─────────────────────────────────────────────────────────
+auto_switch = false
+[terminal]
+# tmux splits used -c "#{pane_current_path}"; make new panes/tabs/
+# workspaces inherit the source pane's working directory.
+# (tmux: bind ... split-window ... -c "#{pane_current_path}")
+new_cwd = "follow"
+
+# ── UI ───────────────────────────────────────────────────────────────
+[ui]
+# tmux: set -g mouse on
+mouse_capture = true
+
+# ── Keybindings ──────────────────────────────────────────────────────
+agent_panel_sort = "spaces"
+[keys]
+# tmux: unbind C-b; set -g prefix C-Space; bind C-Space send-prefix
+prefix = "ctrl+space"
+
+# tmux: bind r source-file ~/.config/tmux/tmux.conf
+# (already the herdr default — made explicit)
+reload_config = "prefix+shift+r"
+
+# tmux: bind -n S-Left previous-window / bind -n S-Right next-window
+previous_tab = "shift+left"
+next_tab = "shift+right"
+
+# Vim-style pane navigation (prefix h/j/k/l) is the herdr DEFAULT, so it
+# works without any line here — matching christoomey/vim-tmux-navigator.
+#
+# NOTE on your tmux `bind -n M-Left/Right/Up/Down` (prefixless alt-arrow
+# pane switching): herdr allows ONE binding per action, so alt-arrows and
+# the vim keys can't both move panes. I kept the vim keys (reliable +
+# matches vim-tmux-navigator). If you'd rather have the prefixless
+# alt-arrow fast path instead, uncomment these four and the vim keys
+# become inert:
+# focus_pane_left  = "alt+left"
+# focus_pane_down  = "alt+down"
+# focus_pane_up    = "alt+up"
+# focus_pane_right = "alt+right"
+
+# Splits: tmux used `"` (vertical) and `%` (horizontal). Punctuation
+# keys are unreliable as terminal shortcuts, so herdr's defaults are kept:
+#   split_vertical   = "prefix+v"      (panes stacked, vertical divider)
+#   split_horizontal = "prefix+minus"  (panes side by side, horizontal divider)
+#
+# Fuzzy session picker (tmux `bind C-j`) → default `prefix+w` (workspace_picker).
+# Copy-mode-vi (v / C-v / y) has no direct equivalent; use `prefix+e` to open
+# scrollback in $EDITOR. Top status bar (`status-position top`) has no
+# equivalent — herdr uses a left sidebar layout instead.
+
+[theme.custom]
+green = "#56d364"
+red = "#fb6f6f"
+accent = "#85e89d"
+panel_bg = "#161b22"
