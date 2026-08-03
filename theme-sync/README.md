@@ -29,6 +29,19 @@ points: nvim's Telescope theme picker, and the `$mod+Shift+t` wofi menu
   this file to point at your own images.
 - **`setup.sh`** - diagnostic check, see below.
 
+## Locally-mutable tracked files
+
+`herdr/config.toml`, `nvim/lua/nvconfig.lua`, `theme-sync/wallpapers.sh`, and
+`waybar/palette.css` are tracked (they need committed defaults for a fresh
+clone) but also get overwritten locally every time you pick a theme, toggle
+light/dark, or repoint a wallpaper. They're marked `git update-index
+--skip-worktree` so that churn doesn't show up in `git status`/`git diff`.
+
+To intentionally change one of their *committed defaults* (not just local
+state), first run `git update-index --no-skip-worktree <file>`, make the
+edit, commit, then re-run `git update-index --skip-worktree <file>` if you
+still want local drift hidden afterward.
+
 ## Installing on a new machine
 
 1. **OS packages.** Required: `neovim`, `git`, `jq`, `wofi`, `sway`,
