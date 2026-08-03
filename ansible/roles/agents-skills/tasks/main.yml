@@ -1,0 +1,78 @@
+---
+- name: Symlink shared .agents directory (skills used across claude-code, pi, etc.)
+  ansible.builtin.file:
+    src: "{{ dotfiles_dest }}/agents"
+    dest: "{{ ansible_facts.env.HOME }}/.agents"
+    state: link
+    force: true
+
+- name: Find shared skills to link into agent skill directories
+  ansible.builtin.find:
+    paths: "{{ dotfiles_dest }}/agents/skills"
+    file_type: directory
+    depth: 1
+  register: shared_skills
+
+- name: Ensure claude code skills directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.claude/skills"
+    state: directory
+
+- name: Ensure pi agent skills directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.pi/agent/skills"
+    state: directory
+
+- name: Symlink shared skills into claude code
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_facts.env.HOME }}/.claude/skills/{{ item.path | basename }}"
+    state: link
+    force: true
+  loop: "{{ shared_skills.files }}"
+  loop_control:
+    label: "{{ item.path | basename }}"
+
+- name: Symlink shared skills into pi
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_facts.env.HOME }}/.pi/agent/skills/{{ item.path | basename }}"
+    state: link
+    force: true
+  loop: "{{ shared_skills.files }}"
+  loop_control:
+    label: "{{ item.path | basename }}"
+
+- name: Find claude code-only extra skills
+  ansible.builtin.find:
+    paths: "{{ dotfiles_dest }}/claude-code/skills-extra"
+    file_type: directory
+    depth: 1
+  register: claude_extra_skills
+
+- name: Symlink claude code-only extra skills
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_facts.env.HOME }}/.claude/skills/{{ item.path | basename }}"
+    state: link
+    force: true
+  loop: "{{ claude_extra_skills.files }}"
+  loop_control:
+    label: "{{ item.path | basename }}"
+
+- name: Find pi-only extra skills
+  ansible.builtin.find:
+    paths: "{{ dotfiles_dest }}/pi/skills-extra"
+    file_type: directory
+    depth: 1
+  register: pi_extra_skills
+
+- name: Symlink pi-only extra skills
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_facts.env.HOME }}/.pi/agent/skills/{{ item.path | basename }}"
+    state: link
+    force: true
+  loop: "{{ pi_extra_skills.files }}"
+  loop_control:
+    label: "{{ item.path | basename }}"
