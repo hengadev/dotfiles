@@ -23,5 +23,6 @@
         curl -sS https://starship.rs/install.sh | sh -s -- --yes
       args:
         executable: /bin/bash
+      become: true
       when: not starship_bin.stat.exists
       changed_when: not starship_bin.stat.exists
