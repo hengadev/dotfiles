@@ -18,6 +18,89 @@
     state: present
   become: true
 
+- name: Install wezterm
+  block:
+    - name: Check if wezterm is installed
+      ansible.builtin.stat:
+        path: /usr/bin/wezterm
+      register: wezterm_bin
+
+    - name: Enable wezterm COPR repo (Fedora/RHEL)
+      ansible.builtin.command:
+        cmd: dnf copr enable -y wezfurlong/wezterm-nightly
+      become: true
+      when:
+        - ansible_facts['os_family'] == "RedHat"
+        - not wezterm_bin.stat.exists
+      changed_when: true
+
+    - name: Install wezterm (Fedora/RHEL)
+      ansible.builtin.dnf:
+        name: wezterm
+        state: present
+      become: true
+      when:
+        - ansible_facts['os_family'] == "RedHat"
+        - not wezterm_bin.stat.exists
+
+    - name: Add wezterm apt signing key (Debian/Ubuntu)
+      ansible.builtin.get_url:
+        url: https://apt.fury.io/wez/gpg.key
+        dest: /usr/share/keyrings/wezterm-fury.gpg.key
+      become: true
+      when:
+        - ansible_facts['os_family'] == "Debian"
+        - not wezterm_bin.stat.exists
+
+    - name: Dearmor wezterm apt signing key (Debian/Ubuntu)
+      ansible.builtin.shell: |
+        set -e
+        gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg /usr/share/keyrings/wezterm-fury.gpg.key
+      args:
+        executable: /bin/bash
+      become: true
+      when:
+        - ansible_facts['os_family'] == "Debian"
+        - not wezterm_bin.stat.exists
+      changed_when: true
+
+    - name: Add wezterm apt repo (Debian/Ubuntu)
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *"
+        filename: wezterm
+        state: present
+      become: true
+      when:
+        - ansible_facts['os_family'] == "Debian"
+        - not wezterm_bin.stat.exists
+
+    - name: Install wezterm (Debian/Ubuntu)
+      ansible.builtin.apt:
+        name: wezterm
+        state: present
+        update_cache: true
+      become: true
+      when:
+        - ansible_facts['os_family'] == "Debian"
+        - not wezterm_bin.stat.exists
+
+- name: Install Brave browser
+  block:
+    - name: Check if Brave is installed
+      ansible.builtin.stat:
+        path: /usr/bin/brave-browser
+      register: brave_bin
+
+    - name: Download and install Brave browser
+      ansible.builtin.shell: |
+        set -e
+        curl -fsS https://dl.brave.com/install.sh | sh
+      args:
+        executable: /bin/bash
+      become: true
+      when: not brave_bin.stat.exists
+      changed_when: not brave_bin.stat.exists
+
 - name: Install lazygit
   block:
     - name: Get latest lazygit version
