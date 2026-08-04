@@ -7,7 +7,7 @@ set -euo pipefail
 
 options="󰌾  Lock\n󰗽  Logout\n󰜉  Reboot\n󰐥  Shutdown"
 
-selected="$(printf '%b' "$options" | wofi --dmenu --prompt "Power" --width 280 --lines 4)"
+selected="$(printf '%b' "$options" | (cd "$HOME/.config/wofi" && wofi --dmenu --prompt "Power" --width 280 --lines 4))"
 
 case "$selected" in
     *Lock)     swaymsg exec i3lock ;;

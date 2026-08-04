@@ -1,5 +1,7 @@
 /* Reuses waybar's palette symlink, so wofi follows whatever light/dark
- * theme apply-theme.sh last selected - no separate wiring needed here. */
+ * theme apply-theme.sh last selected - no separate wiring needed here.
+ * This path is resolved against the process's cwd, not this file's
+ * directory, so every wofi launch site must `cd` here first. */
 @import url("../waybar/palette.css");
 
 * {

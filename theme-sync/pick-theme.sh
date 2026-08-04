@@ -12,7 +12,7 @@ selected="$(
     find "$THEMES_DIR" -maxdepth 1 -name '*.lua' -printf '%f\n' \
         | sed 's/\.lua$//' \
         | sort \
-        | wofi --dmenu --prompt "Theme"
+        | (cd "$HOME/.config/wofi" && wofi --dmenu --prompt "Theme")
 )"
 
 if [ -n "$selected" ]; then
