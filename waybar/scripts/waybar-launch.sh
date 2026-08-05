@@ -35,8 +35,8 @@ done
 cd "$WAYBAR_DIR" || exit 1
 
 if [ "${width:-0}" -ge "$WIDE_THRESHOLD" ]; then
-    setsid waybar -c config-vertical -s style-vertical.css >/dev/null 2>&1 &
+    setsid waybar -c config-vertical -s style-vertical.css 9>&- >/dev/null 2>&1 &
 else
-    setsid waybar -c config -s style.css >/dev/null 2>&1 &
+    setsid waybar -c config -s style.css 9>&- >/dev/null 2>&1 &
 fi
 disown
