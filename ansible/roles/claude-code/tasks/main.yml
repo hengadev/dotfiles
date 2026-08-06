@@ -11,3 +11,40 @@
     executable: /bin/bash
   when: not claude_bin.stat.exists
   changed_when: not claude_bin.stat.exists
+
+- name: Ensure ~/.claude directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.claude"
+    state: directory
+    mode: "0755"
+
+- name: Set claude-code config paths
+  ansible.builtin.set_fact:
+    claude_statusline_path: "{{ ansible_facts.env.HOME }}/.claude/statusline-command.sh"
+    claude_settings_path: "{{ ansible_facts.env.HOME }}/.claude/settings.json"
+
+- name: Deploy status line script
+  ansible.builtin.copy:
+    src: statusline-command.sh
+    dest: "{{ claude_statusline_path }}"
+    mode: "0755"
+
+- name: Check if Claude settings.json exists
+  ansible.builtin.stat:
+    path: "{{ claude_settings_path }}"
+  register: claude_settings_stat
+
+- name: Read existing Claude settings.json
+  ansible.builtin.slurp:
+    src: "{{ claude_settings_path }}"
+  register: claude_settings_raw
+  when: claude_settings_stat.stat.exists
+
+- name: Merge status line config into Claude settings.json
+  vars:
+    existing_settings: "{{ (claude_settings_raw.content | b64decode | from_json) if claude_settings_stat.stat.exists else {} }}"
+    merged_settings: "{{ existing_settings | combine({'statusLine': {'type': 'command', 'command': 'bash ' + claude_statusline_path}}, recursive=True) }}"
+  ansible.builtin.copy:
+    content: "{{ merged_settings | to_nice_json(indent=2) }}\n"
+    dest: "{{ claude_settings_path }}"
+    mode: "0644"
