@@ -58,4 +58,4 @@ sway_packages_debian:
 # Fedora/RHEL equivalents.
 sway_packages_redhat:
   - dex-autostart
-  - NetworkManager-applet
+  - network-manager-applet

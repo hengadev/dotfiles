@@ -7,7 +7,7 @@ Installs the sway/Wayland desktop stack that the `sway`, `waybar`, and
 - `sway`, `waybar`, `wofi` — compositor, status bar, launcher
 - `dex` (`dex-autostart` on Fedora) — XDG autostart
 - `xss-lock` + `i3lock` — idle-triggered screen locking
-- `network-manager-gnome` (`NetworkManager-applet` on Fedora) — `nm-applet` tray icon
+- `network-manager-gnome` (`network-manager-applet` on Fedora) — `nm-applet` tray icon
 - `wireplumber` — `wpctl` volume control
 - `brightnessctl` — brightness keys
 - `pavucontrol` — audio mixer (waybar pulseaudio click target)
