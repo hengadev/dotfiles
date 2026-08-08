@@ -19,10 +19,15 @@
   become: true
 
 - name: Install neovim Python provider
+  # package installs (system role's python3-pip, or neovim itself above)
+  # only get simulated under --check, not actually applied - so pip3 (and
+  # a real neovim binary for the Lazy sync below) may not exist for real
+  # yet. Skip the rest of this role under check mode rather than fail.
   ansible.builtin.pip:
     name: pynvim
     state: present
     extra_args: --user
+  when: not ansible_check_mode
 
 - name: Install neovim Node provider
   ansible.builtin.shell: |
