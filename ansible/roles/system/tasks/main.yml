@@ -113,15 +113,18 @@
       ansible.builtin.get_url:
         url: "https://discord.com/api/download?platform=linux&format=tar.gz"
         dest: /tmp/discord.tar.gz
-      when: not discord_bin.stat.exists
+      when: not discord_bin.stat.exists and not ansible_check_mode
 
     - name: Extract Discord to /opt
+      # get_url doesn't actually place the file under --check, so the
+      # unarchive/copy tasks below can't inspect a real source there either
+      # - skip the whole chain rather than have it fail on a missing file.
       ansible.builtin.unarchive:
         src: /tmp/discord.tar.gz
         dest: /opt
         remote_src: true
       become: true
-      when: not discord_bin.stat.exists
+      when: not discord_bin.stat.exists and not ansible_check_mode
 
     - name: Symlink discord binary into PATH
       ansible.builtin.file:
@@ -129,7 +132,7 @@
         dest: /usr/bin/discord
         state: link
       become: true
-      when: not discord_bin.stat.exists
+      when: not discord_bin.stat.exists and not ansible_check_mode
 
     - name: Install Discord desktop entry
       ansible.builtin.copy:
@@ -137,7 +140,7 @@
         dest: /usr/share/applications/discord.desktop
         remote_src: true
       become: true
-      when: not discord_bin.stat.exists
+      when: not discord_bin.stat.exists and not ansible_check_mode
 
     - name: Install Discord icon
       ansible.builtin.copy:
@@ -145,7 +148,7 @@
         dest: /usr/share/pixmaps/discord.png
         remote_src: true
       become: true
-      when: not discord_bin.stat.exists
+      when: not discord_bin.stat.exists and not ansible_check_mode
 
 - name: Install Anki
   block:
