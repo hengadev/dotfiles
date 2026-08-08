@@ -4,17 +4,12 @@
     path: "{{ ansible_facts.env.HOME }}/.local/share/fonts/NerdFonts/FiraCodeNerdFont-Regular.ttf"
   register: firacode_nerd_font
 
-- name: Check if Hack Nerd Font is installed
-  ansible.builtin.stat:
-    path: "{{ ansible_facts.env.HOME }}/.local/share/fonts/NerdFonts/HackNerdFont-Regular.ttf"
-  register: hack_nerd_font
-
 - name: Ensure fonts directory exists
   ansible.builtin.file:
     path: "{{ ansible_facts.env.HOME }}/.local/share/fonts/NerdFonts"
     state: directory
     mode: "0755"
-  when: not firacode_nerd_font.stat.exists or not hack_nerd_font.stat.exists
+  when: not firacode_nerd_font.stat.exists
 
 - name: Download and install FiraCode Nerd Font
   ansible.builtin.shell: |
@@ -27,21 +22,10 @@
   when: not firacode_nerd_font.stat.exists
   changed_when: not firacode_nerd_font.stat.exists
 
-- name: Download and install Hack Nerd Font
-  ansible.builtin.shell: |
-    set -e
-    curl -fsSL -o /tmp/Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
-    unzip -oq /tmp/Hack.zip -d "{{ ansible_facts.env.HOME }}/.local/share/fonts/NerdFonts"
-    rm -f /tmp/Hack.zip
-  args:
-    executable: /bin/bash
-  when: not hack_nerd_font.stat.exists
-  changed_when: not hack_nerd_font.stat.exists
-
 - name: Refresh font cache
   ansible.builtin.shell: |
     fc-cache -f "{{ ansible_facts.env.HOME }}/.local/share/fonts"
   args:
     executable: /bin/bash
-  when: not firacode_nerd_font.stat.exists or not hack_nerd_font.stat.exists
+  when: not firacode_nerd_font.stat.exists
   changed_when: true
