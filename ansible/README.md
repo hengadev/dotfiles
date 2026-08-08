@@ -1,6 +1,6 @@
 # Ansible Bootstrap
 
-Bootstraps a fresh Ubuntu/Debian machine with all dotfiles and development tools.
+Bootstraps a fresh Ubuntu/Debian or Fedora/RHEL machine with all dotfiles, the sway desktop stack, and development tools.
 
 ## Quick Start
 
@@ -16,7 +16,8 @@ ansible-playbook -i ansible/inventory ansible/bootstrap.yml --ask-become-pass
 ## Prerequisites
 
 ```bash
-sudo apt install ansible
+sudo apt install ansible      # Debian/Ubuntu
+sudo dnf install ansible      # Fedora/RHEL
 ```
 
 ## Makefile Targets
@@ -27,6 +28,8 @@ sudo apt install ansible
 | `make dotfiles` | Sync dotfiles only |
 | `make shell` | Shell setup only |
 | `make neovim` | Neovim setup only |
+| `make fonts` | Nerd Fonts only |
+| `make sway` | Sway desktop stack only |
 | `make languages` | Language runtimes only |
 | `make gnome` | GNOME settings only |
 | `make check` | Dry-run (no changes made) |
@@ -40,6 +43,8 @@ sudo apt install ansible
 | `system` | Base packages, lazygit, lazydocker |
 | `dotfiles` | Clone dotfiles repo into `~/.config` |
 | `shell` | zsh default shell, `.zshenv`, starship |
+| `fonts` | Nerd Fonts for waybar/wofi/wezterm/sway icons |
+| `sway` | Sway, waybar, wofi, and the rest of the Wayland desktop stack |
 | `languages` | nvm/Node, rustup/Rust, Go, Bun |
 | `neovim` | Neovim + Lazy plugin sync |
 | `gnome` | dconf settings (GNOME only) |
