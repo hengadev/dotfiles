@@ -1,0 +1,6 @@
+---
+- name: Install sway/Wayland desktop packages
+  ansible.builtin.package:
+    name: "{{ sway_packages_common + (sway_packages_debian if ansible_facts['os_family'] == 'Debian' else sway_packages_redhat) }}"
+    state: present
+  become: true

@@ -36,3 +36,26 @@ system_packages_redhat:
 dev_packages:
   - lazygit
   - lazydocker
+
+# Sway/Wayland desktop stack - package names that agree across apt and dnf.
+sway_packages_common:
+  - sway
+  - waybar
+  - wofi
+  - i3lock
+  - xss-lock
+  - wireplumber
+  - brightnessctl
+  - pavucontrol
+  - xdg-desktop-portal
+  - xdg-desktop-portal-wlr
+
+# Debian/Ubuntu-only names for the sway stack.
+sway_packages_debian:
+  - dex
+  - network-manager-gnome
+
+# Fedora/RHEL equivalents.
+sway_packages_redhat:
+  - dex-autostart
+  - NetworkManager-applet

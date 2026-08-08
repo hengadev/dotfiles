@@ -22,6 +22,9 @@
     - role: fonts
       tags: [fonts]
 
+    - role: sway
+      tags: [sway]
+
     - role: languages
       tags: [languages]
 
