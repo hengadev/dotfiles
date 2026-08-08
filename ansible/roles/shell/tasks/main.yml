@@ -6,10 +6,13 @@
   become: true
 
 - name: Set zsh as default shell
+  # zsh's install above only gets simulated under --check, not actually
+  # applied, so /usr/bin/zsh may not exist for real yet on a fresh box.
   ansible.builtin.user:
     name: "{{ ansible_facts.env.USER }}"
     shell: /usr/bin/zsh
   become: true
+  when: not ansible_check_mode
 
 - name: Install starship prompt
   block:
