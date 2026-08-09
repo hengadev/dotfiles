@@ -40,12 +40,12 @@ sudo dnf install ansible      # Fedora/RHEL
 
 | Role | Description |
 |------|-------------|
-| `system` | Base packages, lazygit, lazydocker |
+| `system` | Base packages, Docker, lazygit, lazydocker |
 | `dotfiles` | Clone dotfiles repo into `~/.config` |
 | `shell` | zsh default shell, `.zshenv`, starship |
 | `fonts` | Nerd Fonts for waybar/wofi/wezterm/sway icons |
 | `sway` | Sway, waybar, wofi, and the rest of the Wayland desktop stack |
-| `languages` | nvm/Node, rustup/Rust, Go, Bun |
+| `languages` | nvm/Node, pnpm, rustup/Rust, Go, Bun |
 | `neovim` | Neovim + Lazy plugin sync |
 | `gnome` | dconf settings (GNOME only) |
 
