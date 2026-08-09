@@ -76,7 +76,7 @@
         "tooltip-format-wifi": "{signalStrength}% - {essid}/{ipaddr}",
         "tooltip-format-ethernet": "{ifname}/{ipaddr}",
         "tooltip-format-disconnected": "Disconnected",
-        "on-click": "nmtui"
+        "on-click": "nm-connection-editor"
     },
 
     "battery": {

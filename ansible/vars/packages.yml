@@ -59,3 +59,4 @@ sway_packages_debian:
 sway_packages_redhat:
   - dex-autostart
   - network-manager-applet
+  - nm-connection-editor
