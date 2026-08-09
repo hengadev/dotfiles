@@ -23,6 +23,28 @@
     state: directory
     mode: "0755"
 
+- name: Ensure claude code commands directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.claude/commands"
+    state: directory
+
+- name: Find custom claude code commands
+  ansible.builtin.find:
+    paths: "{{ dotfiles_dest }}/claude-code/commands"
+    file_type: file
+    depth: 1
+  register: claude_commands
+
+- name: Symlink custom claude code commands
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_facts.env.HOME }}/.claude/commands/{{ item.path | basename }}"
+    state: link
+    force: true
+  loop: "{{ claude_commands.files }}"
+  loop_control:
+    label: "{{ item.path | basename }}"
+
 - name: Set claude-code config paths
   ansible.builtin.set_fact:
     claude_statusline_path: "{{ ansible_facts.env.HOME }}/.claude/statusline-command.sh"
