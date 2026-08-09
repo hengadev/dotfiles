@@ -12,6 +12,11 @@
   when: not claude_bin.stat.exists
   changed_when: not claude_bin.stat.exists
 
+- name: Update claude code to the latest version
+  ansible.builtin.command: "{{ ansible_facts.env.HOME }}/.local/bin/claude update"
+  register: claude_update_result
+  changed_when: "'up to date' not in claude_update_result.stdout"
+
 - name: Ensure ~/.claude directory exists
   ansible.builtin.file:
     path: "{{ ansible_facts.env.HOME }}/.claude"
