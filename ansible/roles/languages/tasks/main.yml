@@ -24,6 +24,21 @@
         executable: /bin/bash
       changed_when: false
 
+- name: Install pnpm
+  block:
+    - name: Check if pnpm is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_facts.env.HOME }}/.local/share/pnpm/pnpm"
+      register: pnpm_bin
+
+    - name: Install pnpm
+      ansible.builtin.shell: |
+        curl -fsSL https://get.pnpm.io/install.sh | sh -
+      args:
+        executable: /bin/bash
+      when: not pnpm_bin.stat.exists
+      changed_when: not pnpm_bin.stat.exists
+
 - name: Install Rust via rustup
   block:
     - name: Check if rustup is installed

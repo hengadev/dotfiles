@@ -4,6 +4,7 @@ Installs development language runtimes.
 
 **What it does:**
 - **Node.js**: installs nvm, then installs and aliases latest LTS
+- **pnpm**: installs via the official install script
 - **Rust**: installs rustup with stable toolchain
 - **Go**: downloads latest Go release to `/usr/local/go`
 - **Bun**: installs via the official install script
