@@ -118,6 +118,7 @@ window#waybar {
 #temperature,
 #pulseaudio,
 #network,
+#bluetooth,
 #battery,
 #clock,
 #custom-power {
@@ -135,6 +136,7 @@ window#waybar {
 #temperature:hover,
 #pulseaudio:hover,
 #network:hover,
+#bluetooth:hover,
 #battery:hover,
 #clock:hover,
 #custom-power:hover {
@@ -147,6 +149,10 @@ window#waybar {
 }
 
 #network.disconnected {
+    color: @wb-fg-muted;
+}
+
+#bluetooth.disabled {
     color: @wb-fg-muted;
 }
 

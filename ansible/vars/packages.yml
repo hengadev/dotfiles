@@ -49,6 +49,7 @@ sway_packages_common:
   - pavucontrol
   - xdg-desktop-portal
   - xdg-desktop-portal-wlr
+  - blueman
 
 # Debian/Ubuntu-only names for the sway stack.
 sway_packages_debian:

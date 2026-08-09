@@ -13,6 +13,7 @@
         "temperature",
         "pulseaudio",
         "network",
+        "bluetooth",
         "battery"
     ],
     "modules-center": [],
@@ -77,6 +78,16 @@
         "tooltip-format-ethernet": "{ifname}/{ipaddr}",
         "tooltip-format-disconnected": "Disconnected",
         "on-click": "nm-connection-editor"
+    },
+
+    "bluetooth": {
+        "format": "󰂯",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager"
     },
 
     "battery": {

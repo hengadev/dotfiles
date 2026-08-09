@@ -119,6 +119,7 @@ window#waybar {
 #temperature,
 #pulseaudio,
 #network,
+#bluetooth,
 #battery,
 #custom-power {
     /* Same icon-centering asymmetry as #custom-os-icon. */
@@ -136,6 +137,7 @@ window#waybar {
 #temperature:hover,
 #pulseaudio:hover,
 #network:hover,
+#bluetooth:hover,
 #battery:hover,
 #custom-power:hover {
     background-color: @pill-bg-hover;
@@ -158,6 +160,10 @@ window#waybar {
 }
 
 #network.disconnected {
+    color: @wb-fg-muted;
+}
+
+#bluetooth.disabled {
     color: @wb-fg-muted;
 }
 

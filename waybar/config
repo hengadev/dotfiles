@@ -6,5 +6,5 @@
     "height": 49,
     "modules-left": ["custom/os-icon", "cpu", "memory", "temperature"],
     "modules-center": ["clock", "sway/workspaces"],
-    "modules-right": ["pulseaudio", "network", "battery", "custom/power"]
+    "modules-right": ["pulseaudio", "network", "bluetooth", "battery", "custom/power"]
 }
