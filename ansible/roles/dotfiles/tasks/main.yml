@@ -19,14 +19,42 @@
   when: not dotfiles_git_dir.stat.exists
   changed_when: true
 
-- name: Update dotfiles repository
-  ansible.builtin.git:
-    repo: "{{ dotfiles_repo }}"
-    dest: "{{ dotfiles_dest }}"
-    version: "{{ dotfiles_branch }}"
-    update: true
-    force: true
-  when: dotfiles_git_dir.stat.exists
+- name: Fetch latest dotfiles from origin
+  ansible.builtin.shell: |
+    set -e
+    git fetch origin "{{ dotfiles_branch }}"
+  args:
+    executable: /bin/bash
+    chdir: "{{ dotfiles_dest }}"
+  when: dotfiles_git_dir.stat.exists and not ansible_check_mode
+  changed_when: false
+
+- name: Fast-forward dotfiles repository to origin
+  # ansible.builtin.git's branch checkout always does a "git reset --hard
+  # origin/<branch>" internally, regardless of its own force: parameter -
+  # that silently discards local commits/edits that aren't on origin yet.
+  # A plain fast-forward merge can't do that: it just refuses (non-zero
+  # rc, caught by failed_when below) if the local branch has diverged,
+  # leaving the working tree completely untouched.
+  ansible.builtin.command:
+    cmd: git merge --ff-only "origin/{{ dotfiles_branch }}"
+    chdir: "{{ dotfiles_dest }}"
+  register: dotfiles_ff
+  when: dotfiles_git_dir.stat.exists and not ansible_check_mode
+  changed_when: "'Already up to date' not in dotfiles_ff.stdout"
+  failed_when: false
+
+- name: Warn if dotfiles repository has unpushed local changes
+  ansible.builtin.debug:
+    msg: >-
+      Skipped updating {{ dotfiles_dest }} from origin/{{ dotfiles_branch }}:
+      local branch has commits or changes not on origin. Push or stash them,
+      then re-run bootstrap to pick up the latest dotfiles.
+  when:
+    - dotfiles_git_dir.stat.exists
+    - not ansible_check_mode
+    - dotfiles_ff.rc is defined
+    - dotfiles_ff.rc != 0
 
 - name: Initialize git submodules (zsh plugins, etc.)
   ansible.builtin.shell: |
