@@ -36,6 +36,10 @@ export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/bin/wezterm
 export PATH=$PATH:/bin/wezterm
 
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH=$PATH:$PNPM_HOME/bin
+
 export MISTRAL_API_KEY=REPLACE_WITH_MISTRAL_API_KEY
 
 # Z.ai related

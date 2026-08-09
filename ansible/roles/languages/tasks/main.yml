@@ -28,7 +28,7 @@
   block:
     - name: Check if pnpm is installed
       ansible.builtin.stat:
-        path: "{{ ansible_facts.env.HOME }}/.local/share/pnpm/pnpm"
+        path: "{{ ansible_facts.env.HOME }}/.local/share/pnpm/bin/pnpm"
       register: pnpm_bin
 
     - name: Install pnpm
