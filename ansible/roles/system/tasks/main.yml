@@ -18,6 +18,45 @@
     state: present
   become: true
 
+- name: Install Docker
+  block:
+    - name: Check if Docker is installed
+      ansible.builtin.stat:
+        path: /usr/bin/docker
+      register: docker_bin
+
+    - name: Download and install Docker
+      ansible.builtin.shell: |
+        set -e
+        curl -fsSL https://get.docker.com | sh
+      args:
+        executable: /bin/bash
+      become: true
+      when: not docker_bin.stat.exists
+      changed_when: not docker_bin.stat.exists
+
+    - name: Enable and start docker service
+      # On a fresh --check run Docker was never actually installed (the
+      # install script is a shell task, which skips under check mode), so
+      # there's no docker.service unit for systemd to resolve - skip rather
+      # than fail, same reasoning as kanata's uinput group.
+      ansible.builtin.systemd:
+        name: docker
+        enabled: true
+        state: started
+      become: true
+      when: not ansible_check_mode
+
+    - name: Add user to docker group
+      # The docker group is created by the install script itself, so it
+      # doesn't exist yet under --check either - skip for the same reason.
+      ansible.builtin.user:
+        name: "{{ ansible_facts.env.USER }}"
+        groups: docker
+        append: true
+      become: true
+      when: not ansible_check_mode
+
 - name: Install wezterm
   block:
     - name: Check if wezterm is installed
