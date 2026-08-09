@@ -5,7 +5,6 @@ Documentation=https://github.com/jtroo/kanata
 [Service]
 Environment=DISPLAY=:0
 Type=simple
-ExecStartPre=/sbin/modprobe uinput
 ExecStart=%h/.cargo/bin/kanata --cfg %h/.config/kanata/config.kbd
 Restart=no
 

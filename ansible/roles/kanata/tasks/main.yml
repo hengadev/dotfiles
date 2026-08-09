@@ -12,6 +12,27 @@
   when: not kanata_bin.stat.exists
   changed_when: not kanata_bin.stat.exists
 
+- name: Load uinput kernel module at boot
+  # kanata.service is a systemd --user unit and runs as an unprivileged
+  # user, so it can't modprobe uinput itself (CAP_SYS_MODULE is
+  # root-only) - load it system-wide at boot instead so it's already
+  # present by the time the user service starts.
+  ansible.builtin.copy:
+    dest: /etc/modules-load.d/uinput.conf
+    content: |
+      uinput
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+
+- name: Load uinput kernel module now
+  ansible.builtin.command:
+    cmd: modprobe uinput
+  become: true
+  changed_when: true
+  when: not ansible_check_mode
+
 - name: Create uinput group
   # group doesn't actually get created under --check, so the user task
   # below can't add a member to it either - skip both rather than fail
