@@ -140,3 +140,5 @@ claude'
 alias oc="opencode"
 
 alias cluo="./cluo_desktop/build/bin/cluo_desktop"
+
+alias hd="hunk diff"
