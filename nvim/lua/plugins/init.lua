@@ -5,6 +5,7 @@
 require("plugins.base46")
 require("plugins.lazydev")
 require("plugins.completion")
+require("plugins.autopairs")
 require("plugins.treesitter")
 require("plugins.treesitter-context")
 require("plugins.mini-indentscope")
