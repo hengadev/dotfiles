@@ -56,6 +56,15 @@
     executable: /bin/bash
   changed_when: false
 
+- name: Install svelte-language-server and tailwindcss-language-server
+  ansible.builtin.shell: |
+    export NVM_DIR="{{ ansible_facts.env.HOME }}/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+    npm install -g svelte-language-server @tailwindcss/language-server
+  args:
+    executable: /bin/bash
+  changed_when: false
+
 - name: Install pyright
   ansible.builtin.pip:
     name: pyright
