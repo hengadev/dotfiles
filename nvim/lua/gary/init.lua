@@ -1,8 +1,0 @@
-require("gary.keymaps")
-require("gary.lazy")
-require("gary.options")
-require("gary.commands")
-require("gary.plugindev")
-require("gary.autocommand")
-require("gary.diagnostic")
-require("gary.filetype")

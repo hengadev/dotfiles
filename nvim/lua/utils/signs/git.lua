@@ -1,5 +1,0 @@
-return {
-    added = " ",
-    modified = " ",
-    removed = " ",
-}
