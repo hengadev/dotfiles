@@ -1,0 +1,103 @@
+---
+# LSP servers enabled via vim.lsp.enable({...}) in lua/config/lsp.lua.
+# nvim-lspconfig only supplies connection defaults (cmd/filetypes/root
+# markers) - it never installs anything, so each server's binary has to be
+# provisioned here, next to whichever toolchain already produces it.
+
+- name: Install clangd (Fedora/RHEL)
+  ansible.builtin.dnf:
+    name: clang-tools-extra
+    state: present
+  become: true
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Install clangd (Debian/Ubuntu)
+  ansible.builtin.apt:
+    name: clangd
+    state: present
+  become: true
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Install rust-analyzer
+  block:
+    - name: Check if rust-analyzer is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_facts.env.HOME }}/.cargo/bin/rust-analyzer"
+      register: rust_analyzer_bin
+
+    - name: Add rust-analyzer rustup component
+      ansible.builtin.shell: |
+        "{{ ansible_facts.env.HOME }}/.cargo/bin/rustup" component add rust-analyzer
+      args:
+        executable: /bin/bash
+      when: not rust_analyzer_bin.stat.exists
+
+- name: Install gopls
+  block:
+    - name: Check if gopls is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_facts.env.HOME }}/go/bin/gopls"
+      register: gopls_bin
+
+    - name: Install gopls via go install
+      ansible.builtin.shell: |
+        export PATH="/usr/local/go/bin:$PATH"
+        go install golang.org/x/tools/gopls@latest
+      args:
+        executable: /bin/bash
+      when: not gopls_bin.stat.exists
+
+- name: Install typescript-language-server
+  ansible.builtin.shell: |
+    export NVM_DIR="{{ ansible_facts.env.HOME }}/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+    npm install -g typescript typescript-language-server
+  args:
+    executable: /bin/bash
+  changed_when: false
+
+- name: Install pyright
+  ansible.builtin.pip:
+    name: pyright
+    state: present
+    extra_args: --user
+  when: not ansible_check_mode
+
+- name: Install lua-language-server
+  block:
+    - name: Check if lua-language-server is installed
+      ansible.builtin.stat:
+        path: /usr/local/bin/lua-language-server
+      register: lua_ls_bin
+
+    - name: Get latest lua-language-server release info
+      ansible.builtin.uri:
+        url: https://api.github.com/repos/LuaLS/lua-language-server/releases/latest
+        return_content: true
+      register: lua_ls_release
+      check_mode: false
+      when: not lua_ls_bin.stat.exists
+
+    - name: Create lua-language-server install directory
+      ansible.builtin.file:
+        path: /opt/lua-language-server
+        state: directory
+        mode: "0755"
+      become: true
+      when: not lua_ls_bin.stat.exists
+
+    - name: Download and extract lua-language-server
+      ansible.builtin.unarchive:
+        src: "{{ lua_ls_release.json.assets | selectattr('name', 'match', '.*linux-x64\\.tar\\.gz$') | map(attribute='browser_download_url') | first }}"
+        dest: /opt/lua-language-server
+        remote_src: true
+      become: true
+      when: not lua_ls_bin.stat.exists
+
+    - name: Symlink lua-language-server into PATH
+      ansible.builtin.file:
+        src: /opt/lua-language-server/bin/lua-language-server
+        dest: /usr/local/bin/lua-language-server
+        state: link
+      become: true
+      when: not lua_ls_bin.stat.exists

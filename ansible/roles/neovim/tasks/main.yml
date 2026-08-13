@@ -48,3 +48,6 @@
     XDG_CONFIG_HOME: "{{ ansible_facts.env.HOME }}/.config"
   changed_when: true
   # Lazy sync always runs to pick up any new plugins
+
+- name: Install neovim LSP servers
+  ansible.builtin.include_tasks: lsp_servers.yml
