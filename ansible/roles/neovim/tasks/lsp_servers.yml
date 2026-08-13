@@ -92,15 +92,21 @@
         path: /opt/lua-language-server
         state: directory
         mode: "0755"
+        owner: "{{ ansible_facts.env.USER }}"
+        group: "{{ ansible_facts.env.USER }}"
       become: true
       when: not lua_ls_bin.stat.exists
 
     - name: Download and extract lua-language-server
+      # No become here: the directory above is already owned by the invoking
+      # user, and lua-language-server needs to write its own log/cache dir
+      # under here at runtime - a root-owned tree makes it crash on startup.
       ansible.builtin.unarchive:
         src: "{{ lua_ls_release.json.assets | selectattr('name', 'match', '.*linux-x64\\.tar\\.gz$') | map(attribute='browser_download_url') | first }}"
         dest: /opt/lua-language-server
         remote_src: true
-      become: true
+        owner: "{{ ansible_facts.env.USER }}"
+        group: "{{ ansible_facts.env.USER }}"
       when: not lua_ls_bin.stat.exists
 
     - name: Symlink lua-language-server into PATH
