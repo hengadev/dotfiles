@@ -1,15 +1,12 @@
--- A collection a small plugins that makes the editor more pleasant to use
-local makeKey = require("utils.makeKey")
-
-SetUndoKey = makeKey("Undo")
-
-return {
+-- plugins
+vim.pack.add({
     {
-        "kylechui/nvim-surround",
-        version = "*",
-        keys = { "cs", "ds", "ys" },
-        config = function()
-            require("nvim-surround").setup({})
-        end,
-    },
-}
+        src = "https://github.com/kylechui/nvim-surround",
+        version = vim.version.range("4.*"),
+    }
+})
+
+-- config
+require("nvim-surround").setup({
+    keys = { "cs", "ds", "ys" },
+})
