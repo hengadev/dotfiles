@@ -1,9 +1,3 @@
-return {
-    {
-        "mbbill/undotree",
-        event = { "BufReadPre", "BufNewFile" },
-        keys = {
-            SetUndoKey("<leader>u", vim.cmd.UndotreeToggle, "Toggle [U]ndo tree"),
-        },
-    },
-}
+vim.cmd.packadd("nvim.undotree")
+
+vim.keymap.set("n", "<leader>u", vim.cmd.Undotree, {desc="Toggle [U]ndo tree"})
