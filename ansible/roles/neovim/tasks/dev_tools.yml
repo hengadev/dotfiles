@@ -1,0 +1,118 @@
+---
+# Formatters (conform.nvim, lua/plugins/conform.lua) and the debug adapter
+# (nvim-dap, lua/plugins/dap.lua) - neither is installed by the plugin
+# itself, so the binaries are provisioned here, next to whichever toolchain
+# already produces them (same approach as lsp_servers.yml).
+
+- name: Install stylua (lua formatter)
+  block:
+    - name: Check if stylua is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_facts.env.HOME }}/.cargo/bin/stylua"
+      register: stylua_bin
+
+    - name: Install stylua via cargo
+      ansible.builtin.shell: |
+        "{{ ansible_facts.env.HOME }}/.cargo/bin/cargo" install stylua
+      args:
+        executable: /bin/bash
+      when: not stylua_bin.stat.exists
+
+- name: Install shfmt (shell formatter)
+  block:
+    - name: Check if shfmt is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_facts.env.HOME }}/go/bin/shfmt"
+      register: shfmt_bin
+
+    - name: Install shfmt via go install
+      ansible.builtin.shell: |
+        export PATH="/usr/local/go/bin:$PATH"
+        go install mvdan.cc/sh/v3/cmd/shfmt@latest
+      args:
+        executable: /bin/bash
+      when: not shfmt_bin.stat.exists
+
+- name: Install ruff (python formatter)
+  ansible.builtin.pip:
+    name: ruff
+    state: present
+    extra_args: --user
+  when: not ansible_check_mode
+
+- name: Install prettier and prettierd (js/ts/css/html/json/yaml/markdown formatters)
+  ansible.builtin.shell: |
+    export NVM_DIR="{{ ansible_facts.env.HOME }}/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+    npm install -g prettier @fsouza/prettierd
+  args:
+    executable: /bin/bash
+  changed_when: false
+
+- name: Install clang-format (Debian/Ubuntu)
+  # Fedora/RHEL already gets clang-format bundled in clang-tools-extra,
+  # installed alongside clangd in lsp_servers.yml.
+  ansible.builtin.apt:
+    name: clang-format
+    state: present
+  become: true
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Install codelldb (c/c++/rust debug adapter)
+  block:
+    - name: Check if codelldb is installed
+      ansible.builtin.stat:
+        path: /usr/local/bin/codelldb
+      register: codelldb_bin
+
+    - name: Ensure unzip is present (Fedora/RHEL)
+      ansible.builtin.dnf:
+        name: unzip
+        state: present
+      become: true
+      when: ansible_facts['os_family'] == "RedHat" and not codelldb_bin.stat.exists
+
+    - name: Ensure unzip is present (Debian/Ubuntu)
+      ansible.builtin.apt:
+        name: unzip
+        state: present
+      become: true
+      when: ansible_facts['os_family'] == "Debian" and not codelldb_bin.stat.exists
+
+    - name: Get latest codelldb release info
+      ansible.builtin.uri:
+        url: https://api.github.com/repos/vadimcn/codelldb/releases/latest
+        return_content: true
+      register: codelldb_release
+      check_mode: false
+      when: not codelldb_bin.stat.exists
+
+    - name: Create codelldb install directory
+      ansible.builtin.file:
+        path: /opt/codelldb
+        state: directory
+        mode: "0755"
+        owner: "{{ ansible_facts.env.USER }}"
+        group: "{{ ansible_facts.env.USER }}"
+      become: true
+      when: not codelldb_bin.stat.exists
+
+    - name: Download and extract codelldb
+      # No become here, same reasoning as lua-language-server: the directory
+      # above is already owned by the invoking user, and a root-owned tree
+      # would block codelldb from writing its own runtime state.
+      ansible.builtin.unarchive:
+        src: "{{ codelldb_release.json.assets | selectattr('name', 'match', 'codelldb-linux-x64\\.vsix$') | map(attribute='browser_download_url') | first }}"
+        dest: /opt/codelldb
+        remote_src: true
+        owner: "{{ ansible_facts.env.USER }}"
+        group: "{{ ansible_facts.env.USER }}"
+      when: not codelldb_bin.stat.exists
+
+    - name: Symlink codelldb into PATH
+      ansible.builtin.file:
+        src: /opt/codelldb/extension/adapter/codelldb
+        dest: /usr/local/bin/codelldb
+        state: link
+      become: true
+      when: not codelldb_bin.stat.exists

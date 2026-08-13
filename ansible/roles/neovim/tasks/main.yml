@@ -40,3 +40,6 @@
 
 - name: Install neovim LSP servers
   ansible.builtin.include_tasks: lsp_servers.yml
+
+- name: Install neovim formatters and debug adapter
+  ansible.builtin.include_tasks: dev_tools.yml
