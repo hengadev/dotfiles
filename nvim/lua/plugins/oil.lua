@@ -1,20 +1,21 @@
-return {
+-- plugins
+vim.pack.add({
     "https://github.com/stevearc/oil.nvim",
-    lazy = false,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-        require("oil").setup {
-            columns = { "icon" },
-            keymaps = {
-                ["<C-h>"] = false,
-                ["<M-h>"] = "actions.select_split",
-            },
-            view_options = {
-                show_hidden = true,
-            }
-        }
-        local map = require("utils.helpers").set_prefix("Oil")
-        map("-", "<CMD>Oil<CR>", "Open parent directory in current window")
-        map("<leader>-", require("oil").toggle_float, "Open parent directory in floating window")
-    end,
-}
+    "https://github.com/nvim-tree/nvim-web-devicons",
+})
+
+-- config
+require("oil").setup({
+  columns = { "icon" },
+  keymaps = {
+    ["<C-h>"] = false,
+    ["<M-h>"] = "actions.select_split",
+  },
+  view_options = {
+    show_hidden = true,
+  },
+})
+
+-- keymaps
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory in current window" })
+vim.keymap.set("n","<leader>-", require("oil").toggle_float, { desc = "Open parent directory in floating window" })
