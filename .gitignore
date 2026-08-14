@@ -56,3 +56,9 @@ wezterm/nvim_palette.lua
 herdr/session.json
 herdr/release-notes.json
 herdr/*.log
+
+# machine-generated runtime state - not source
+hunk/state.json
+mozilla/firefox/*.ini
+pavucontrol.ini
+OpenRGB/logs/
