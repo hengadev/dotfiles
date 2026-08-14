@@ -59,6 +59,8 @@ herdr/*.log
 
 # machine-generated runtime state - not source
 hunk/state.json
-mozilla/firefox/*.ini
 pavucontrol.ini
 OpenRGB/logs/
+
+# entire live Firefox profile (saved logins, cookies, certs, history) - never source
+mozilla/
