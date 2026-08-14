@@ -45,6 +45,6 @@ export MISTRAL_API_KEY=REPLACE_WITH_MISTRAL_API_KEY
 # Z.ai related
 export ZAI_API_KEY=REPLACE_WITH_ZAI_API_KEY
 export ZAI_BASE_URL=https://api.z.ai/api/anthropic
-export GLM_OPUS_MODEL="GLM-4.6"
-export GLM_SONNET_MODEL="GLM-4.6"
-export GLM_HAIKU_MODEL="GLM-4.5-Air"
+export GLM_OPUS_MODEL="GLM-5.2"
+export GLM_SONNET_MODEL="GLM-5.2"
+export GLM_HAIKU_MODEL="GLM-5-Turbo"
