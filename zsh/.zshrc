@@ -22,3 +22,5 @@ export ANKI_API_KEY=$(grep '^ANKI_API_KEY=' "$HOME/Documents/projects/homelab/.e
 # variable ZDOTDIR.
 
 export PATH="$HOME/.local/bin:$PATH"
+
+export PATH="$HOME/.local/share/pnpm/store/v11:$PATH"
