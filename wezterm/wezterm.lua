@@ -12,7 +12,7 @@ end
 
 -- Font settings
 config.font = wezterm.font_with_fallback({
-	"FiraCode Nerd Font",
+	"FiraCode Nerd Font Mono",
 	"Berkeley Mono",
 	"nonicons",
 })
