@@ -42,7 +42,7 @@ local options = {
 	-- sync clipboard between os and nvim
 	clipboard = "unnamedplus",
 	conceallevel = 1,
-    splitkeep = "screen", -- for the edgy.nvim plugin
+	splitkeep = "screen", -- for the edgy.nvim plugin
 }
 
 vim.opt.isfname:append("@-@")
