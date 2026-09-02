@@ -117,6 +117,7 @@ window#waybar {
 #cpu,
 #memory,
 #temperature,
+#custom-gpu,
 #pulseaudio,
 #network,
 #bluetooth,
@@ -135,6 +136,7 @@ window#waybar {
 #cpu:hover,
 #memory:hover,
 #temperature:hover,
+#custom-gpu:hover,
 #pulseaudio:hover,
 #network:hover,
 #bluetooth:hover,
@@ -170,14 +172,16 @@ window#waybar {
 #temperature.critical,
 #battery.critical:not(.charging),
 #cpu.critical,
-#memory.critical {
+#memory.critical,
+#custom-gpu.critical {
     background-color: @alert-red-bg;
     color: @alert-red;
 }
 
 #battery.warning:not(.charging),
 #cpu.warning,
-#memory.warning {
+#memory.warning,
+#custom-gpu.warning {
     background-color: @alert-yellow-bg;
     color: @alert-yellow;
 }

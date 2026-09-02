@@ -51,6 +51,14 @@
         "format-icons": ["󰔏", "󱃃", "󰸁"]
     },
 
+    "custom/gpu": {
+        "exec": "~/.config/waybar/scripts/gpu.sh",
+        "return-type": "json",
+        "interval": 3,
+        "format": "{}",
+        "on-click": "wezterm start -- watch -n1 nvidia-smi"
+    },
+
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "󰖁 {volume}%",

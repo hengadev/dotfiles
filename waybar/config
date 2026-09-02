@@ -4,7 +4,7 @@
     "layer": "top",
     "position": "top",
     "height": 49,
-    "modules-left": ["custom/os-icon", "cpu", "memory", "temperature"],
+    "modules-left": ["custom/os-icon", "cpu", "memory", "temperature", "custom/gpu"],
     "modules-center": ["clock", "sway/workspaces"],
     "modules-right": ["pulseaudio", "network", "bluetooth", "battery", "custom/power"]
 }

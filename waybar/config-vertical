@@ -11,6 +11,7 @@
         "cpu",
         "memory",
         "temperature",
+        "custom/gpu",
         "pulseaudio",
         "network",
         "bluetooth",
@@ -54,6 +55,14 @@
         "format": "{icon}",
         "format-icons": ["󰔏", "󱃃", "󰸁"],
         "tooltip-format": "{temperatureC}°C"
+    },
+
+    "custom/gpu": {
+        "exec": "~/.config/waybar/scripts/gpu.sh --compact",
+        "return-type": "json",
+        "interval": 3,
+        "format": "{}",
+        "on-click": "wezterm start -- watch -n1 nvidia-smi"
     },
 
     "pulseaudio": {
