@@ -198,20 +198,23 @@ exec --no-startup-id discord
 # exec --no-startup-id obsidian
 
 # When opening one of the following app, go directly to the workspace.
-assign [class="wezterm"] $ws1
-for_window [class="wezterm"] focus
+# NOTE: these are native Wayland clients, so criteria must match on app_id,
+# not class (class is only set for XWayland windows). Verify with:
+#   swaymsg -t get_tree | grep app_id
+assign [app_id="org.wezfurlong.wezterm"] $ws1
+for_window [app_id="org.wezfurlong.wezterm"] focus
 
-assign [class="brave"] $ws2
-for_window [class="brave"] focus
+assign [app_id="brave-browser"] $ws2
+for_window [app_id="brave-browser"] focus
 
-assign [class="discord"] $ws3
-for_window [class="discord"] focus
+assign [app_id="discord"] $ws3
+for_window [app_id="discord"] focus
 
-assign [class="anki"] $ws4
-for_window [class="anki"] focus
+assign [app_id="anki"] $ws4
+for_window [app_id="anki"] focus
 
-assign [class="obsidian"] $ws5
-for_window [class="obsidian"] focus
+assign [app_id="obsidian"] $ws5
+for_window [app_id="obsidian"] focus
 
 
 # assign [class="MongoDB Compass"] $ws4
