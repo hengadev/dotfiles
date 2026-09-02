@@ -2,7 +2,7 @@ local M = {}
 
 M.base46 = {
     theme = "midnight_breeze",
-    theme_toggle = { "sunrise_breeze", "midnight_breeze" },
+    theme_toggle = { "midnight_breeze", "midnight_breeze" },
     transparency = false,
     hl_add = {},
     hl_override = {},
