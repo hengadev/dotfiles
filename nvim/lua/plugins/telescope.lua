@@ -53,6 +53,15 @@ vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect T
 vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 vim.keymap.set("n", "<leader>sr", builtin.lsp_references, { desc = "[S]earch [R]eferences" })
 vim.keymap.set("n", "<leader>si", builtin.lsp_document_symbols, { desc = "[S]earch [I]n-file Symbols" })
+-- fff.find_files() always respects .gitignore (hardcoded in its Rust walker,
+-- no config/keymap to disable it) - this fills that gap by listing
+-- exclusively the files git ignores, not "everything including ignored".
+vim.keymap.set("n", "<leader>sI", function()
+	builtin.find_files({
+		prompt_title = "Search Gitignored Files",
+		find_command = { "git", "ls-files", "--others", "--ignored", "--exclude-standard" },
+	})
+end, { desc = "[S]earch [I]gnored files (gitignored only)" })
 vim.keymap.set("n", "<leader>sy", builtin.lsp_dynamic_workspace_symbols, { desc = "[S]earch S[y]mbols (workspace)" })
 vim.keymap.set("n", "<leader>sc", builtin.git_commits, { desc = "[S]earch [C]ommits" })
 vim.keymap.set("n", "<leader>sb", builtin.git_branches, { desc = "[S]earch [B]ranches" })
