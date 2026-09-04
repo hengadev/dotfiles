@@ -64,3 +64,15 @@ OpenRGB/logs/
 
 # entire live Firefox profile (saved logins, cookies, certs, history) - never source
 mozilla/
+
+# TONE3000 runtime state/cache/logs, incl. WebKit cookies - not source
+TONE3000/
+
+# nested git clone + build artifacts, not a dotfile
+llama.cpp/
+
+# auto-generated XDG menu merge from wine's Affinity .desktop entry
+menus/
+
+# auto-generated GPU/driver support cache, machine-specific
+blender/*/config/platform_support.txt
