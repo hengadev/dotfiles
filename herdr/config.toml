@@ -55,7 +55,16 @@ next_tab = "shift+right"
 #   split_vertical   = "prefix+v"      (panes stacked, vertical divider)
 #   split_horizontal = "prefix+minus"  (panes side by side, horizontal divider)
 #
-# Fuzzy session picker (tmux `bind C-j`) → default `prefix+w` (workspace_picker).
+# Fuzzy session picker (tmux `bind C-j`): the built-in workspace_picker
+# stays on its default `prefix+w`. This instead recreates the actual tmux
+# popup+fzf script, just pointed at herdr workspaces instead of sessions.
+[[keys.command]]
+key = "prefix+ctrl+j"
+type = "popup"
+width = "80%"
+height = "80%"
+command = '''herdr workspace list | jq -r '.result.workspaces[] | select(.focused==false) | "\(.label)\t\(.workspace_id)"' | fzf --reverse --with-nth=1 --delimiter='\t' | cut -f2 | xargs -r herdr workspace focus'''
+
 # Copy-mode-vi (v / C-v / y) has no direct equivalent; use `prefix+e` to open
 # scrollback in $EDITOR. Top status bar (`status-position top`) has no
 # equivalent — herdr uses a left sidebar layout instead.
