@@ -76,3 +76,10 @@ menus/
 
 # auto-generated GPU/driver support cache, machine-specific
 blender/*/config/platform_support.txt
+
+# per-browser Claude Code native-messaging host manifests - machine-specific
+# absolute path, auto-created per installed browser, not source
+chromium/
+microsoft-edge/
+opera/
+vivaldi/
