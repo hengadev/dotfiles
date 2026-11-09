@@ -142,3 +142,5 @@ alias oc="opencode"
 alias cluo="./cluo_desktop/build/bin/cluo_desktop"
 
 alias hd="hunk diff"
+
+alias herdr-fedora="herdr --remote fedora --remote-keybindings server"
