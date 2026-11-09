@@ -56,6 +56,16 @@ wezterm/nvim_palette.lua
 herdr/session.json
 herdr/release-notes.json
 herdr/*.log
+herdr/*.sock.agent
+herdr/plugins.json
+herdr/plugins/
+herdr/session-snapshots/
+
+# herdr plugin runtime state (telemetry, HTTP logs, update locks) - not source
+ovis/
+
+# herdr web-ui bridge sessions - contain live auth tokens, never commit
+herdr-web-ui/
 
 # machine-generated runtime state - not source
 hunk/state.json
