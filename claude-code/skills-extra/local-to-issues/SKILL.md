@@ -23,6 +23,11 @@ Break the plan into **tracer bullet** issues — thin vertical slices that cut t
 
 Each slice is either **HITL** (requires human interaction) or **AFK** (can be implemented and merged without human input). Prefer AFK.
 
+- A human step that only happens *after* the code exists (pick a design variant, test on a real device) does not make a slice HITL: keep it AFK and add a `**User gate:**` line. The implementing agent builds it; the orchestrator holds the merge until the user has done the gate.
+- `**Agent:**` defaults to `pi`; use `claude` only when the user says so for that slice.
+- `**Migration:** yes` when the slice changes the database schema. Never block a slice on a HITL slice just for migration order: the orchestrator runs migration slices one at a time.
+- Blocker lines are parsed for three-digit issue numbers: don't write other issue numbers in them.
+
 <vertical-slice-rules>
 - Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI, tests)
 - A completed slice is demoable or verifiable on its own
@@ -58,6 +63,9 @@ Report all created file paths at the end.
 **Type:** HITL | AFK
 **Status:** open
 **Blocked by:** <NNN> — <Title> | None
+**Agent:** pi | claude
+**User gate:** <human step after review, before merge> (optional; omit when none)
+**Migration:** yes | no
 
 ## What to build
 
