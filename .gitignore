@@ -64,6 +64,9 @@ herdr/session-snapshots/
 # herdr plugin runtime state (telemetry, HTTP logs, update locks) - not source
 ovis/
 
+# Ovis desktop app Electron user-data (caches, crashpad, service workers) - not source
+Ovis/
+
 # herdr web-ui bridge sessions - contain live auth tokens, never commit
 herdr-web-ui/
 
