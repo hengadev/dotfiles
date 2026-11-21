@@ -12,17 +12,17 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
+if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
+if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 . "$HOME/.cargo/env"
@@ -40,11 +40,12 @@ export PATH=$PATH:/bin/wezterm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH=$PATH:$PNPM_HOME/bin
 
-export MISTRAL_API_KEY=REPLACE_WITH_MISTRAL_API_KEY
 
 # Z.ai related
-export ZAI_API_KEY=REPLACE_WITH_ZAI_API_KEY
 export ZAI_BASE_URL=https://api.z.ai/api/anthropic
 export GLM_OPUS_MODEL="GLM-5.2"
 export GLM_SONNET_MODEL="GLM-5.2"
 export GLM_HAIKU_MODEL="GLM-5-Turbo"
+
+# Secrets (API keys) live in ~/.secrets, outside the git repo
+[ -f "$HOME/.secrets" ] && . "$HOME/.secrets"
